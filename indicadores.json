@@ -1,0 +1,86 @@
+{
+  "indicadores": [
+    {
+      "id": "ind_pmen",
+      "nome": "PMEN — Percentual Mínimo Efetivo Nacional",
+      "status_maturidade": "existente_monitorado",
+      "vinculos": [
+        { "nivel_id": "nivel1", "bloco_id": "produtos", "grupo_id": null },
+        { "nivel_id": "nivel2", "bloco_id": "produtos", "grupo_id": "n2_prod_execucao" }
+      ],
+      "tipo_classificacao": "eficácia — indicador de eficácia do instrumento regulatório, em posição intersticial entre produto (Nível 1) e resultado (Nível 2)",
+      "descricao": "Mede a parcela do valor total do mercado de biodiesel comercializado pelos detentores do Selo que retornou à agricultura familiar na forma de aquisições, ATER e fomento.",
+      "o_que_mostra": "O desempenho geral do SBS quanto à inclusão da agricultura familiar, tomando como parâmetro os dispêndios efetivos em comparação ao valor bruto de biodiesel comercializado pelos detentores do Selo.",
+      "formula_calculo": "PMEN = Valor total de dispêndios em aquisições, ATER e fomento à agricultura familiar / Valor total bruto de biodiesel comercializado no mercado nacional pelos detentores do Selo",
+      "unidade_medida": "Percentual (%)",
+      "fonte_dados": "Sistema SABIDO — MDA (dados autodeclarados pelas UPBs detentoras do Selo)",
+      "como_apurar": "1) Somar os dispêndios efetivos em aquisições, ATER e fomento de todas as UPBs detentoras do Selo. 2) Somar o valor bruto de biodiesel comercializado por essas UPBs. 3) Dividir (1) por (2) e multiplicar por 100.",
+      "periodicidade_apuracao": "Anual",
+      "prazo_maximo_apuracao": "28 de fevereiro do ano subsequente ao ano de referência",
+      "responsavel_apuracao": "DMAITE/CGIAF/DINOV/SAF/MDA",
+      "linha_base": "19,25% (2023 — patamar pré-vigência da Portaria MDA nº 28/2024)",
+      "meta": "22% (art. 31, §4º da Portaria MDA nº 28/2024)",
+      "polaridade": "Quanto maior, melhor",
+      "serie_historica": "2018: 26,12% | 2019: 29,11% | 2020: 21,41% | 2021: 23,73% | 2022: 16,41% | 2023: 19,25% | 2024: 13,09% | 2025: 11,15%",
+      "desagregacao": "Não desagregado por região nesta versão do indicador (ver indicador de Inclusão Regional para a dimensão N/NE/Semiárido)",
+      "causas_desvio": "Dissociação estrutural entre o crescimento do mercado de biodiesel (denominador) e o valor real destinado à agricultura familiar (numerador), agravada pelo sistema de multiplicadores vigente (Portaria MDA nº 28/2024, art. 31, §1º), que amplia o percentual ponderado sem gerar valor real adicional. Ver pressupostos de Atividades e Produtos do Nível 2.",
+      "impacto_desvio": "Distanciamento progressivo da meta normativa de 22%, com redução real do número de agricultores familiares beneficiados (queda de 33% entre 2023 e 2025) e enfraquecimento do propósito redistributivo do SBS.",
+      "limitacoes": "Enquanto não for desenvolvido o novo sistema informatizado do SBS, a apuração depende de dados declaratórios e manuseio manual em planilhas. Divergência metodológica conhecida entre denominador SABIDO (mais confiável) e denominador ANP, usado em apuração anterior (NT 2/2025).",
+      "forma_disponibilizacao": "Sítio eletrônico do MDA; Notas Técnicas anuais (NT 28/2026 e sucessoras); balanço anual encaminhado ao CNPE (Resolução CNPE nº 5/2026, art. 1º, §2º)"
+    },
+    {
+      "id": "ind_agricultores",
+      "nome": "Número de agricultores familiares em atividade no SBS",
+      "status_maturidade": "existente_monitorado",
+      "vinculos": [
+        { "nivel_id": "nivel2", "bloco_id": "resultados", "grupo_id": null }
+      ],
+      "tipo_classificacao": "eficácia — indicador de cobertura/alcance",
+      "descricao": "Monitora a quantidade de agricultores familiares incluídos (com contrato assinado e em atividade) no Selo Biocombustível Social.",
+      "o_que_mostra": "A evolução da base de agricultores familiares efetivamente participantes dos arranjos produtivos do SBS.",
+      "formula_calculo": "Soma da quantidade de CPFs distintos de agricultores familiares registrados no sistema de gestão do SBS no período de referência",
+      "unidade_medida": "Número absoluto (agricultores familiares)",
+      "fonte_dados": "Sistema SABIDO; empresas detentoras do Selo; cooperativas; ANP",
+      "como_apurar": "Receber os dados das empresas detentoras da concessão do Selo, diretamente e por intermédio de pessoas jurídicas contratadas/fomentadas por elas, via sistema informatizado. Consolidar os CPFs distintos.",
+      "periodicidade_apuracao": "Anual",
+      "prazo_maximo_apuracao": "28 de fevereiro do ano subsequente ao ano de referência",
+      "responsavel_apuracao": "DMAITE/CGIAF/DINOV/SAF/MDA",
+      "linha_base": "70.620 agricultores familiares (2021)",
+      "meta": "Igual ou maior que o melhor resultado anual dos 3 anos civis anteriores; a partir de 2027, meta do ano anterior acrescida do crescimento proporcional do volume de biodiesel comercializado",
+      "polaridade": "Quanto maior, melhor",
+      "serie_historica": "2021: 70.620 | 2022: 54.340 | 2023: 62.445 | 2024: 55.137 | 2025: 41.887",
+      "desagregacao": "Possível por UF, até o nível de município, e por UPB, quando as condições de coleta permitirem",
+      "causas_desvio": "Seleção inadequada de agricultores pelo detentor do Selo com consequente evasão; redução da produção e venda de biodiesel pelas detentoras; desistência ou cancelamento do Selo por empresa produtora; subnotificação por organizações da agricultura familiar.",
+      "impacto_desvio": "Inclusão insuficiente da agricultura familiar no SBS; risco de limitação do acesso a grupos que não se renovam nem se ampliam.",
+      "limitacoes": "Coleta ainda inclui dados declaratórios e manuseio manual, enquanto o novo sistema informatizado não estiver disponível.",
+      "forma_disponibilizacao": "Sítio eletrônico do MDA"
+    },
+    {
+      "id": "ind_biodiesel_af",
+      "nome": "Percentual estimado de biodiesel produzido com matérias-primas da agricultura familiar",
+      "status_maturidade": "exigido_pendente",
+      "vinculos": [
+        { "nivel_id": "nivel2", "bloco_id": "produtos", "grupo_id": "n2_prod_execucao" }
+      ],
+      "tipo_classificacao": "eficácia — indicador de participação da AF na produção física de biodiesel",
+      "descricao": "Mostra o percentual do volume de biodiesel produzido com matérias-primas da agricultura familiar em relação ao volume total de biodiesel comercializado no mercado nacional.",
+      "o_que_mostra": "A proporção estimada de participação efetiva da agricultura familiar na produção física do biodiesel comercializado no mercado nacional.",
+      "formula_calculo": "Volume total estimado de biodiesel produzido com matérias-primas da agricultura familiar / Volume total de biodiesel comercializado no mercado nacional no período",
+      "unidade_medida": "Percentual (%)",
+      "fonte_dados": "Sistema de gestão do SBS; empresas beneficiárias; cooperativas; ANP",
+      "como_apurar": "Receber dos produtores de biodiesel a estimativa de biodiesel produzido com matérias-primas da AF; obter da ANP o volume total de biodiesel comercializado; aplicar a fórmula.",
+      "periodicidade_apuracao": "Anual",
+      "prazo_maximo_apuracao": "28 de fevereiro do ano subsequente ao ano de referência",
+      "responsavel_apuracao": "DMAITE/CGIAF/DINOV/SAF/MDA",
+      "linha_base": "Não apurável nas condições atuais",
+      "meta": "Condicionada à primeira consolidação de resultados com a nova plataforma do SBS",
+      "polaridade": "Quanto maior, melhor",
+      "serie_historica": "Não é possível apurar resultados anteriores",
+      "desagregacao": "A definir quando o novo sistema estiver disponível",
+      "causas_desvio": "Redução do uso efetivo de matérias-primas da agricultura familiar na produção de biodiesel em relação ao volume total de matérias-primas utilizadas.",
+      "impacto_desvio": "Manutenção da baixa eficiência do PNPB em incluir a agricultura familiar na cadeia produtiva do biodiesel.",
+      "limitacoes": "Depende da disponibilização do novo sistema informatizado do SBS, com funcionalidade específica para registrar o volume de matérias-primas utilizadas e a respectiva projeção de biodiesel produzido. Enquanto o sistema não estiver disponível, não haverá apuração.",
+      "forma_disponibilizacao": "Sítio eletrônico do MDA (quando disponível)"
+    }
+  ]
+}

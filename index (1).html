@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAPr — Mapa de Processos e Indicadores</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul-escuro: #004580;
+    --azul-vivo: #1351b4;
+    --bg: #f4f6f9;
+    --card-bg: #ffffff;
+    --texto-principal: #1c1c1c;
+    --texto-secundario: #5f6368;
+    --borda: #dde2e9;
+    --cinza-marcador: #9ca3af;
+    --verde: #168821;
+    --ambar: #b5790a;
+    --roxo: #7d4f9e;
+    --radius: 10px;
+    --sombra: 0 1px 3px rgba(20, 30, 50, 0.08), 0 1px 2px rgba(20,30,50,0.04);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--texto-principal);
+    line-height: 1.5;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Raleway', sans-serif; margin: 0; }
+
+  /* ===== TOPO ===== */
+  header.topo {
+    background: linear-gradient(135deg, var(--azul-escuro), var(--azul-vivo));
+    color: white;
+    padding: 1.1rem 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    box-shadow: var(--sombra);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+
+  header.topo .titulo-area h1 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+  }
+  header.topo .titulo-area .subtitulo {
+    font-size: 0.78rem;
+    opacity: 0.85;
+    margin-top: 2px;
+  }
+
+  .topo-acoes {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    border-radius: 7px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: filter 0.15s ease, transform 0.1s ease;
+  }
+  button:active { transform: translateY(1px); }
+
+  .btn-ghost-topo {
+    background: rgba(255,255,255,0.12);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.35);
+  }
+  .btn-ghost-topo:hover { background: rgba(255,255,255,0.22); }
+  .btn-ghost-topo.ativo { background: white; color: var(--azul-escuro); }
+
+  .btn-primario {
+    background: #E3A21A;
+    color: #241a00;
+  }
+  .btn-primario:hover { filter: brightness(1.06); }
+
+  .btn-secundario {
+    background: var(--card-bg);
+    color: var(--azul-vivo);
+    border: 1px solid var(--borda);
+  }
+  .btn-secundario:hover { background: #eef3fc; }
+
+  .btn-perigo {
+    background: #fdecec;
+    color: #a3241a;
+    border: 1px solid #f3c6c2;
+  }
+  .btn-perigo:hover { background: #fbdcda; }
+
+  .btn-pequeno { padding: 0.32rem 0.6rem; font-size: 0.74rem; }
+
+  /* ===== STATUS BAR (conexão github) ===== */
+  .status-bar {
+    background: white;
+    border-bottom: 1px solid var(--borda);
+    padding: 0.5rem 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    color: var(--texto-secundario);
+    flex-wrap: wrap;
+  }
+  .status-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--cinza-marcador);
+    flex-shrink: 0;
+  }
+  .status-dot.ok { background: var(--verde); }
+  .status-dot.erro { background: #c62828; }
+
+  /* ===== CONTAINER PRINCIPAL ===== */
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 1.5rem 1.75rem 4rem;
+  }
+
+  .legenda {
+    display: flex;
+    gap: 1.1rem;
+    flex-wrap: wrap;
+    background: white;
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    padding: 0.7rem 1rem;
+    margin-bottom: 1.3rem;
+    font-size: 0.78rem;
+    color: var(--texto-secundario);
+    align-items: center;
+  }
+  .legenda strong { color: var(--texto-principal); font-size: 0.78rem; }
+  .legenda-item { display: flex; align-items: center; gap: 0.4rem; }
+  .marcador-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    display: inline-block;
+    box-shadow: inset 0 0 0 1.5px rgba(0,0,0,0.08);
+  }
+
+  /* ===== NÍVEIS / TRILHA ===== */
+  .nivel-bloco-wrap { margin-bottom: 1rem; }
+
+  .nivel-titulo {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--azul-escuro);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 1.6rem 0 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--azul-escuro);
+  }
+  .nivel-descricao {
+    font-size: 0.8rem;
+    color: var(--texto-secundario);
+    margin: -0.3rem 0 0.9rem;
+  }
+
+  .conector {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0.6rem 0 0.9rem;
+    padding-left: 0.2rem;
+  }
+  .conector-linha {
+    flex: 0 0 auto;
+    color: var(--azul-vivo);
+    font-size: 1.1rem;
+  }
+  .conector-texto {
+    font-size: 0.76rem;
+    color: var(--texto-secundario);
+    font-style: italic;
+  }
+
+  .trilha-blocos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 0.85rem;
+  }
+
+  .bloco-card {
+    background: var(--card-bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--radius);
+    box-shadow: var(--sombra);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bloco-header {
+    padding: 0.7rem 0.85rem;
+    background: #eef3fb;
+    border-bottom: 1px solid var(--borda);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .bloco-header h3 {
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--azul-escuro);
+  }
+
+  .marcadores-row {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .marcador {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 1.5px rgba(0,0,0,0.1);
+  }
+  .marcador:hover { transform: scale(1.18); }
+  .marcador.vazio { background: var(--cinza-marcador); }
+  .marcador.existente_monitorado { background: var(--verde); }
+  .marcador.exigido_pendente { background: var(--ambar); }
+  .marcador.aspiracional { background: var(--roxo); }
+
+  .marcador-add {
+    width: 15px; height: 15px; border-radius: 50%;
+    border: 1.5px dashed #9aa5b1;
+    background: transparent;
+    color: #9aa5b1;
+    font-size: 10px;
+    line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0;
+  }
+  .marcador-add:hover { border-color: var(--azul-vivo); color: var(--azul-vivo); }
+
+  .bloco-body {
+    padding: 0.7rem 0.85rem 0.85rem;
+    flex: 1;
+  }
+
+  .grupo-linha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px dashed #eef0f3;
+  }
+  .grupo-linha:last-child { border-bottom: none; }
+
+  .grupo-nome-area {
+    font-size: 0.78rem;
+    color: var(--texto-principal);
+    flex: 1;
+    cursor: default;
+  }
+  .grupo-nome-area .contagem {
+    color: var(--texto-secundario);
+    font-size: 0.7rem;
+  }
+
+  .grupo-acoes-estrutura {
+    display: flex;
+    gap: 3px;
+  }
+  .icone-btn {
+    background: transparent;
+    border: none;
+    color: var(--texto-secundario);
+    cursor: pointer;
+    font-size: 0.75rem;
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+  .icone-btn:hover { background: #eef0f3; color: var(--azul-vivo); }
+
+  .add-grupo-btn {
+    margin-top: 0.5rem;
+    background: transparent;
+    border: 1px dashed var(--borda);
+    color: var(--texto-secundario);
+    width: 100%;
+    padding: 0.4rem;
+    border-radius: 7px;
+    font-size: 0.74rem;
+  }
+  .add-grupo-btn:hover { border-color: var(--azul-vivo); color: var(--azul-vivo); }
+
+  .toggle-bloco-aplicavel {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    color: var(--texto-secundario);
+  }
+
+  .bloco-desativado { opacity: 0.45; }
+  .bloco-desativado .bloco-body { pointer-events: none; }
+
+  /* ===== PAINEL LATERAL DESLIZANTE ===== */
+  .overlay {
+    position: fixed; inset: 0;
+    background: rgba(15, 23, 42, 0.35);
+    z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .overlay.aberto { opacity: 1; pointer-events: auto; }
+
+  .painel-lateral {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100%;
+    width: min(480px, 100%);
+    background: white;
+    z-index: 51;
+    box-shadow: -6px 0 24px rgba(0,0,0,0.18);
+    transform: translateX(100%);
+    transition: transform 0.28s cubic-bezier(.4,0,.2,1);
+    display: flex;
+    flex-direction: column;
+  }
+  .painel-lateral.aberto { transform: translateX(0); }
+
+  .painel-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--borda);
+    background: #f8f9fb;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.6rem;
+  }
+  .painel-header .contexto {
+    font-size: 0.72rem;
+    color: var(--texto-secundario);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 2px;
+  }
+  .painel-header h2 {
+    font-size: 1.02rem;
+    color: var(--azul-escuro);
+  }
+  .fechar-painel {
+    background: transparent; border: none; font-size: 1.2rem;
+    color: var(--texto-secundario); cursor: pointer; line-height: 1;
+    padding: 2px 6px;
+  }
+  .fechar-painel:hover { color: var(--texto-principal); }
+
+  .painel-corpo {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1.25rem 2rem;
+  }
+
+  .lista-indicadores-ancora {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  .chip-indicador {
+    font-size: 0.74rem;
+    padding: 0.32rem 0.6rem;
+    border-radius: 20px;
+    border: 1px solid var(--borda);
+    background: #f8f9fb;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .chip-indicador.selecionado {
+    background: #eef3fc;
+    border-color: var(--azul-vivo);
+    color: var(--azul-vivo);
+    font-weight: 600;
+  }
+  .chip-indicador .marcador-dot { width: 9px; height: 9px; }
+
+  .chip-novo {
+    font-size: 0.74rem;
+    padding: 0.32rem 0.7rem;
+    border-radius: 20px;
+    border: 1px dashed var(--azul-vivo);
+    background: white;
+    color: var(--azul-vivo);
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .campo-bloco-titulo {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--azul-escuro);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin: 1.1rem 0 0.5rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid var(--borda);
+  }
+  .campo-bloco-titulo:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+  .campo {
+    margin-bottom: 0.8rem;
+  }
+  .campo label {
+    display: block;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--texto-principal);
+    margin-bottom: 0.25rem;
+  }
+  .campo .dica {
+    font-size: 0.68rem;
+    color: var(--texto-secundario);
+    margin-top: 2px;
+    display: block;
+  }
+  .campo input[type="text"],
+  .campo textarea,
+  .campo select {
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid var(--borda);
+    border-radius: 7px;
+    font-size: 0.82rem;
+    font-family: inherit;
+    color: var(--texto-principal);
+    background: white;
+  }
+  .campo textarea { resize: vertical; min-height: 56px; }
+  .campo input:focus, .campo textarea:focus, .campo select:focus {
+    outline: 2px solid var(--azul-vivo);
+    outline-offset: 1px;
+    border-color: var(--azul-vivo);
+  }
+
+  .painel-rodape {
+    padding: 0.9rem 1.25rem;
+    border-top: 1px solid var(--borda);
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+    background: #f8f9fb;
+  }
+  .painel-rodape .grupo-esq { display: flex; gap: 0.5rem; }
+
+  /* ===== MODAL SIMPLES ===== */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(15,23,42,0.45);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 60; padding: 1rem;
+  }
+  .modal-caixa {
+    background: white; border-radius: var(--radius);
+    max-width: 460px; width: 100%;
+    padding: 1.4rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  }
+  .modal-caixa h3 { margin-bottom: 0.7rem; color: var(--azul-escuro); }
+  .modal-caixa p { font-size: 0.85rem; color: var(--texto-secundario); margin-bottom: 0.9rem; }
+  .modal-acoes { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1rem; }
+
+  /* ===== CONFIGURAÇÃO GITHUB ===== */
+  .config-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem;
+  }
+  .config-grid .campo-full { grid-column: 1 / -1; }
+
+  /* ===== TOAST ===== */
+  .toast {
+    position: fixed;
+    bottom: 1.3rem; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #1c1c1c; color: white;
+    padding: 0.65rem 1.1rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    z-index: 80;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease;
+    max-width: 90%;
+  }
+  .toast.mostrar { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .toast.erro { background: #a3241a; }
+  .toast.ok { background: #14532d; }
+
+  @media print {
+    header.topo, .status-bar, .legenda, .painel-lateral, .overlay, .modal-overlay, .toast, .marcador-add, .add-grupo-btn, .grupo-acoes-estrutura { display: none !important; }
+    body { background: white; }
+    .container { padding: 0; max-width: 100%; }
+    .bloco-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+  }
+
+  @media (max-width: 720px) {
+    .config-grid { grid-template-columns: 1fr; }
+    header.topo { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="titulo-area">
+    <h1 id="tituloApp">MAPr — Mapa de Processos e Indicadores</h1>
+    <div class="subtitulo" id="subtituloApp">Carregando estrutura…</div>
+  </div>
+  <div class="topo-acoes">
+    <button class="btn-ghost-topo" id="btnModoIndicadores">📊 Indicadores</button>
+    <button class="btn-ghost-topo" id="btnModoEstrutura">🛠️ Estruturação</button>
+    <button class="btn-secundario" id="btnConfigGithub">⚙️ Conectar GitHub</button>
+    <button class="btn-secundario" id="btnExportarMd">⬇ Markdown</button>
+    <button class="btn-secundario" id="btnExportarPdf">🖨 PDF</button>
+  </div>
+</header>
+
+<div class="status-bar">
+  <span class="status-dot" id="statusDot"></span>
+  <span id="statusTexto">Dados carregados localmente (leitura). Conecte ao GitHub para salvar alterações.</span>
+</div>
+
+<div class="container">
+  <div class="legenda">
+    <strong>Legenda dos marcadores:</strong>
+    <span class="legenda-item"><span class="marcador-dot" style="background:#9ca3af"></span> Sem indicador</span>
+    <span class="legenda-item"><span class="marcador-dot" style="background:#168821"></span> Existente e monitorado</span>
+    <span class="legenda-item"><span class="marcador-dot" style="background:#b5790a"></span> Exigido por norma, pendente</span>
+    <span class="legenda-item"><span class="marcador-dot" style="background:#7d4f9e"></span> Aspiracional — a criar</span>
+  </div>
+
+  <div id="trilhaContainer"></div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- PAINEL LATERAL DE INDICADOR -->
+<div class="painel-lateral" id="painelIndicador">
+  <div class="painel-header">
+    <div>
+      <div class="contexto" id="painelContexto">—</div>
+      <h2 id="painelTitulo">Indicador</h2>
+    </div>
+    <button class="fechar-painel" id="fecharPainel">✕</button>
+  </div>
+  <div class="painel-corpo">
+    <div class="lista-indicadores-ancora" id="listaIndicadoresAncora"></div>
+
+    <form id="formIndicador">
+      <div class="campo-bloco-titulo">1 · Identificação e conceito</div>
+      <div class="campo">
+        <label>Nome do indicador</label>
+        <input type="text" id="campoNome" required>
+      </div>
+      <div class="campo">
+        <label>Grupo temático (dentro do bloco)</label>
+        <select id="campoGrupo"><option value="">N/A — vincular apenas ao bloco</option></select>
+      </div>
+      <div class="campo">
+        <label>Status de maturidade</label>
+        <select id="campoStatus">
+          <option value="existente_monitorado">🟢 Existente e monitorado</option>
+          <option value="exigido_pendente">🟠 Exigido por norma, pendente de estruturação</option>
+          <option value="aspiracional">🟣 Aspiracional — a criar</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label>Tipo / classificação</label>
+        <input type="text" id="campoTipo" placeholder="ex.: eficácia, eficiência, efetividade">
+      </div>
+      <div class="campo">
+        <label>Descrição</label>
+        <textarea id="campoDescricao"></textarea>
+      </div>
+      <div class="campo">
+        <label>O que o indicador mostra</label>
+        <textarea id="campoOQueMostra"></textarea>
+      </div>
+
+      <div class="campo-bloco-titulo">2 · Metodologia de apuração</div>
+      <div class="campo">
+        <label>Fórmula de cálculo</label>
+        <textarea id="campoFormula"></textarea>
+      </div>
+      <div class="campo">
+        <label>Unidade de medida</label>
+        <input type="text" id="campoUnidade" placeholder="ex.: %, R$, nº absoluto">
+      </div>
+      <div class="campo">
+        <label>Fonte de dados</label>
+        <input type="text" id="campoFonte">
+      </div>
+      <div class="campo">
+        <label>Como apurar o indicador</label>
+        <textarea id="campoComoApurar"></textarea>
+      </div>
+      <div class="campo">
+        <label>Periodicidade de apuração</label>
+        <input type="text" id="campoPeriodicidade" placeholder="ex.: Anual">
+      </div>
+      <div class="campo">
+        <label>Prazo máximo para apuração</label>
+        <input type="text" id="campoPrazoMaximo">
+      </div>
+      <div class="campo">
+        <label>Responsabilidade pela apuração</label>
+        <input type="text" id="campoResponsavel">
+      </div>
+
+      <div class="campo-bloco-titulo">3 · Parâmetros de avaliação</div>
+      <div class="campo">
+        <label>Linha de base</label>
+        <input type="text" id="campoLinhaBase">
+      </div>
+      <div class="campo">
+        <label>Meta</label>
+        <input type="text" id="campoMeta">
+      </div>
+      <div class="campo">
+        <label>Polaridade</label>
+        <select id="campoPolaridade">
+          <option value="Quanto maior, melhor">Quanto maior, melhor</option>
+          <option value="Quanto menor, melhor">Quanto menor, melhor</option>
+          <option value="Não se aplica">Não se aplica</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label>Série histórica</label>
+        <textarea id="campoSerieHistorica" placeholder="ex.: 2023: 19,25% | 2024: 13,09% | 2025: 11,15%"></textarea>
+      </div>
+      <div class="campo">
+        <label>Nível de desagregação</label>
+        <input type="text" id="campoDesagregacao" placeholder="ex.: por região, por UPB, por sexo">
+      </div>
+
+      <div class="campo-bloco-titulo">4 · Qualidade e uso</div>
+      <div class="campo">
+        <label>O que pode causar um resultado aquém da meta <span class="dica">(ligar aos pressupostos do MAPr quando possível)</span></label>
+        <textarea id="campoCausas"></textarea>
+      </div>
+      <div class="campo">
+        <label>Qual o impacto de um resultado aquém da meta</label>
+        <textarea id="campoImpacto"></textarea>
+      </div>
+      <div class="campo">
+        <label>Limitações do indicador</label>
+        <textarea id="campoLimitacoes"></textarea>
+      </div>
+      <div class="campo">
+        <label>Forma de disponibilização</label>
+        <input type="text" id="campoDisponibilizacao">
+      </div>
+    </form>
+  </div>
+  <div class="painel-rodape">
+    <div class="grupo-esq">
+      <button class="btn-primario" id="btnSalvarIndicador">Salvar</button>
+      <button class="btn-secundario" id="btnCancelarIndicador">Cancelar</button>
+    </div>
+    <button class="btn-perigo" id="btnExcluirIndicador" style="display:none">Excluir indicador</button>
+  </div>
+</div>
+
+<!-- MODAL DE CONFIGURAÇÃO GITHUB -->
+<div class="modal-overlay" id="modalGithub" style="display:none">
+  <div class="modal-caixa">
+    <h3>Conectar ao GitHub</h3>
+    <p>O token fica apenas na memória desta sessão — nunca é salvo ou embutido na página. Use um token de granularidade fina, restrito a este repositório, com permissão de leitura/escrita de conteúdo.</p>
+    <div class="config-grid">
+      <div class="campo"><label>Usuário/organização</label><input type="text" id="cfgOwner"></div>
+      <div class="campo"><label>Repositório</label><input type="text" id="cfgRepo"></div>
+      <div class="campo"><label>Branch</label><input type="text" id="cfgBranch" value="main"></div>
+      <div class="campo campo-full"><label>Token de acesso (fine-grained)</label><input type="text" id="cfgToken" placeholder="github_pat_..."></div>
+    </div>
+    <div class="modal-acoes">
+      <button class="btn-secundario" id="btnCancelarConfig">Cancelar</button>
+      <button class="btn-primario" id="btnSalvarConfig">Conectar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE CONFIRMAÇÃO GENÉRICO -->
+<div class="modal-overlay" id="modalConfirmacao" style="display:none">
+  <div class="modal-caixa">
+    <h3 id="confirmTitulo">Confirmar ação</h3>
+    <p id="confirmTexto"></p>
+    <div class="modal-acoes">
+      <button class="btn-secundario" id="btnConfirmCancelar">Cancelar</button>
+      <button class="btn-perigo" id="btnConfirmOk">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE NOVO GRUPO -->
+<div class="modal-overlay" id="modalNovoGrupo" style="display:none">
+  <div class="modal-caixa">
+    <h3>Novo grupo temático</h3>
+    <div class="campo"><label>Nome do grupo</label><input type="text" id="novoGrupoNome"></div>
+    <div class="campo"><label>Fundamentação / referência metodológica <span class="dica">breve justificativa para a criação deste grupo</span></label><textarea id="novoGrupoFundamentacao"></textarea></div>
+    <div class="modal-acoes">
+      <button class="btn-secundario" id="btnCancelarNovoGrupo">Cancelar</button>
+      <button class="btn-primario" id="btnSalvarNovoGrupo">Criar grupo</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE NOVO ITEM -->
+<div class="modal-overlay" id="modalNovoItem" style="display:none">
+  <div class="modal-caixa">
+    <h3>Novo item</h3>
+    <div class="campo"><label>Texto do item</label><textarea id="novoItemTexto"></textarea></div>
+    <div class="modal-acoes">
+      <button class="btn-secundario" id="btnCancelarNovoItem">Cancelar</button>
+      <button class="btn-primario" id="btnSalvarNovoItem">Adicionar item</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =====================================================================
+   ESTADO GLOBAL
+===================================================================== */
+const BLOCOS_CANONICOS = [
+  { id: 'recursos',   nome: 'Recursos'   },
+  { id: 'atividades', nome: 'Atividades' },
+  { id: 'produtos',   nome: 'Produtos'   },
+  { id: 'resultados', nome: 'Resultados' },
+  { id: 'impactos',   nome: 'Impactos'   }
+];
+
+const STATUS_INFO = {
+  existente_monitorado: { cor: '#168821', label: 'Existente e monitorado' },
+  exigido_pendente:     { cor: '#b5790a', label: 'Exigido por norma, pendente' },
+  aspiracional:         { cor: '#7d4f9e', label: 'Aspiracional — a criar' }
+};
+
+let estado = {
+  estrutura: null,
+  indicadores: [],
+  modo: 'indicadores', // 'indicadores' | 'estrutura'
+  github: { owner: '', repo: '', branch: 'main', token: '', shaEstrutura: null, shaIndicadores: null },
+  ancoraAtual: null,        // { nivel_id, bloco_id, grupo_id }
+  indicadorEmEdicaoId: null,
+  novoGrupoContexto: null,  // { nivel_id, bloco_id }
+  novoItemContexto: null    // { nivel_id, bloco_id, grupo_id }
+};
+
+/* =====================================================================
+   CARREGAMENTO INICIAL (leitura local relativa — funciona em GitHub
+   Pages e em servidor local; não funciona abrindo o arquivo direto
+   via duplo-clique, por restrição do próprio navegador)
+===================================================================== */
+async function carregarDadosLocais() {
+  try {
+    const [respEstrutura, respIndicadores] = await Promise.all([
+      fetch('./estrutura.json'),
+      fetch('./indicadores.json')
+    ]);
+    estado.estrutura = await respEstrutura.json();
+    const dadosInd = await respIndicadores.json();
+    estado.indicadores = dadosInd.indicadores || [];
+    document.getElementById('tituloApp').textContent = estado.estrutura.politica || 'MAPr';
+    document.getElementById('subtituloApp').textContent =
+      'Metodologia: ' + (estado.estrutura.metodologia || '—');
+    renderTrilha();
+  } catch (e) {
+    mostrarToast('Não foi possível carregar estrutura.json / indicadores.json. Se você abriu este arquivo por duplo-clique, rode um servidor local (veja o README).', 'erro');
+    console.error(e);
+  }
+}
+
+/* =====================================================================
+   RENDERIZAÇÃO DA TRILHA
+===================================================================== */
+function marcadoresDoAncora(nivelId, blocoId, grupoId) {
+  return estado.indicadores.filter(ind =>
+    ind.vinculos.some(v =>
+      v.nivel_id === nivelId &&
+      v.bloco_id === blocoId &&
+      (v.grupo_id || null) === (grupoId || null)
+    )
+  );
+}
+
+function renderMarcadores(nivelId, blocoId, grupoId) {
+  const inds = marcadoresDoAncora(nivelId, blocoId, grupoId);
+  const wrap = document.createElement('div');
+  wrap.className = 'marcadores-row';
+
+  inds.forEach(ind => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'marcador ' + ind.status_maturidade;
+    b.title = ind.nome;
+    b.addEventListener('click', (e) => {
+      e.stopPropagation();
+      abrirPainelIndicador(nivelId, blocoId, grupoId, ind.id);
+    });
+    wrap.appendChild(b);
+  });
+
+  if (inds.length === 0) {
+    const vazio = document.createElement('span');
+    vazio.className = 'marcador vazio';
+    vazio.style.display = 'inline-block';
+    wrap.appendChild(vazio);
+  }
+
+  const addBtn = document.createElement('button');
+  addBtn.type = 'button';
+  addBtn.className = 'marcador-add';
+  addBtn.title = 'Novo indicador aqui';
+  addBtn.textContent = '+';
+  addBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    abrirPainelIndicador(nivelId, blocoId, grupoId, null);
+  });
+  wrap.appendChild(addBtn);
+
+  return wrap;
+}
+
+function renderTrilha() {
+  const container = document.getElementById('trilhaContainer');
+  container.innerHTML = '';
+
+  estado.estrutura.niveis.forEach((nivel, idx) => {
+    if (idx > 0) {
+      const anterior = estado.estrutura.niveis[idx - 1];
+      if (nivel.conexao_com_nivel_anterior) {
+        const conector = document.createElement('div');
+        conector.className = 'conector';
+        conector.innerHTML = `<span class="conector-linha">⬇</span><span class="conector-texto">${escapeHtml(nivel.conexao_com_nivel_anterior.descricao)}</span>`;
+        container.appendChild(conector);
+      }
+    }
+
+    const wrap = document.createElement('div');
+    wrap.className = 'nivel-bloco-wrap';
+
+    const titulo = document.createElement('div');
+    titulo.className = 'nivel-titulo';
+    titulo.textContent = 'Nível ' + (idx + 1) + ' — ' + nivel.nome;
+    wrap.appendChild(titulo);
+
+    if (nivel.descricao) {
+      const desc = document.createElement('div');
+      desc.className = 'nivel-descricao';
+      desc.textContent = nivel.descricao;
+      wrap.appendChild(desc);
+    }
+
+    const trilhaBlocos = document.createElement('div');
+    trilhaBlocos.className = 'trilha-blocos';
+
+    BLOCOS_CANONICOS.forEach(blocoCanon => {
+      const aplicavel = nivel.blocos_aplicaveis.includes(blocoCanon.id);
+      if (!aplicavel && estado.modo === 'indicadores') return; // esconde blocos não aplicáveis no modo indicadores
+
+      const card = document.createElement('div');
+      card.className = 'bloco-card' + (!aplicavel ? ' bloco-desativado' : '');
+
+      const header = document.createElement('div');
+      header.className = 'bloco-header';
+
+      const h3 = document.createElement('h3');
+      h3.textContent = blocoCanon.nome;
+      header.appendChild(h3);
+
+      if (estado.modo === 'estrutura') {
+        const toggle = document.createElement('label');
+        toggle.className = 'toggle-bloco-aplicavel';
+        toggle.innerHTML = `<input type="checkbox" ${aplicavel ? 'checked' : ''}> aplicável`;
+        toggle.querySelector('input').addEventListener('change', (e) => {
+          toggleBlocoAplicavel(nivel.id, blocoCanon.id, e.target.checked);
+        });
+        header.appendChild(toggle);
+      } else {
+        header.appendChild(renderMarcadores(nivel.id, blocoCanon.id, null));
+      }
+
+      card.appendChild(header);
+
+      const body = document.createElement('div');
+      body.className = 'bloco-body';
+
+      const grupos = (nivel.grupos_por_bloco[blocoCanon.id] || []);
+      grupos.forEach(grupo => {
+        const linha = document.createElement('div');
+        linha.className = 'grupo-linha';
+
+        const nomeArea = document.createElement('div');
+        nomeArea.className = 'grupo-nome-area';
+        if (estado.modo === 'estrutura') {
+          const inputNome = document.createElement('input');
+          inputNome.type = 'text';
+          inputNome.value = grupo.nome;
+          inputNome.style.cssText = 'font-size:0.78rem;border:1px solid transparent;background:transparent;width:100%;padding:2px 4px;border-radius:4px;';
+          inputNome.addEventListener('focus', (e) => e.target.style.border = '1px solid #dde2e9');
+          inputNome.addEventListener('change', (e) => {
+            grupo.nome = e.target.value;
+            marcarSujoParaSalvar();
+          });
+          nomeArea.appendChild(inputNome);
+          const itensWrap = document.createElement('div');
+          itensWrap.style.cssText = 'margin-top:4px;padding-left:6px;';
+          (grupo.itens || []).forEach(item => {
+            const itemLinha = document.createElement('div');
+            itemLinha.style.cssText = 'display:flex;gap:4px;align-items:flex-start;font-size:0.72rem;color:#5f6368;margin-bottom:3px;';
+            const itemTxt = document.createElement('textarea');
+            itemTxt.value = item.texto;
+            itemTxt.style.cssText = 'flex:1;font-size:0.72rem;border:1px solid #eef0f3;border-radius:5px;padding:3px 5px;resize:vertical;min-height:32px;';
+            itemTxt.addEventListener('change', (e) => { item.texto = e.target.value; marcarSujoParaSalvar(); });
+            const delBtn = document.createElement('button');
+            delBtn.className = 'icone-btn';
+            delBtn.textContent = '✕';
+            delBtn.title = 'Remover item';
+            delBtn.addEventListener('click', () => {
+              grupo.itens = grupo.itens.filter(i => i.id !== item.id);
+              marcarSujoParaSalvar();
+              renderTrilha();
+            });
+            itemLinha.appendChild(itemTxt);
+            itemLinha.appendChild(delBtn);
+            itensWrap.appendChild(itemLinha);
+          });
+          const addItemBtn = document.createElement('button');
+          addItemBtn.className = 'icone-btn';
+          addItemBtn.textContent = '+ item';
+          addItemBtn.style.fontSize = '0.7rem';
+          addItemBtn.addEventListener('click', () => abrirModalNovoItem(nivel.id, blocoCanon.id, grupo.id));
+          itensWrap.appendChild(addItemBtn);
+          nomeArea.appendChild(itensWrap);
+        } else {
+          nomeArea.innerHTML = `${escapeHtml(grupo.nome)} <span class="contagem">(${(grupo.itens || []).length} itens)</span>`;
+        }
+        linha.appendChild(nomeArea);
+
+        if (estado.modo === 'estrutura') {
+          const acoes = document.createElement('div');
+          acoes.className = 'grupo-acoes-estrutura';
+          const delGrupoBtn = document.createElement('button');
+          delGrupoBtn.className = 'icone-btn';
+          delGrupoBtn.textContent = '🗑';
+          delGrupoBtn.title = 'Excluir grupo';
+          delGrupoBtn.addEventListener('click', () => confirmarExclusaoGrupo(nivel.id, blocoCanon.id, grupo.id));
+          acoes.appendChild(delGrupoBtn);
+          linha.appendChild(acoes);
+        } else {
+          linha.appendChild(renderMarcadores(nivel.id, blocoCanon.id, grupo.id));
+        }
+
+        body.appendChild(linha);
+      });
+
+      if (estado.modo === 'estrutura') {
+        const addGrupoBtn = document.createElement('button');
+        addGrupoBtn.className = 'add-grupo-btn';
+        addGrupoBtn.textContent = '+ Novo grupo temático';
+        addGrupoBtn.addEventListener('click', () => abrirModalNovoGrupo(nivel.id, blocoCanon.id));
+        body.appendChild(addGrupoBtn);
+      }
+
+      card.appendChild(body);
+      trilhaBlocos.appendChild(card);
+    });
+
+    wrap.appendChild(trilhaBlocos);
+    container.appendChild(wrap);
+  });
+}
+
+function escapeHtml(str) {
+  const d = document.createElement('div');
+  d.textContent = str || '';
+  return d.innerHTML;
+}
+
+/* =====================================================================
+   MODO ESTRUTURAÇÃO — ações
+===================================================================== */
+function toggleBlocoAplicavel(nivelId, blocoId, aplicavel) {
+  const nivel = estado.estrutura.niveis.find(n => n.id === nivelId);
+  const set = new Set(nivel.blocos_aplicaveis);
+  if (aplicavel) set.add(blocoId); else set.delete(blocoId);
+  nivel.blocos_aplicaveis = Array.from(set);
+  if (!nivel.grupos_por_bloco[blocoId]) nivel.grupos_por_bloco[blocoId] = [];
+  marcarSujoParaSalvar();
+  renderTrilha();
+}
+
+function gerarId(prefixo) {
+  return prefixo + '_' + Math.random().toString(36).slice(2, 9);
+}
+
+function abrirModalNovoGrupo(nivelId, blocoId) {
+  estado.novoGrupoContexto = { nivel_id: nivelId, bloco_id: blocoId };
+  document.getElementById('novoGrupoNome').value = '';
+  document.getElementById('novoGrupoFundamentacao').value = '';
+  document.getElementById('modalNovoGrupo').style.display = 'flex';
+}
+
+document.getElementById('btnCancelarNovoGrupo').addEventListener('click', () => {
+  document.getElementById('modalNovoGrupo').style.display = 'none';
+});
+
+document.getElementById('btnSalvarNovoGrupo').addEventListener('click', () => {
+  const nome = document.getElementById('novoGrupoNome').value.trim();
+  const fundamentacao = document.getElementById('novoGrupoFundamentacao').value.trim();
+  if (!nome) { mostrarToast('Informe o nome do grupo.', 'erro'); return; }
+  if (!fundamentacao) { mostrarToast('A fundamentação é obrigatória — mesmo uma frase curta.', 'erro'); return; }
+  const { nivel_id, bloco_id } = estado.novoGrupoContexto;
+  const nivel = estado.estrutura.niveis.find(n => n.id === nivel_id);
+  if (!nivel.grupos_por_bloco[bloco_id]) nivel.grupos_por_bloco[bloco_id] = [];
+  nivel.grupos_por_bloco[bloco_id].push({
+    id: gerarId('grp'),
+    nome,
+    fundamentacao,
+    itens: []
+  });
+  marcarSujoParaSalvar();
+  document.getElementById('modalNovoGrupo').style.display = 'none';
+  renderTrilha();
+  mostrarToast('Grupo criado.', 'ok');
+});
+
+function abrirModalNovoItem(nivelId, blocoId, grupoId) {
+  estado.novoItemContexto = { nivel_id: nivelId, bloco_id: blocoId, grupo_id: grupoId };
+  document.getElementById('novoItemTexto').value = '';
+  document.getElementById('modalNovoItem').style.display = 'flex';
+}
+
+document.getElementById('btnCancelarNovoItem').addEventListener('click', () => {
+  document.getElementById('modalNovoItem').style.display = 'none';
+});
+
+document.getElementById('btnSalvarNovoItem').addEventListener('click', () => {
+  const texto = document.getElementById('novoItemTexto').value.trim();
+  if (!texto) { mostrarToast('Informe o texto do item.', 'erro'); return; }
+  const { nivel_id, bloco_id, grupo_id } = estado.novoItemContexto;
+  const nivel = estado.estrutura.niveis.find(n => n.id === nivel_id);
+  const grupo = nivel.grupos_por_bloco[bloco_id].find(g => g.id === grupo_id);
+  grupo.itens.push({ id: gerarId('item'), texto });
+  marcarSujoParaSalvar();
+  document.getElementById('modalNovoItem').style.display = 'none';
+  renderTrilha();
+  mostrarToast('Item adicionado.', 'ok');
+});
+
+let confirmCallback = null;
+function confirmarExclusaoGrupo(nivelId, blocoId, grupoId) {
+  const inds = marcadoresDoAncora(nivelId, blocoId, grupoId);
+  const nivel = estado.estrutura.niveis.find(n => n.id === nivelId);
+  const blocoNome = BLOCOS_CANONICOS.find(b => b.id === blocoId).nome;
+  const texto = inds.length > 0
+    ? `Este grupo tem ${inds.length} indicador(es) vinculado(s). Ao excluir, ele(s) passará(ão) a ficar vinculado(s) diretamente ao bloco "${blocoNome}". Confirmar exclusão do grupo?`
+    : 'Confirma a exclusão deste grupo? Esta ação não pode ser desfeita.';
+  document.getElementById('confirmTitulo').textContent = 'Excluir grupo';
+  document.getElementById('confirmTexto').textContent = texto;
+  document.getElementById('modalConfirmacao').style.display = 'flex';
+  confirmCallback = () => {
+    // reatribuição automática dos indicadores ao bloco
+    inds.forEach(ind => {
+      ind.vinculos.forEach(v => {
+        if (v.nivel_id === nivelId && v.bloco_id === blocoId && v.grupo_id === grupoId) {
+          v.grupo_id = null;
+        }
+      });
+    });
+    nivel.grupos_por_bloco[blocoId] = nivel.grupos_por_bloco[blocoId].filter(g => g.id !== grupoId);
+    marcarSujoParaSalvar();
+    renderTrilha();
+    mostrarToast('Grupo excluído. Indicadores reatribuídos ao bloco.', 'ok');
+  };
+}
+
+document.getElementById('btnConfirmCancelar').addEventListener('click', () => {
+  document.getElementById('modalConfirmacao').style.display = 'none';
+  confirmCallback = null;
+});
+document.getElementById('btnConfirmOk').addEventListener('click', () => {
+  if (confirmCallback) confirmCallback();
+  document.getElementById('modalConfirmacao').style.display = 'none';
+  confirmCallback = null;
+});
+
+/* =====================================================================
+   PAINEL LATERAL DE INDICADOR
+===================================================================== */
+const CAMPOS_FORM = [
+  'nome','tipoClassificacao','descricao','oQueMostra','formula','unidade','fonte','comoApurar',
+  'periodicidade','prazoMaximo','responsavel','linhaBase','meta','polaridade','serieHistorica',
+  'desagregacao','causas','impacto','limitacoes','disponibilizacao'
+];
+
+function limparForm() {
+  document.getElementById('campoNome').value = '';
+  document.getElementById('campoTipo').value = '';
+  document.getElementById('campoDescricao').value = '';
+  document.getElementById('campoOQueMostra').value = '';
+  document.getElementById('campoFormula').value = '';
+  document.getElementById('campoUnidade').value = '';
+  document.getElementById('campoFonte').value = '';
+  document.getElementById('campoComoApurar').value = '';
+  document.getElementById('campoPeriodicidade').value = '';
+  document.getElementById('campoPrazoMaximo').value = '';
+  document.getElementById('campoResponsavel').value = '';
+  document.getElementById('campoLinhaBase').value = '';
+  document.getElementById('campoMeta').value = '';
+  document.getElementById('campoPolaridade').value = 'Quanto maior, melhor';
+  document.getElementById('campoSerieHistorica').value = '';
+  document.getElementById('campoDesagregacao').value = '';
+  document.getElementById('campoCausas').value = '';
+  document.getElementById('campoImpacto').value = '';
+  document.getElementById('campoLimitacoes').value = '';
+  document.getElementById('campoDisponibilizacao').value = '';
+  document.getElementById('campoStatus').value = 'existente_monitorado';
+}
+
+function preencherFormComIndicador(ind) {
+  document.getElementById('campoNome').value = ind.nome || '';
+  document.getElementById('campoTipo').value = ind.tipo_classificacao || '';
+  document.getElementById('campoDescricao').value = ind.descricao || '';
+  document.getElementById('campoOQueMostra').value = ind.o_que_mostra || '';
+  document.getElementById('campoFormula').value = ind.formula_calculo || '';
+  document.getElementById('campoUnidade').value = ind.unidade_medida || '';
+  document.getElementById('campoFonte').value = ind.fonte_dados || '';
+  document.getElementById('campoComoApurar').value = ind.como_apurar || '';
+  document.getElementById('campoPeriodicidade').value = ind.periodicidade_apuracao || '';
+  document.getElementById('campoPrazoMaximo').value = ind.prazo_maximo_apuracao || '';
+  document.getElementById('campoResponsavel').value = ind.responsavel_apuracao || '';
+  document.getElementById('campoLinhaBase').value = ind.linha_base || '';
+  document.getElementById('campoMeta').value = ind.meta || '';
+  document.getElementById('campoPolaridade').value = ind.polaridade || 'Quanto maior, melhor';
+  document.getElementById('campoSerieHistorica').value = ind.serie_historica || '';
+  document.getElementById('campoDesagregacao').value = ind.desagregacao || '';
+  document.getElementById('campoCausas').value = ind.causas_desvio || '';
+  document.getElementById('campoImpacto').value = ind.impacto_desvio || '';
+  document.getElementById('campoLimitacoes').value = ind.limitacoes || '';
+  document.getElementById('campoDisponibilizacao').value = ind.forma_disponibilizacao || '';
+  document.getElementById('campoStatus').value = ind.status_maturidade || 'existente_monitorado';
+}
+
+function popularSelectGrupo(nivelId, blocoId, grupoIdSelecionado) {
+  const select = document.getElementById('campoGrupo');
+  select.innerHTML = '<option value="">N/A — vincular apenas ao bloco</option>';
+  const nivel = estado.estrutura.niveis.find(n => n.id === nivelId);
+  (nivel.grupos_por_bloco[blocoId] || []).forEach(g => {
+    const opt = document.createElement('option');
+    opt.value = g.id;
+    opt.textContent = g.nome;
+    if (g.id === grupoIdSelecionado) opt.selected = true;
+    select.appendChild(opt);
+  });
+}
+
+function abrirPainelIndicador(nivelId, blocoId, grupoId, indicadorId) {
+  estado.ancoraAtual = { nivel_id: nivelId, bloco_id: blocoId, grupo_id: grupoId };
+  estado.indicadorEmEdicaoId = indicadorId;
+
+  const nivel = estado.estrutura.niveis.find(n => n.id === nivelId);
+  const blocoNome = BLOCOS_CANONICOS.find(b => b.id === blocoId).nome;
+  const grupo = grupoId ? (nivel.grupos_por_bloco[blocoId] || []).find(g => g.id === grupoId) : null;
+
+  document.getElementById('painelContexto').textContent =
+    `${nivel.nome} · ${blocoNome}` + (grupo ? ' · ' + grupo.nome : '');
+
+  const todosNaAncora = marcadoresDoAncora(nivelId, blocoId, grupoId);
+  const listaWrap = document.getElementById('listaIndicadoresAncora');
+  listaWrap.innerHTML = '';
+  todosNaAncora.forEach(ind => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'chip-indicador' + (ind.id === indicadorId ? ' selecionado' : '');
+    const dot = document.createElement('span');
+    dot.className = 'marcador-dot';
+    dot.style.background = STATUS_INFO[ind.status_maturidade].cor;
+    chip.appendChild(dot);
+    chip.appendChild(document.createTextNode(ind.nome));
+    chip.addEventListener('click', () => abrirPainelIndicador(nivelId, blocoId, grupoId, ind.id));
+    listaWrap.appendChild(chip);
+  });
+  const chipNovo = document.createElement('button');
+  chipNovo.type = 'button';
+  chipNovo.className = 'chip-novo';
+  chipNovo.textContent = '+ Novo indicador';
+  chipNovo.addEventListener('click', () => abrirPainelIndicador(nivelId, blocoId, grupoId, null));
+  listaWrap.appendChild(chipNovo);
+
+  popularSelectGrupo(nivelId, blocoId, grupoId);
+
+  if (indicadorId) {
+    const ind = estado.indicadores.find(i => i.id === indicadorId);
+    document.getElementById('painelTitulo').textContent = ind.nome;
+    preencherFormComIndicador(ind);
+    document.getElementById('btnExcluirIndicador').style.display = 'inline-block';
+  } else {
+    document.getElementById('painelTitulo').textContent = 'Novo indicador';
+    limparForm();
+    document.getElementById('btnExcluirIndicador').style.display = 'none';
+  }
+
+  document.getElementById('overlay').classList.add('aberto');
+  document.getElementById('painelIndicador').classList.add('aberto');
+}
+
+function fecharPainelIndicador() {
+  document.getElementById('overlay').classList.remove('aberto');
+  document.getElementById('painelIndicador').classList.remove('aberto');
+}
+
+document.getElementById('fecharPainel').addEventListener('click', fecharPainelIndicador);
+document.getElementById('btnCancelarIndicador').addEventListener('click', fecharPainelIndicador);
+document.getElementById('overlay').addEventListener('click', fecharPainelIndicador);
+
+document.getElementById('btnSalvarIndicador').addEventListener('click', () => {
+  const nome = document.getElementById('campoNome').value.trim();
+  if (!nome) { mostrarToast('Informe o nome do indicador.', 'erro'); return; }
+
+  const grupoSelecionado = document.getElementById('campoGrupo').value || null;
+  const { nivel_id, bloco_id } = estado.ancoraAtual;
+  const vinculoAtual = { nivel_id, bloco_id, grupo_id: grupoSelecionado };
+
+  const dadosFicha = {
+    nome,
+    status_maturidade: document.getElementById('campoStatus').value,
+    tipo_classificacao: document.getElementById('campoTipo').value,
+    descricao: document.getElementById('campoDescricao').value,
+    o_que_mostra: document.getElementById('campoOQueMostra').value,
+    formula_calculo: document.getElementById('campoFormula').value,
+    unidade_medida: document.getElementById('campoUnidade').value,
+    fonte_dados: document.getElementById('campoFonte').value,
+    como_apurar: document.getElementById('campoComoApurar').value,
+    periodicidade_apuracao: document.getElementById('campoPeriodicidade').value,
+    prazo_maximo_apuracao: document.getElementById('campoPrazoMaximo').value,
+    responsavel_apuracao: document.getElementById('campoResponsavel').value,
+    linha_base: document.getElementById('campoLinhaBase').value,
+    meta: document.getElementById('campoMeta').value,
+    polaridade: document.getElementById('campoPolaridade').value,
+    serie_historica: document.getElementById('campoSerieHistorica').value,
+    desagregacao: document.getElementById('campoDesagregacao').value,
+    causas_desvio: document.getElementById('campoCausas').value,
+    impacto_desvio: document.getElementById('campoImpacto').value,
+    limitacoes: document.getElementById('campoLimitacoes').value,
+    forma_disponibilizacao: document.getElementById('campoDisponibilizacao').value
+  };
+
+  if (estado.indicadorEmEdicaoId) {
+    const ind = estado.indicadores.find(i => i.id === estado.indicadorEmEdicaoId);
+    Object.assign(ind, dadosFicha);
+    // atualiza apenas o vínculo referente à âncora que estava sendo editada
+    const idxVinculo = ind.vinculos.findIndex(v =>
+      v.nivel_id === estado.ancoraAtual.nivel_id &&
+      v.bloco_id === estado.ancoraAtual.bloco_id &&
+      (v.grupo_id || null) === (estado.ancoraAtual.grupo_id || null)
+    );
+    if (idxVinculo >= 0) ind.vinculos[idxVinculo] = vinculoAtual;
+  } else {
+    const novo = Object.assign({ id: gerarId('ind'), vinculos: [vinculoAtual] }, dadosFicha);
+    estado.indicadores.push(novo);
+  }
+
+  marcarSujoParaSalvar();
+  fecharPainelIndicador();
+  renderTrilha();
+  mostrarToast('Indicador salvo (em memória). Use "Salvar no GitHub" para persistir.', 'ok');
+});
+
+document.getElementById('btnExcluirIndicador').addEventListener('click', () => {
+  document.getElementById('confirmTitulo').textContent = 'Excluir indicador';
+  document.getElementById('confirmTexto').textContent = 'Confirma a exclusão deste indicador? Esta ação não pode ser desfeita.';
+  document.getElementById('modalConfirmacao').style.display = 'flex';
+  confirmCallback = () => {
+    estado.indicadores = estado.indicadores.filter(i => i.id !== estado.indicadorEmEdicaoId);
+    marcarSujoParaSalvar();
+    fecharPainelIndicador();
+    renderTrilha();
+    mostrarToast('Indicador excluído.', 'ok');
+  };
+});
+
+/* =====================================================================
+   MODOS (Indicadores / Estruturação)
+===================================================================== */
+function atualizarBotoesModo() {
+  document.getElementById('btnModoIndicadores').classList.toggle('ativo', estado.modo === 'indicadores');
+  document.getElementById('btnModoEstrutura').classList.toggle('ativo', estado.modo === 'estrutura');
+}
+document.getElementById('btnModoIndicadores').addEventListener('click', () => {
+  estado.modo = 'indicadores'; atualizarBotoesModo(); renderTrilha();
+});
+document.getElementById('btnModoEstrutura').addEventListener('click', () => {
+  estado.modo = 'estrutura'; atualizarBotoesModo(); renderTrilha();
+});
+atualizarBotoesModo();
+
+/* =====================================================================
+   INTEGRAÇÃO COM GITHUB (leitura opcional + escrita via API)
+===================================================================== */
+let salvamentoPendente = false;
+function marcarSujoParaSalvar() {
+  salvamentoPendente = true;
+  atualizarStatusBar();
+}
+
+function atualizarStatusBar() {
+  const dot = document.getElementById('statusDot');
+  const texto = document.getElementById('statusTexto');
+  const conectado = !!(estado.github.owner && estado.github.repo && estado.github.token);
+  if (!conectado) {
+    dot.className = 'status-dot';
+    texto.textContent = 'Dados carregados localmente (leitura). Conecte ao GitHub para salvar alterações.';
+  } else if (salvamentoPendente) {
+    dot.className = 'status-dot';
+    texto.innerHTML = `Conectado a <strong>${estado.github.owner}/${estado.github.repo}</strong> — há alterações não salvas. <button class="btn-primario btn-pequeno" id="btnSalvarAgora" style="margin-left:6px">Salvar no GitHub</button>`;
+    document.getElementById('btnSalvarAgora').addEventListener('click', salvarNoGithub);
+  } else {
+    dot.className = 'status-dot ok';
+    texto.textContent = `Conectado a ${estado.github.owner}/${estado.github.repo} — tudo salvo.`;
+  }
+}
+
+document.getElementById('btnConfigGithub').addEventListener('click', () => {
+  document.getElementById('cfgOwner').value = estado.github.owner;
+  document.getElementById('cfgRepo').value = estado.github.repo;
+  document.getElementById('cfgBranch').value = estado.github.branch;
+  document.getElementById('cfgToken').value = estado.github.token;
+  document.getElementById('modalGithub').style.display = 'flex';
+});
+document.getElementById('btnCancelarConfig').addEventListener('click', () => {
+  document.getElementById('modalGithub').style.display = 'none';
+});
+document.getElementById('btnSalvarConfig').addEventListener('click', async () => {
+  estado.github.owner = document.getElementById('cfgOwner').value.trim();
+  estado.github.repo = document.getElementById('cfgRepo').value.trim();
+  estado.github.branch = document.getElementById('cfgBranch').value.trim() || 'main';
+  estado.github.token = document.getElementById('cfgToken').value.trim();
+  document.getElementById('modalGithub').style.display = 'none';
+  if (estado.github.owner && estado.github.repo && estado.github.token) {
+    mostrarToast('Conectado. Buscando versão mais recente dos arquivos…', 'ok');
+    await carregarDadosDoGithub();
+  }
+  atualizarStatusBar();
+});
+
+async function githubFetchArquivo(path) {
+  const url = `https://api.github.com/repos/${estado.github.owner}/${estado.github.repo}/contents/${path}?ref=${estado.github.branch}`;
+  const resp = await fetch(url, {
+    headers: estado.github.token ? { Authorization: `token ${estado.github.token}` } : {}
+  });
+  if (!resp.ok) throw new Error(`Falha ao buscar ${path}: ${resp.status}`);
+  const json = await resp.json();
+  const conteudo = decodeURIComponent(escape(atob(json.content)));
+  return { conteudo: JSON.parse(conteudo), sha: json.sha };
+}
+
+async function carregarDadosDoGithub() {
+  try {
+    const [e, i] = await Promise.all([
+      githubFetchArquivo('estrutura.json'),
+      githubFetchArquivo('indicadores.json')
+    ]);
+    estado.estrutura = e.conteudo;
+    estado.github.shaEstrutura = e.sha;
+    estado.indicadores = i.conteudo.indicadores || [];
+    estado.github.shaIndicadores = i.sha;
+    salvamentoPendente = false;
+    document.getElementById('tituloApp').textContent = estado.estrutura.politica || 'MAPr';
+    renderTrilha();
+    mostrarToast('Dados carregados do GitHub.', 'ok');
+  } catch (e) {
+    mostrarToast('Erro ao carregar do GitHub: ' + e.message, 'erro');
+    console.error(e);
+  }
+}
+
+async function githubSalvarArquivo(path, objeto, sha) {
+  const conteudoStr = JSON.stringify(objeto, null, 2);
+  const conteudoB64 = btoa(unescape(encodeURIComponent(conteudoStr)));
+  const url = `https://api.github.com/repos/${estado.github.owner}/${estado.github.repo}/contents/${path}`;
+  const body = {
+    message: `Atualiza ${path} via MAPr App`,
+    content: conteudoB64,
+    branch: estado.github.branch
+  };
+  if (sha) body.sha = sha;
+  const resp = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      Authorization: `token ${estado.github.token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+  if (!resp.ok) {
+    const errJson = await resp.json().catch(() => ({}));
+    throw new Error(errJson.message || `Falha ao salvar ${path}: ${resp.status}`);
+  }
+  const json = await resp.json();
+  return json.content.sha;
+}
+
+async function salvarNoGithub() {
+  if (!estado.github.owner || !estado.github.repo || !estado.github.token) {
+    mostrarToast('Configure a conexão com o GitHub primeiro.', 'erro');
+    return;
+  }
+  try {
+    mostrarToast('Salvando no GitHub…', 'ok');
+    estado.github.shaEstrutura = await githubSalvarArquivo('estrutura.json', estado.estrutura, estado.github.shaEstrutura);
+    estado.github.shaIndicadores = await githubSalvarArquivo('indicadores.json', { indicadores: estado.indicadores }, estado.github.shaIndicadores);
+    salvamentoPendente = false;
+    atualizarStatusBar();
+    mostrarToast('Salvo com sucesso no GitHub.', 'ok');
+  } catch (e) {
+    mostrarToast('Erro ao salvar: ' + e.message, 'erro');
+    console.error(e);
+  }
+}
+
+/* =====================================================================
+   EXPORTAÇÃO — Markdown e PDF (via impressão do navegador)
+===================================================================== */
+function gerarMarkdown() {
+  let md = `# ${estado.estrutura.politica}\n\n`;
+  md += `_Metodologia: ${estado.estrutura.metodologia}_\n\n`;
+  md += `**Contexto de operação:** ${estado.estrutura.contexto_operacao}\n\n`;
+
+  estado.estrutura.niveis.forEach((nivel, idx) => {
+    md += `## Nível ${idx + 1} — ${nivel.nome}\n\n`;
+    if (nivel.descricao) md += `${nivel.descricao}\n\n`;
+
+    BLOCOS_CANONICOS.forEach(blocoCanon => {
+      if (!nivel.blocos_aplicaveis.includes(blocoCanon.id)) return;
+      md += `### ${blocoCanon.nome}\n\n`;
+
+      const indBloco = marcadoresDoAncora(nivel.id, blocoCanon.id, null);
+      indBloco.forEach(ind => { md += formatarIndicadorMd(ind); });
+
+      const grupos = nivel.grupos_por_bloco[blocoCanon.id] || [];
+      grupos.forEach(grupo => {
+        md += `**${grupo.nome}**\n\n`;
+        (grupo.itens || []).forEach(item => { md += `- ${item.texto}\n`; });
+        md += '\n';
+        const indGrupo = marcadoresDoAncora(nivel.id, blocoCanon.id, grupo.id);
+        indGrupo.forEach(ind => { md += formatarIndicadorMd(ind); });
+      });
+    });
+  });
+
+  return md;
+}
+
+function formatarIndicadorMd(ind) {
+  let md = `> **Indicador:** ${ind.nome} _(${STATUS_INFO[ind.status_maturidade].label})_\n`;
+  md += `> - Fórmula: ${ind.formula_calculo || '—'}\n`;
+  md += `> - Meta: ${ind.meta || '—'} | Linha de base: ${ind.linha_base || '—'} | Polaridade: ${ind.polaridade || '—'}\n`;
+  md += `> - Fonte: ${ind.fonte_dados || '—'} | Periodicidade: ${ind.periodicidade_apuracao || '—'}\n\n`;
+  return md;
+}
+
+document.getElementById('btnExportarMd').addEventListener('click', () => {
+  const md = gerarMarkdown();
+  const blob = new Blob([md], { type: 'text/markdown' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'mapr_indicadores.md';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById('btnExportarPdf').addEventListener('click', () => {
+  window.print();
+});
+
+/* =====================================================================
+   TOAST
+===================================================================== */
+let toastTimeout = null;
+function mostrarToast(msg, tipo) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.className = 'toast mostrar' + (tipo === 'erro' ? ' erro' : tipo === 'ok' ? ' ok' : '');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => { toast.className = 'toast'; }, 4200);
+}
+
+/* =====================================================================
+   INICIALIZAÇÃO
+===================================================================== */
+carregarDadosLocais();
+</script>
+</body>
+</html>
