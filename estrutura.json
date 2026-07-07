@@ -14,40 +14,71 @@
       "id": "nivel1",
       "nome": "Estado (MDA/SAF)",
       "descricao": "Capta a atuação do Estado como arquiteto e gestor do sistema de incentivos.",
-      "blocos_aplicaveis": ["recursos", "atividades", "produtos"],
+      "blocos_aplicaveis": [
+        "recursos",
+        "atividades",
+        "produtos"
+      ],
       "grupos_por_bloco": {
         "recursos": [
           {
             "id": "n1_rec_normativos",
             "nome": "Recursos normativos",
             "itens": [
-              { "id": "n1_rec_norm_1", "texto": "Lei nº 11.097/2005 — introdução do biodiesel na matriz energética brasileira e mandato de mistura obrigatória" },
-              { "id": "n1_rec_norm_2", "texto": "Decreto nº 10.527/2020 e Decreto nº 11.902/2024 — instituição do SBS e estabelecimento dos seus objetivos" },
-              { "id": "n1_rec_norm_3", "texto": "Portaria MDA nº 28/2024 e alterações — regulamentação dos critérios e procedimentos de concessão e manutenção do Selo" },
-              { "id": "n1_rec_norm_4", "texto": "Lei nº 12.188/2010 — Política Nacional de Assistência Técnica e Extensão Rural (PNATER)" },
-              { "id": "n1_rec_norm_5", "texto": "Portaria instituidora da Câmara Técnica de Avaliação e Acompanhamento do Selo Biocombustível Social — CTAA-SBS" }
+              {
+                "id": "n1_rec_norm_1",
+                "texto": "Lei nº 11.097/2005 — introdução do biodiesel na matriz energética brasileira e mandato de mistura obrigatória"
+              },
+              {
+                "id": "n1_rec_norm_2",
+                "texto": "Decreto nº 10.527/2020 e Decreto nº 11.902/2024 — instituição do SBS e estabelecimento dos seus objetivos"
+              },
+              {
+                "id": "n1_rec_norm_3",
+                "texto": "Portaria MDA nº 28/2024 e alterações — regulamentação dos critérios e procedimentos de concessão e manutenção do Selo"
+              },
+              {
+                "id": "n1_rec_norm_4",
+                "texto": "Lei nº 12.188/2010 — Política Nacional de Assistência Técnica e Extensão Rural (PNATER)"
+              },
+              {
+                "id": "n1_rec_norm_5",
+                "texto": "Portaria instituidora da Câmara Técnica de Avaliação e Acompanhamento do Selo Biocombustível Social — CTAA-SBS"
+              }
             ]
           },
           {
             "id": "n1_rec_fiscais",
             "nome": "Recursos fiscais",
             "itens": [
-              { "id": "n1_rec_fisc_1", "texto": "Recursos financeiros decorrentes da redução diferenciada das alíquotas de PIS/Pasep e Cofins sobre a comercialização do biodiesel produzido com matéria-prima adquirida da agricultura familiar, incidente proporcionalmente ao volume comprovadamente produzido com essa matéria-prima — nos termos dos incisos II e III do art. 6º do Decreto nº 10.527/2020 e do art. 21 da Portaria MDA nº 28/2024" }
+              {
+                "id": "n1_rec_fisc_1",
+                "texto": "Recursos financeiros decorrentes da redução diferenciada das alíquotas de PIS/Pasep e Cofins sobre a comercialização do biodiesel produzido com matéria-prima adquirida da agricultura familiar, incidente proporcionalmente ao volume comprovadamente produzido com essa matéria-prima — nos termos dos incisos II e III do art. 6º do Decreto nº 10.527/2020 e do art. 21 da Portaria MDA nº 28/2024"
+              }
             ]
           },
           {
             "id": "n1_rec_mercado",
             "nome": "Recursos de mercado",
             "itens": [
-              { "id": "n1_rec_merc_1", "texto": "Reserva de 80% do mercado nacional de biodiesel para UPBs detentoras do Selo — nos termos do art. 1º, inciso I, da Resolução CNPE nº 5/2026" }
+              {
+                "id": "n1_rec_merc_1",
+                "texto": "Reserva de 80% do mercado nacional de biodiesel para UPBs detentoras do Selo — nos termos do art. 1º, inciso I, da Resolução CNPE nº 5/2026"
+              }
             ]
           },
           {
             "id": "n1_rec_humanos",
             "nome": "Recursos humanos e institucionais",
             "itens": [
-              { "id": "n1_rec_hum_1", "texto": "Equipe técnica do MDA/SAF responsável pela concessão, avaliação e monitoramento do Selo" },
-              { "id": "n1_rec_hum_2", "texto": "Sistema de Gerenciamento das Ações do Biodiesel — SABIDO — plataforma de declaração, registro e acompanhamento dos arranjos produtivos" }
+              {
+                "id": "n1_rec_hum_1",
+                "texto": "Equipe técnica do MDA/SAF responsável pela concessão, avaliação e monitoramento do Selo"
+              },
+              {
+                "id": "n1_rec_hum_2",
+                "texto": "Sistema de Gerenciamento das Ações do Biodiesel — SABIDO — plataforma de declaração, registro e acompanhamento dos arranjos produtivos"
+              }
             ]
           }
         ],
@@ -56,36 +87,72 @@
             "id": "n1_ativ_normatizacao",
             "nome": "Normatização e regulamentação",
             "itens": [
-              { "id": "n1_ativ_norm_1", "texto": "Elaboração e atualização das normas que definem os critérios de concessão, manutenção e revogação do Selo" },
-              { "id": "n1_ativ_norm_2", "texto": "Calibragem dos instrumentos de indução — percentuais mínimos e mecanismos de ponderação — em função dos objetivos da política" },
-              { "id": "n1_ativ_norm_3", "texto": "Coordenação com MME, CNPE e ANP para alinhamento entre a política social do SBS e a política energética do PNPB" }
+              {
+                "id": "n1_ativ_norm_1",
+                "texto": "Elaboração e atualização das normas que definem os critérios de concessão, manutenção e revogação do Selo"
+              },
+              {
+                "id": "n1_ativ_norm_2",
+                "texto": "Calibragem dos instrumentos de indução — percentuais mínimos e mecanismos de ponderação — em função dos objetivos da política"
+              },
+              {
+                "id": "n1_ativ_norm_3",
+                "texto": "Coordenação com MME, CNPE e ANP para alinhamento entre a política social do SBS e a política energética do PNPB"
+              }
             ]
           },
           {
             "id": "n1_ativ_concessao",
             "nome": "Concessão e avaliação periódica do Selo",
             "itens": [
-              { "id": "n1_ativ_conc_1", "texto": "Análise dos requerimentos de concessão e renovação apresentados pelas UPBs" },
-              { "id": "n1_ativ_conc_2", "texto": "Habilitação de agentes promotores aptos a intermediar os arranjos produtivos" },
-              { "id": "n1_ativ_conc_3", "texto": "Avaliação das declarações anuais das UPBs no SABIDO quanto ao cumprimento das obrigações de aquisição, ATER e fomento e a consequente decisão sobre manutenção, suspensão ou revogação do Selo" },
-              { "id": "n1_ativ_conc_4", "texto": "Publicação da relação de detentores do Selo em situação regular" }
+              {
+                "id": "n1_ativ_conc_1",
+                "texto": "Análise dos requerimentos de concessão e renovação apresentados pelas UPBs"
+              },
+              {
+                "id": "n1_ativ_conc_2",
+                "texto": "Habilitação de agentes promotores aptos a intermediar os arranjos produtivos"
+              },
+              {
+                "id": "n1_ativ_conc_3",
+                "texto": "Avaliação das declarações anuais das UPBs no SABIDO quanto ao cumprimento das obrigações de aquisição, ATER e fomento e a consequente decisão sobre manutenção, suspensão ou revogação do Selo"
+              },
+              {
+                "id": "n1_ativ_conc_4",
+                "texto": "Publicação da relação de detentores do Selo em situação regular"
+              }
             ]
           },
           {
             "id": "n1_ativ_monitoramento",
             "nome": "Monitoramento e avaliação da política",
             "itens": [
-              { "id": "n1_ativ_mon_1", "texto": "Produção de boletins e relatórios periódicos de monitoramento do programa" },
-              { "id": "n1_ativ_mon_2", "texto": "Avaliação dos resultados agregados para subsidiar a calibragem dos instrumentos normativos" }
+              {
+                "id": "n1_ativ_mon_1",
+                "texto": "Produção de boletins e relatórios periódicos de monitoramento do programa"
+              },
+              {
+                "id": "n1_ativ_mon_2",
+                "texto": "Avaliação dos resultados agregados para subsidiar a calibragem dos instrumentos normativos"
+              }
             ]
           },
           {
             "id": "n1_ativ_participacao",
             "nome": "Participação, controle social e transparência",
             "itens": [
-              { "id": "n1_ativ_part_1", "texto": "Coordenação da Câmara Técnica de Avaliação e Acompanhamento do Selo Biocombustível Social — CTAA-SBS" },
-              { "id": "n1_ativ_part_2", "texto": "Realização de pesquisas avaliativas junto a agricultores familiares, organizações, agentes promotores e UPBs" },
-              { "id": "n1_ativ_part_3", "texto": "Publicação de dados de monitoramento do programa como medida de transparência ativa e resposta às demandas de transparência passiva" }
+              {
+                "id": "n1_ativ_part_1",
+                "texto": "Coordenação da Câmara Técnica de Avaliação e Acompanhamento do Selo Biocombustível Social — CTAA-SBS"
+              },
+              {
+                "id": "n1_ativ_part_2",
+                "texto": "Realização de pesquisas avaliativas junto a agricultores familiares, organizações, agentes promotores e UPBs"
+              },
+              {
+                "id": "n1_ativ_part_3",
+                "texto": "Publicação de dados de monitoramento do programa como medida de transparência ativa e resposta às demandas de transparência passiva"
+              }
             ]
           }
         ],
@@ -94,48 +161,89 @@
             "id": "n1_prod_normatizacao",
             "nome": "Da normatização e regulamentação",
             "itens": [
-              { "id": "n1_prod_norm_1", "texto": "Marco normativo do SBS atualizado com mecanismos calibrados — Decreto, Portaria e instrumentos operacionais" }
+              {
+                "id": "n1_prod_norm_1",
+                "texto": "Marco normativo do SBS atualizado com mecanismos calibrados — Decreto, Portaria e instrumentos operacionais"
+              }
             ]
           },
           {
             "id": "n1_prod_concessao",
             "nome": "Da concessão e avaliação periódica",
             "itens": [
-              { "id": "n1_prod_conc_1", "texto": "Selos tempestivamente concedidos e mantidos a UPBs em situação regular, com obrigações de inclusão da AF verificadas anualmente" },
-              { "id": "n1_prod_conc_2", "texto": "Selos suspensos ou revogados em casos de descumprimento — garantindo a integridade do sistema de incentivos" },
-              { "id": "n1_prod_conc_3", "texto": "Agentes promotores habilitados e aptos a intermediar arranjos produtivos" }
+              {
+                "id": "n1_prod_conc_1",
+                "texto": "Selos tempestivamente concedidos e mantidos a UPBs em situação regular, com obrigações de inclusão da AF verificadas anualmente"
+              },
+              {
+                "id": "n1_prod_conc_2",
+                "texto": "Selos suspensos ou revogados em casos de descumprimento — garantindo a integridade do sistema de incentivos"
+              },
+              {
+                "id": "n1_prod_conc_3",
+                "texto": "Agentes promotores habilitados e aptos a intermediar arranjos produtivos"
+              }
             ]
           },
           {
             "id": "n1_prod_monitoramento",
             "nome": "Do monitoramento e avaliação da política",
             "itens": [
-              { "id": "n1_prod_mon_1", "texto": "PMEN calculado e publicado anualmente" },
-              { "id": "n1_prod_mon_2", "texto": "Boletins e relatórios periódicos com resultados agregados do programa" },
-              { "id": "n1_prod_mon_3", "texto": "Subsídios técnicos de avaliação para calibragem normativa" }
+              {
+                "id": "n1_prod_mon_1",
+                "texto": "PMEN calculado e publicado anualmente"
+              },
+              {
+                "id": "n1_prod_mon_2",
+                "texto": "Boletins e relatórios periódicos com resultados agregados do programa"
+              },
+              {
+                "id": "n1_prod_mon_3",
+                "texto": "Subsídios técnicos de avaliação para calibragem normativa"
+              }
             ]
           },
           {
             "id": "n1_prod_participacao",
             "nome": "Da participação, controle social e transparência",
             "itens": [
-              { "id": "n1_prod_part_1", "texto": "Reuniões periódicas do CTAA-SBS como instância consultiva de monitoramento" },
-              { "id": "n1_prod_part_2", "texto": "Dados do programa disponibilizados publicamente de forma ativa e sistemática" }
+              {
+                "id": "n1_prod_part_1",
+                "texto": "Reuniões periódicas do CTAA-SBS como instância consultiva de monitoramento"
+              },
+              {
+                "id": "n1_prod_part_2",
+                "texto": "Dados do programa disponibilizados publicamente de forma ativa e sistemática"
+              }
             ]
           }
         ]
       },
       "pressupostos": {
-        "recursos": ["Estabilidade regulatória que permita planejamento de médio e longo prazo pelos atores", "Disponibilidade de dados regulares, auditados e fidedignos para gestão e monitoramento"],
-        "atividades": ["Capacidade técnica e operacional do MDA para verificar o cumprimento real das obrigações, distinguindo transferência efetiva de valor de cumprimento meramente formal", "SABIDO com dados íntegros, auditáveis e atualizados"],
-        "produtos": ["Que os Selos concedidos com suas condicionalidades sejam suficientemente atrativos para ativar o Nível 2 — o arranjo produtivo das UPBs com a agricultura familiar"]
+        "recursos": [
+          "Estabilidade regulatória que permita planejamento de médio e longo prazo pelos atores",
+          "Disponibilidade de dados regulares, auditados e fidedignos para gestão e monitoramento"
+        ],
+        "atividades": [
+          "Capacidade técnica e operacional do MDA para verificar o cumprimento real das obrigações, distinguindo transferência efetiva de valor de cumprimento meramente formal",
+          "SABIDO com dados íntegros, auditáveis e atualizados"
+        ],
+        "produtos": [
+          "Que os Selos concedidos com suas condicionalidades sejam suficientemente atrativos para ativar o Nível 2 — o arranjo produtivo das UPBs com a agricultura familiar"
+        ]
       }
     },
     {
       "id": "nivel2",
       "nome": "Arranjo Produtivo (UPBs e Agricultura Familiar)",
       "descricao": "Capta o arranjo produtivo realizado pelas UPBs com a agricultura familiar, ativado pelo Nível 1. Resultados e impactos existem apenas neste nível.",
-      "blocos_aplicaveis": ["recursos", "atividades", "produtos", "resultados", "impactos"],
+      "blocos_aplicaveis": [
+        "recursos",
+        "atividades",
+        "produtos",
+        "resultados",
+        "impactos"
+      ],
       "conexao_com_nivel_anterior": {
         "produto_origem_id": "n1_prod_conc_1",
         "descricao": "O Selo concedido com suas condicionalidades é o recurso que ativa o Nível 2."
@@ -146,26 +254,50 @@
             "id": "n2_rec_mercado_fiscal",
             "nome": "Recursos de mercado e fiscais — provenientes do Nível 1",
             "itens": [
-              { "id": "n2_rec_mf_1", "texto": "Selo Biocombustível Social concedido — habilitação ao benefício fiscal e à reserva de mercado" },
-              { "id": "n2_rec_mf_2", "texto": "Recursos financeiros decorrentes da redução diferenciada de PIS/Pasep e Cofins proporcional ao volume de biodiesel produzido com matéria-prima da AF" },
-              { "id": "n2_rec_mf_3", "texto": "Reserva de 80% do mercado nacional de biodiesel" }
+              {
+                "id": "n2_rec_mf_1",
+                "texto": "Selo Biocombustível Social concedido — habilitação ao benefício fiscal e à reserva de mercado"
+              },
+              {
+                "id": "n2_rec_mf_2",
+                "texto": "Recursos financeiros decorrentes da redução diferenciada de PIS/Pasep e Cofins proporcional ao volume de biodiesel produzido com matéria-prima da AF"
+              },
+              {
+                "id": "n2_rec_mf_3",
+                "texto": "Reserva de 80% do mercado nacional de biodiesel"
+              }
             ]
           },
           {
             "id": "n2_rec_privados_upb",
             "nome": "Recursos privados da UPB",
             "itens": [
-              { "id": "n2_rec_upb_1", "texto": "Capacidade industrial de produção e comercialização de biodiesel" },
-              { "id": "n2_rec_upb_2", "texto": "Capacidade financeira e logística para estruturar arranjos com a AF" },
-              { "id": "n2_rec_upb_3", "texto": "Corpo técnico próprio ou terceirizado para prestação de ATER e gestão dos contratos" }
+              {
+                "id": "n2_rec_upb_1",
+                "texto": "Capacidade industrial de produção e comercialização de biodiesel"
+              },
+              {
+                "id": "n2_rec_upb_2",
+                "texto": "Capacidade financeira e logística para estruturar arranjos com a AF"
+              },
+              {
+                "id": "n2_rec_upb_3",
+                "texto": "Corpo técnico próprio ou terceirizado para prestação de ATER e gestão dos contratos"
+              }
             ]
           },
           {
             "id": "n2_rec_agricultura_familiar",
             "nome": "Recursos da agricultura familiar",
             "itens": [
-              { "id": "n2_rec_af_1", "texto": "Capacidade produtiva das unidades familiares — terra, mão de obra, conhecimento e sistemas produtivos" },
-              { "id": "n2_rec_af_2", "texto": "Organização coletiva — cooperativas e associações com CAF — como estrutura de intermediação e escala" }
+              {
+                "id": "n2_rec_af_1",
+                "texto": "Capacidade produtiva das unidades familiares — terra, mão de obra, conhecimento e sistemas produtivos"
+              },
+              {
+                "id": "n2_rec_af_2",
+                "texto": "Organização coletiva — cooperativas e associações com CAF — como estrutura de intermediação e escala"
+              }
             ]
           }
         ],
@@ -174,25 +306,46 @@
             "id": "n2_ativ_estruturacao",
             "nome": "Estruturação dos arranjos",
             "itens": [
-              { "id": "n2_ativ_estr_1", "texto": "Celebração de contratos antecipados com agricultores familiares, diretamente ou por meio de agentes promotores, com garantia de preços e definição de volumes e condições de entrega" },
-              { "id": "n2_ativ_estr_2", "texto": "Planejamento territorial dos arranjos com vistas à regionalização e diversificação produtiva" }
+              {
+                "id": "n2_ativ_estr_1",
+                "texto": "Celebração de contratos antecipados com agricultores familiares, diretamente ou por meio de agentes promotores, com garantia de preços e definição de volumes e condições de entrega"
+              },
+              {
+                "id": "n2_ativ_estr_2",
+                "texto": "Planejamento territorial dos arranjos com vistas à regionalização e diversificação produtiva"
+              }
             ]
           },
           {
             "id": "n2_ativ_execucao",
             "nome": "Execução das obrigações de inclusão",
             "itens": [
-              { "id": "n2_ativ_exec_1", "texto": "Aquisição de matérias-primas e produtos da agricultura familiar nos termos dos contratos celebrados" },
-              { "id": "n2_ativ_exec_2", "texto": "Prestação de Assistência Técnica e Extensão Rural — ATER — sobre a integralidade da unidade familiar de produção agrária, em observância aos princípios da PNATER" },
-              { "id": "n2_ativ_exec_3", "texto": "Realização facultativa de dispêndios em fomento à estruturação das cadeias produtivas e em projetos de pesquisa e inovação em desenvolvimento rural sustentável e agroecológico" }
+              {
+                "id": "n2_ativ_exec_1",
+                "texto": "Aquisição de matérias-primas e produtos da agricultura familiar nos termos dos contratos celebrados"
+              },
+              {
+                "id": "n2_ativ_exec_2",
+                "texto": "Prestação de Assistência Técnica e Extensão Rural — ATER — sobre a integralidade da unidade familiar de produção agrária, em observância aos princípios da PNATER"
+              },
+              {
+                "id": "n2_ativ_exec_3",
+                "texto": "Realização facultativa de dispêndios em fomento à estruturação das cadeias produtivas e em projetos de pesquisa e inovação em desenvolvimento rural sustentável e agroecológico"
+              }
             ]
           },
           {
             "id": "n2_ativ_declaracao",
             "nome": "Declaração e prestação de contas",
             "itens": [
-              { "id": "n2_ativ_decl_1", "texto": "Registro dos dispêndios e contratos realizados no SABIDO" },
-              { "id": "n2_ativ_decl_2", "texto": "Elaboração e submissão do relatório anual de cumprimento das obrigações à Unidade Gestora" }
+              {
+                "id": "n2_ativ_decl_1",
+                "texto": "Registro dos dispêndios e contratos realizados no SABIDO"
+              },
+              {
+                "id": "n2_ativ_decl_2",
+                "texto": "Elaboração e submissão do relatório anual de cumprimento das obrigações à Unidade Gestora"
+              }
             ]
           }
         ],
@@ -201,25 +354,46 @@
             "id": "n2_prod_estruturacao",
             "nome": "Da estruturação dos arranjos",
             "itens": [
-              { "id": "n2_prod_estr_1", "texto": "Contratos antecipados celebrados com agricultores familiares e agentes promotores, com garantia de preços e condições de entrega definidas" },
-              { "id": "n2_prod_estr_2", "texto": "Planos de estruturação de cadeias produtivas elaborados com vistas à regionalização e diversificação" }
+              {
+                "id": "n2_prod_estr_1",
+                "texto": "Contratos antecipados celebrados com agricultores familiares e agentes promotores, com garantia de preços e condições de entrega definidas"
+              },
+              {
+                "id": "n2_prod_estr_2",
+                "texto": "Planos de estruturação de cadeias produtivas elaborados com vistas à regionalização e diversificação"
+              }
             ]
           },
           {
             "id": "n2_prod_execucao",
             "nome": "Da execução das obrigações de inclusão",
             "itens": [
-              { "id": "n2_prod_exec_1", "texto": "Matérias-primas e produtos da agricultura familiar adquiridos e incorporados à cadeia do biodiesel" },
-              { "id": "n2_prod_exec_2", "texto": "Agricultores familiares atendidos por ATER sobre a integralidade da unidade familiar de produção agrária" },
-              { "id": "n2_prod_exec_3", "texto": "Projetos de fomento à estruturação de cadeias produtivas e à pesquisa e inovação em desenvolvimento rural sustentável e agroecológico realizados — quando aplicável" }
+              {
+                "id": "n2_prod_exec_1",
+                "texto": "Matérias-primas e produtos da agricultura familiar adquiridos e incorporados à cadeia do biodiesel"
+              },
+              {
+                "id": "n2_prod_exec_2",
+                "texto": "Agricultores familiares atendidos por ATER sobre a integralidade da unidade familiar de produção agrária"
+              },
+              {
+                "id": "n2_prod_exec_3",
+                "texto": "Projetos de fomento à estruturação de cadeias produtivas e à pesquisa e inovação em desenvolvimento rural sustentável e agroecológico realizados — quando aplicável"
+              }
             ]
           },
           {
             "id": "n2_prod_declaracao",
             "nome": "Da declaração e prestação de contas",
             "itens": [
-              { "id": "n2_prod_decl_1", "texto": "Dispêndios e contratos registrados no SABIDO" },
-              { "id": "n2_prod_decl_2", "texto": "Relatório anual de cumprimento das obrigações submetido à Unidade Gestora" }
+              {
+                "id": "n2_prod_decl_1",
+                "texto": "Dispêndios e contratos registrados no SABIDO"
+              },
+              {
+                "id": "n2_prod_decl_2",
+                "texto": "Relatório anual de cumprimento das obrigações submetido à Unidade Gestora"
+              }
             ]
           }
         ],
@@ -228,14 +402,38 @@
             "id": "n2_resultados_gerais",
             "nome": "Resultados",
             "itens": [
-              { "id": "n2_res_1", "texto": "Ampliação da renda dos agricultores familiares participantes dos arranjos produtivos, decorrente das aquisições com garantia de preços" },
-              { "id": "n2_res_2", "texto": "Melhoria das condições de acesso ao crédito rural pelos agricultores familiares, em decorrência dos contratos antecipados com garantia de preços" },
-              { "id": "n2_res_3", "texto": "Fortalecimento da capacidade produtiva das unidades familiares, decorrente da ATER prestada sobre a integralidade da propriedade" },
-              { "id": "n2_res_4", "texto": "Diversificação produtiva das unidades familiares participantes, com ampliação da produção de alimentos, redução da dependência de monoculturas e adoção progressiva de práticas de manejo sustentável orientadas para a transição agroecológica" },
-              { "id": "n2_res_5", "texto": "Ampliação da participação das mulheres agricultoras e dos jovens nos processos de planejamento, produção e comercialização — induzida pela ATER e pelos arranjos produtivos" },
-              { "id": "n2_res_6", "texto": "Fortalecimento institucional das organizações da agricultura familiar — cooperativas e associações — como protagonistas dos arranjos produtivos" },
-              { "id": "n2_res_7", "texto": "Estruturação e consolidação de cadeias produtivas locais nas Regiões Norte, Nordeste e Semiárido, com incorporação de oleaginosas nativas, alimentos e produtos da sociobiodiversidade" },
-              { "id": "n2_res_8", "texto": "Ampliação da participação da agricultura familiar no mercado de biodiesel, com crescimento proporcional ao aumento do mandato de mistura obrigatória — aferido pelo PMEN" }
+              {
+                "id": "n2_res_1",
+                "texto": "Ampliação da renda dos agricultores familiares participantes dos arranjos produtivos, decorrente das aquisições com garantia de preços"
+              },
+              {
+                "id": "n2_res_2",
+                "texto": "Melhoria das condições de acesso ao crédito rural pelos agricultores familiares, em decorrência dos contratos antecipados com garantia de preços"
+              },
+              {
+                "id": "n2_res_3",
+                "texto": "Fortalecimento da capacidade produtiva das unidades familiares, decorrente da ATER prestada sobre a integralidade da propriedade"
+              },
+              {
+                "id": "n2_res_4",
+                "texto": "Diversificação produtiva das unidades familiares participantes, com ampliação da produção de alimentos, redução da dependência de monoculturas e adoção progressiva de práticas de manejo sustentável orientadas para a transição agroecológica"
+              },
+              {
+                "id": "n2_res_5",
+                "texto": "Ampliação da participação das mulheres agricultoras e dos jovens nos processos de planejamento, produção e comercialização — induzida pela ATER e pelos arranjos produtivos"
+              },
+              {
+                "id": "n2_res_6",
+                "texto": "Fortalecimento institucional das organizações da agricultura familiar — cooperativas e associações — como protagonistas dos arranjos produtivos"
+              },
+              {
+                "id": "n2_res_7",
+                "texto": "Estruturação e consolidação de cadeias produtivas locais nas Regiões Norte, Nordeste e Semiárido, com incorporação de oleaginosas nativas, alimentos e produtos da sociobiodiversidade"
+              },
+              {
+                "id": "n2_res_8",
+                "texto": "Ampliação da participação da agricultura familiar no mercado de biodiesel, com crescimento proporcional ao aumento do mandato de mistura obrigatória — aferido pelo PMEN"
+              }
             ]
           }
         ],
@@ -244,24 +442,60 @@
             "id": "n2_impactos_gerais",
             "nome": "Impactos",
             "itens": [
-              { "id": "n2_imp_1", "texto": "Redução das desigualdades sociais e regionais no campo, com inclusão produtiva e econômica dos agricultores familiares e dos povos do campo, das águas e das florestas na economia de energia renovável" },
-              { "id": "n2_imp_2", "texto": "Fortalecimento da soberania alimentar brasileira, pela consolidação do papel central da agricultura familiar como produtora de alimentos — reforçado, e não substituído, pela sua inserção na cadeia energética" },
-              { "id": "n2_imp_3", "texto": "Transição agroecológica como horizonte do desenvolvimento rural sustentável, com substituição progressiva do modelo de monocultura dependente de insumos externos por sistemas produtivos diversificados, resilientes e de menor impacto ambiental" },
-              { "id": "n2_imp_4", "texto": "Resiliência climática das comunidades rurais, pelo fortalecimento de sistemas produtivos diversificados nas diferentes regiões do país" },
-              { "id": "n2_imp_5", "texto": "Fixação das famílias no campo e continuidade intergeracional da agricultura familiar, com os jovens encontrando perspectivas econômicas viáveis nos territórios rurais" },
-              { "id": "n2_imp_6", "texto": "Fortalecimento do cooperativismo e da organização coletiva da agricultura familiar como base institucional do desenvolvimento rural sustentável" },
-              { "id": "n2_imp_7", "texto": "Transição energética socialmente justa e territorialmente equilibrada, com contribuição da agricultura familiar para a redução da dependência de combustíveis fósseis na matriz energética brasileira" }
+              {
+                "id": "n2_imp_1",
+                "texto": "Redução das desigualdades sociais e regionais no campo, com inclusão produtiva e econômica dos agricultores familiares e dos povos do campo, das águas e das florestas na economia de energia renovável"
+              },
+              {
+                "id": "n2_imp_2",
+                "texto": "Fortalecimento da soberania alimentar brasileira, pela consolidação do papel central da agricultura familiar como produtora de alimentos — reforçado, e não substituído, pela sua inserção na cadeia energética"
+              },
+              {
+                "id": "n2_imp_3",
+                "texto": "Transição agroecológica como horizonte do desenvolvimento rural sustentável, com substituição progressiva do modelo de monocultura dependente de insumos externos por sistemas produtivos diversificados, resilientes e de menor impacto ambiental"
+              },
+              {
+                "id": "n2_imp_4",
+                "texto": "Resiliência climática das comunidades rurais, pelo fortalecimento de sistemas produtivos diversificados nas diferentes regiões do país"
+              },
+              {
+                "id": "n2_imp_5",
+                "texto": "Fixação das famílias no campo e continuidade intergeracional da agricultura familiar, com os jovens encontrando perspectivas econômicas viáveis nos territórios rurais"
+              },
+              {
+                "id": "n2_imp_6",
+                "texto": "Fortalecimento do cooperativismo e da organização coletiva da agricultura familiar como base institucional do desenvolvimento rural sustentável"
+              },
+              {
+                "id": "n2_imp_7",
+                "texto": "Transição energética socialmente justa e territorialmente equilibrada, com contribuição da agricultura familiar para a redução da dependência de combustíveis fósseis na matriz energética brasileira"
+              }
             ]
           }
         ]
       },
       "pressupostos": {
-        "recursos": ["Que a AF disponha ou possa desenvolver capacidade produtiva suficiente para responder à demanda gerada pelos arranjos", "Que os agentes promotores disponham de capacidade institucional e presença territorial suficientes para estruturar e acompanhar os arranjos com a agricultura familiar nas regiões de atuação"],
-        "atividades": ["Que os contratos antecipados sejam efetivamente cumpridos e gerem transferência real de valor à AF", "Que a ATER prestada tenha qualidade suficiente para desenvolver a capacidade produtiva da AF além da matéria-prima fornecida à cadeia do biodiesel"],
-        "produtos": ["Que os produtos do arranjo alcancem agricultores familiares com capacidade produtiva suficiente para responder à demanda", "Que o conjunto dos produtos gere transferência efetiva de valor à AF — e não apenas cumprimento formal das obrigações"],
-        "resultados": ["Que os resultados sejam suficientemente consistentes e duradouros para produzir transformações estruturais nas condições de vida e produção da agricultura familiar", "Que fatores externos — climáticos, macroeconômicos e de mercado — não comprometam a trajetória de resultados de forma sistemática"],
-        "impactos": ["Que a política mantenha continuidade e estabilidade regulatória suficientes para que os impactos de longo prazo se materializem"]
+        "recursos": [
+          "Que a AF disponha ou possa desenvolver capacidade produtiva suficiente para responder à demanda gerada pelos arranjos",
+          "Que os agentes promotores disponham de capacidade institucional e presença territorial suficientes para estruturar e acompanhar os arranjos com a agricultura familiar nas regiões de atuação"
+        ],
+        "atividades": [
+          "Que os contratos antecipados sejam efetivamente cumpridos e gerem transferência real de valor à AF",
+          "Que a ATER prestada tenha qualidade suficiente para desenvolver a capacidade produtiva da AF além da matéria-prima fornecida à cadeia do biodiesel"
+        ],
+        "produtos": [
+          "Que os produtos do arranjo alcancem agricultores familiares com capacidade produtiva suficiente para responder à demanda",
+          "Que o conjunto dos produtos gere transferência efetiva de valor à AF — e não apenas cumprimento formal das obrigações"
+        ],
+        "resultados": [
+          "Que os resultados sejam suficientemente consistentes e duradouros para produzir transformações estruturais nas condições de vida e produção da agricultura familiar",
+          "Que fatores externos — climáticos, macroeconômicos e de mercado — não comprometam a trajetória de resultados de forma sistemática"
+        ],
+        "impactos": [
+          "Que a política mantenha continuidade e estabilidade regulatória suficientes para que os impactos de longo prazo se materializem"
+        ]
       }
     }
-  ]
+  ],
+  "teoria_do_programa": "## Construída ex post com base no marco normativo vigente\n### Decreto nº 11.902/2024 e Portaria MDA nº 28/2024\n\n## 1. O problema que justifica a intervenção\n\nA trajetória da agricultura brasileira no século XX foi marcada por um processo de modernização que, embora tenha expandido significativamente a produção agropecuária nacional, aprofundou desigualdades estruturais no campo. Esse modelo — analisado pela literatura agrária brasileira como modernização conservadora — foi induzido por escolhas deliberadas do Estado: crédito rural subsidiado concentrado nos grandes produtores, assistência técnica orientada à monocultura exportadora, política fundiária que conservou a concentração da terra e incentivos fiscais e infraestruturais que favoreceram a produção em larga escala. Os dados do Censo Agropecuário do IBGE documentam com consistência o resultado dessa trajetória: a agricultura familiar responde por mais de 70% dos estabelecimentos rurais do país e por parcela decisiva da produção de alimentos básicos, mas acessa proporção minoritária do crédito rural, da assistência técnica pública e dos mercados agroindustriais organizados. A exclusão dos agricultores familiares das cadeias produtivas de maior valor agregado não reflete, portanto, incapacidade produtiva — reflete o acúmulo de décadas de escolhas institucionais que estruturaram o mercado em favor de outro modelo.\n\nEsse padrão histórico de exclusão recai com particular intensidade sobre os povos do campo, das águas e das florestas, cujos modos de vida, territórios e sistemas produtivos foram sistematicamente preteridos e prejudicados pelo avanço do modelo convencional de subsídio estatal. A expansão de fronteiras agrícolas baseada em monoculturas de exportação não apenas exclui essas populações dos mercados, como ameaça sua permanência nos próprios territórios de origem — comprimindo áreas de uso comum, substituindo ecossistemas nativos e desestruturando economias locais diversificadas. Nas Regiões Norte, Nordeste e Semiárido, esse padrão assumiu uma forma específica: suas cadeias produtivas locais — oleaginosas nativas, culturas alimentares, produtos da sociobiodiversidade — permaneceram invisibilizadas pelo modelo de escala, excluídas não apenas dos mercados, mas dos próprios instrumentos públicos de fomento que poderiam viabilizá-las. A criação do mercado de biodiesel a partir de 2004, impulsionada pelo Estado com recursos públicos expressivos sob a forma de renúncia fiscal e mandato de mistura obrigatória crescente, abriu uma oportunidade histórica de transformação desse padrão. A expansão de um mercado novo, sem mecanismos normativos ativos de indução, tende a seguir a trajetória de menor resistência institucional — concentrar-se nas regiões com maior escala produtiva disponível, nas culturas já integradas às cadeias exportadoras e nos arranjos logísticos já consolidados — reproduzindo, de forma inercial, a mesma lógica excludente que o modelo anterior sedimentou.\n\nA exclusão da agricultura familiar desse mercado não é um problema setorial com solução pontual. Suas consequências se retroalimentam: a concentração dos benefícios da transição energética em segmentos já consolidados aprofunda desigualdades sociais e regionais; a substituição de sistemas produtivos diversificados por monoculturas de escala compromete tanto a biodiversidade quanto a segurança alimentar; e a marginalização das cadeias produtivas do Norte, Nordeste e Semiárido desperdiça o potencial econômico e territorial da agricultura familiar nessas regiões — exatamente onde sua contribuição seria mais transformadora. São faces de um mesmo problema estrutural, que só pode ser enfrentado por uma intervenção igualmente integrada nas suas dimensões social, ambiental e econômica.\n\nO problema que o Selo Biocombustível Social se propõe a corrigir é, em síntese, o risco de um mercado energético estruturado pelo Estado reproduzir, de forma inercial, um padrão histórico de exclusão da agricultura familiar — concentrando os ganhos da transição energética em segmentos já consolidados e aprofundando reconhecidas desigualdades sociais, regionais e ambientais que os objetivos constitucionais da República impõem superar.\n\n## 2. A hipótese de mudança\n\nO Selo Biocombustível Social parte de uma constatação fundamental: a exclusão da agricultura familiar não é uma falha de mercado que se corrige espontaneamente. É o resultado previsível de uma assimetria estrutural entre agentes com capacidades radicalmente distintas de negociação, escala e acesso a instrumentos públicos. Sem intervenção normativa ativa, o mercado tende ao equilíbrio que lhe é mais conveniente do ponto de vista monetário — e esse equilíbrio exclui sistematicamente os produtores familiares.\n\nA hipótese central do SBS é que essa tendência pode ser revertida por meio de uma arquitetura de condicionalidades: se o Estado vincular o acesso aos benefícios do mercado de biodiesel — a reserva de acesso ao mercado nacional e a redução das alíquotas de PIS/Pasep e Cofins — ao cumprimento de obrigações efetivas de inclusão da agricultura familiar, então as unidades produtoras de biodiesel incorporarão a AF em seus arranjos produtivos, porque o valor econômico do benefício condicionado será sistematicamente superior ao custo de cumprir a contrapartida social exigida. A lógica não é filantrópica — é de racionalidade econômica induzida normativamente: o instrumento transforma a inclusão da agricultura familiar de uma externalidade ignorada em uma condição de acesso a um mercado garantido e crescente.\n\nA expectativa que sustenta essa hipótese é que à medida que o mandato de mistura obrigatória se amplia e o mercado cresce, os benefícios dessa expansão alcancem proporcionalmente a agricultura familiar — ampliando sua renda, diversificando suas cadeias produtivas e fortalecendo sua presença nas regiões Norte, Nordeste e Semiárido. O crescimento do setor de biodiesel e o fortalecimento da agricultura familiar são, pela lógica do SBS, duas faces de um mesmo processo.\n\nEssa expectativa de crescimento conjunto tem, porém, uma condição qualitativa essencial: a inserção da agricultura familiar na cadeia energética deve fortalecer, e não comprometer, sua função central como produtora de alimentos e base da soberania alimentar brasileira. O mercado de biodiesel não é concebido como alternativa à produção alimentar — é concebido como um mercado adicional que amplia as possibilidades econômicas da agricultura familiar sem deslocar sua vocação alimentar. A simbiose entre transição energética e soberania alimentar é, portanto, condição de legitimidade do SBS: um modelo que substituísse a diversificação produtiva da AF pela monocultura de oleaginosas energéticas contradiria os próprios objetivos que justificam a política — entre eles, explicitamente, o de ampliar a participação da agricultura familiar na produção de alimentos, nos termos do Decreto nº 11.902/2024.\n\nA hipótese de mudança do SBS é, portanto, a seguinte: a concessão condicionada de benefícios fiscais e de acesso ao mercado de biodiesel, associada a mecanismos de indução suficientemente calibrados e a um sistema de monitoramento capaz de verificar a transferência efetiva de valor, é capaz de transformar a lógica excludente do mercado em um vetor de inclusão produtiva, diversificação de cadeias e desenvolvimento regional com impacto ambiental positivo — garantindo que a expansão do mercado decorrente do aumento progressivo da mistura obrigatória se traduza em benefício crescente e proporcional para a agricultura familiar, sem jamais comprometer seu papel insubstituível na produção de alimentos e na soberania alimentar do país.\n\n## 3. Os mecanismos de transmissão\n\nO SBS opera por meio de um ciclo regulatório que enquadra todos os seus mecanismos: a concessão do Selo habilita a unidade produtora de biodiesel ao conjunto de benefícios da política; a avaliação anual verifica o cumprimento das obrigações e determina a manutenção ou revogação dessa habilitação. É dentro desse ciclo que os mecanismos de transmissão atuam.\n\nO primeiro mecanismo é o **incentivo condicional**. O Estado concede às unidades produtoras de biodiesel detentoras do Selo dois benefícios estruturantes: a redução das alíquotas de PIS/Pasep e Cofins incidentes sobre a comercialização do biodiesel e a reserva de acesso preferencial ao mercado nacional de biodiesel. Esses benefícios tornam a adesão ao Selo economicamente racional para a UPB — e sua condicionalidade transforma a inclusão da agricultura familiar em requisito de acesso a um mercado garantido e crescente.\n\nO segundo mecanismo é o **arranjo produtivo**. Para manter o Selo, a UPB deve estabelecer contratos antecipados com agricultores familiares, diretamente ou por meio de agentes promotores, assegurando garantia de preços e prestação de Assistência Técnica e Extensão Rural. O contrato antecipado com garantia de preços repercute indiretamente em melhores condições de acesso ao crédito para o agricultor familiar, na medida em que o contrato funciona como instrumento de garantia junto às instituições financeiras. As aquisições abrangem matérias-primas para produção de biodiesel e, nas Regiões Norte, Nordeste e Semiárido, também alimentos, animais vivos e outros produtos oriundos da unidade de produção familiar, combinados com planos de estruturação de cadeias produtivas. A ATER, por sua vez, prestada com observância dos princípios e objetivos da Política Nacional de Assistência Técnica e Extensão Rural — PNATER —, incide sobre a integralidade da unidade familiar de produção agrária e visa o desenvolvimento rural sustentável. Complementarmente, o produtor de biodiesel tem a oportunidade de realizar dispêndios em fomento voltados ao fortalecimento da agricultura familiar e à transição agroecológica, por meio de duas modalidades convergentes: o fomento à estruturação das cadeias produtivas e o aporte em projetos de pesquisa e inovação em desenvolvimento rural sustentável e agroecológico.\n\nO terceiro mecanismo é o **monitoramento e a calibragem dos incentivos**. O cumprimento das obrigações é declarado pelas UPBs no sistema de informações da Unidade Gestora e verificado anualmente pelo MDA. O Percentual Mínimo Efetivo Nacional — PMEN — é o indicador central desse mecanismo: ao medir a relação entre o valor efetivamente pago à agricultura familiar e o valor total do biodiesel comercializado no mercado nacional, o PMEN permite aferir se o conjunto dos mecanismos está mantendo o vínculo entre a expansão do mercado de biodiesel e o crescimento proporcional dos benefícios à agricultura familiar. Os resultados do monitoramento orientam a calibragem dos instrumentos normativos específicos que induzem o comportamento das UPBs em direção aos objetivos da política — a regionalização para o Norte, Nordeste e Semiárido, a diversificação de matérias-primas e produtos, o fortalecimento das organizações da agricultura familiar e a transição agroecológica — assegurando o ajuste permanente entre os incentivos oferecidos e os resultados esperados.\n\n## 4. Premissas e pressupostos\n\nA teoria do programa do Selo Biocombustível Social repousa sobre um conjunto de premissas e pressupostos que precisam ser satisfeitos para que a cadeia causal descrita nos mecanismos de transmissão produza os resultados esperados. Sua identificação explícita é condição para a avaliação crítica da política — pois quando os resultados ficam aquém do esperado, a análise precisa distinguir se o problema está no desenho do instrumento ou no não atendimento das condições que o instrumento pressupõe.\n\nO primeiro grupo de premissas diz respeito ao **comportamento dos atores privados**. A teoria pressupõe que as unidades produtoras de biodiesel fariam o cálculo econômico que a política espera: que o valor dos benefícios condicionados — a redução fiscal e a reserva de mercado — superaria sistematicamente o custo de cumprir as obrigações de inclusão da agricultura familiar. Para que essa premissa se sustente, é necessário que os benefícios sejam suficientemente atrativos e que as obrigações sejam suficientemente exigentes para gerar transferência real de valor. Se as empresas conseguissem satisfazer as exigências normativas sem que os benefícios alcançassem efetivamente a agricultura familiar, a premissa central da política se romperia.\n\nO segundo grupo de pressupostos diz respeito à **capacidade produtiva da agricultura familiar**. A teoria pressupõe que a AF dispõe — ou pode desenvolver com o suporte da ATER e do fomento — de capacidade produtiva suficiente para responder à demanda gerada pelos arranjos produtivos. Esse pressuposto é particularmente relevante nas Regiões Norte, Nordeste e Semiárido, onde as cadeias produtivas locais enfrentam condicionantes estruturais de disponibilidade de infraestrutura, condições climáticas e distância dos mercados consumidores. A política não poderia assumir que a demanda induzida pelo Selo se traduziria automaticamente em oferta organizada — o que reforça o papel estruturante da ATER e do fomento como componentes indispensáveis do arranjo.\n\nO terceiro grupo de pressupostos diz respeito à **capacidade institucional do Estado**. A teoria pressupõe que o MDA disponha de condições técnicas e operacionais para verificar o cumprimento real das obrigações — distinguindo transferência efetiva de valor de cumprimento meramente formal —, para monitorar indicadores de resultado e impacto que permitam aferir se o cumprimento das obrigações se converte nos objetivos voltados à agricultura familiar, e para calibrar os instrumentos normativos com base nos resultados apurados. Integra esse pressuposto a disponibilidade de dados regulares, auditados e fidedignos, aptos a subsidiar revisões regulamentares e medidas preventivas e corretivas. O acompanhamento sistemático da relação entre a renúncia fiscal concedida e o impacto do Selo Biocombustível Social no custo do biodiesel é componente essencial desse monitoramento.\n\nTransversal a esses três grupos está o pressuposto da **estabilidade regulatória**. Contratos antecipados com garantia de preços, investimentos em estruturação de cadeias produtivas e projetos de pesquisa e inovação pressupõem horizontes de planejamento de médio e longo prazo — tanto para as UPBs quanto para os agricultores familiares e suas organizações. A instabilidade normativa desincentivaria exatamente os comportamentos que a política visa induzir, fragmentando os arranjos produtivos e inibindo os investimentos necessários para que a agricultura familiar ampliasse sua capacidade de resposta. A previsibilidade regulatória não é, portanto, apenas um atributo desejável da gestão — é uma condição de funcionamento adequado da teoria do programa.\n\n## Referências\n\nSILVA, José Graziano da. A modernização dolorosa: estrutura agrária, fronteira agrícola e trabalhadores rurais no Brasil. Rio de Janeiro: Zahar, 1982.\n\nINSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA. Censo Agropecuário 2017: resultados definitivos. Rio de Janeiro: IBGE, 2019.\n\nWANDERLEY, Maria Nazareth Baudel. O mundo rural como espaço de vida: reflexões sobre a propriedade da terra, agricultura familiar e ruralidade. Porto Alegre: Editora da UFRGS, 2009.\n\nPORTO-GONÇALVES, Carlos Walter. A globalização da natureza e a natureza da globalização. Rio de Janeiro: Civilização Brasileira, 2006.\n\nBRASIL. Comitê de Monitoramento e Avaliação de Políticas Públicas Federais. Relatório de recomendações: Política de Desoneração do PIS/Pasep e da Cofins para o Biodiesel. Brasília: Ministério do Planejamento e Orçamento, 2022. / BRASIL. Documento final da II Conferência Nacional de Desenvolvimento Rural Sustentável e Solidário. Brasília: MDA, 2013.\n\nALTIERI, Miguel. Agroecologia: bases científicas para uma agricultura sustentável. 3. ed. São Paulo: Expressão Popular; Rio de Janeiro: AS-PTA, 2012.\n\nPETERSEN, Paulo (org.). Agricultura familiar camponesa na construção do futuro. Rio de Janeiro: AS-PTA, 2009."
 }
