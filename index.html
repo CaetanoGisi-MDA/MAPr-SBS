@@ -22,507 +22,185 @@
     --radius: 10px;
     --sombra: 0 1px 3px rgba(20, 30, 50, 0.08), 0 1px 2px rgba(20,30,50,0.04);
   }
-
   * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--texto-principal); line-height: 1.5; }
+  h1, h2, h3, h4, h5 { font-family: 'Raleway', sans-serif; margin: 0; }
 
-  body {
-    margin: 0;
-    font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg);
-    color: var(--texto-principal);
-    line-height: 1.5;
-  }
-
-  h1, h2, h3, h4 { font-family: 'Raleway', sans-serif; margin: 0; }
-
-  /* ===== TOPO ===== */
   header.topo {
     background: linear-gradient(135deg, var(--azul-escuro), var(--azul-vivo));
-    color: white;
-    padding: 1.1rem 1.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    box-shadow: var(--sombra);
-    position: sticky;
-    top: 0;
-    z-index: 40;
+    color: white; padding: 1.1rem 1.75rem; display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.75rem; box-shadow: var(--sombra); position: sticky; top: 0; z-index: 40;
   }
+  header.topo .titulo-area h1 { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.2px; }
+  header.topo .titulo-area .subtitulo { font-size: 0.78rem; opacity: 0.85; margin-top: 2px; }
+  .topo-acoes { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 
-  header.topo .titulo-area h1 {
-    font-size: 1.15rem;
-    font-weight: 800;
-    letter-spacing: 0.2px;
-  }
-  header.topo .titulo-area .subtitulo {
-    font-size: 0.78rem;
-    opacity: 0.85;
-    margin-top: 2px;
-  }
-
-  .topo-acoes {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  button {
-    font-family: inherit;
-    cursor: pointer;
-    border: none;
-    border-radius: 7px;
-    padding: 0.5rem 0.9rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    transition: filter 0.15s ease, transform 0.1s ease;
-  }
+  button { font-family: inherit; cursor: pointer; border: none; border-radius: 7px; padding: 0.5rem 0.9rem; font-size: 0.82rem; font-weight: 600; transition: filter 0.15s ease, transform 0.1s ease; }
   button:active { transform: translateY(1px); }
-
-  .btn-ghost-topo {
-    background: rgba(255,255,255,0.12);
-    color: white;
-    border: 1px solid rgba(255,255,255,0.35);
-  }
+  .btn-ghost-topo { background: rgba(255,255,255,0.12); color: white; border: 1px solid rgba(255,255,255,0.35); }
   .btn-ghost-topo:hover { background: rgba(255,255,255,0.22); }
   .btn-ghost-topo.ativo { background: white; color: var(--azul-escuro); }
-
-  .btn-primario {
-    background: #E3A21A;
-    color: #241a00;
-  }
+  .btn-primario { background: #E3A21A; color: #241a00; }
   .btn-primario:hover { filter: brightness(1.06); }
-
-  .btn-secundario {
-    background: var(--card-bg);
-    color: var(--azul-vivo);
-    border: 1px solid var(--borda);
-  }
+  .btn-secundario { background: var(--card-bg); color: var(--azul-vivo); border: 1px solid var(--borda); }
   .btn-secundario:hover { background: #eef3fc; }
-
-  .btn-perigo {
-    background: #fdecec;
-    color: #a3241a;
-    border: 1px solid #f3c6c2;
-  }
+  .btn-perigo { background: #fdecec; color: #a3241a; border: 1px solid #f3c6c2; }
   .btn-perigo:hover { background: #fbdcda; }
-
   .btn-pequeno { padding: 0.32rem 0.6rem; font-size: 0.74rem; }
 
-  /* ===== STATUS BAR (conexão github) ===== */
-  .status-bar {
-    background: white;
-    border-bottom: 1px solid var(--borda);
-    padding: 0.5rem 1.75rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.78rem;
-    color: var(--texto-secundario);
-    flex-wrap: wrap;
-  }
-  .status-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--cinza-marcador);
-    flex-shrink: 0;
-  }
+  .status-bar { background: white; border-bottom: 1px solid var(--borda); padding: 0.5rem 1.75rem; display: flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; color: var(--texto-secundario); flex-wrap: wrap; }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cinza-marcador); flex-shrink: 0; }
   .status-dot.ok { background: var(--verde); }
   .status-dot.erro { background: #c62828; }
 
-  /* ===== CONTAINER PRINCIPAL ===== */
-  .container {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 1.5rem 1.75rem 4rem;
-  }
+  .container { max-width: 1180px; margin: 0 auto; padding: 1.5rem 1.75rem 4rem; }
 
-  .legenda {
-    display: flex;
-    gap: 1.1rem;
-    flex-wrap: wrap;
-    background: white;
-    border: 1px solid var(--borda);
-    border-radius: var(--radius);
-    padding: 0.7rem 1rem;
-    margin-bottom: 1.3rem;
-    font-size: 0.78rem;
-    color: var(--texto-secundario);
-    align-items: center;
-  }
+  .legenda { display: flex; gap: 1.1rem; flex-wrap: wrap; background: white; border: 1px solid var(--borda); border-radius: var(--radius); padding: 0.7rem 1rem; margin-bottom: 1.3rem; font-size: 0.78rem; color: var(--texto-secundario); align-items: center; }
   .legenda strong { color: var(--texto-principal); font-size: 0.78rem; }
   .legenda-item { display: flex; align-items: center; gap: 0.4rem; }
-  .marcador-dot {
-    width: 12px; height: 12px; border-radius: 50%;
-    display: inline-block;
-    box-shadow: inset 0 0 0 1.5px rgba(0,0,0,0.08);
-  }
+  .marcador-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; box-shadow: inset 0 0 0 1.5px rgba(0,0,0,0.08); }
 
-  /* ===== NÍVEIS / TRILHA ===== */
-  .nivel-bloco-wrap { margin-bottom: 1rem; }
+  .barra-modo-secundaria { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; flex-wrap: wrap; }
 
-  .nivel-titulo {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--azul-escuro);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin: 1.6rem 0 0.6rem;
-    padding-bottom: 0.4rem;
-    border-bottom: 2px solid var(--azul-escuro);
-  }
-  .nivel-descricao {
-    font-size: 0.8rem;
-    color: var(--texto-secundario);
-    margin: -0.3rem 0 0.9rem;
-  }
+  .nivel-bloco-wrap { margin-bottom: 1rem; border: 1px dashed transparent; }
+  .nivel-titulo-linha { display: flex; align-items: center; gap: 0.5rem; margin: 1.6rem 0 0.6rem; }
+  .nivel-titulo { font-size: 0.95rem; font-weight: 700; color: var(--azul-escuro); text-transform: uppercase; letter-spacing: 0.5px; padding-bottom: 0.4rem; border-bottom: 2px solid var(--azul-escuro); flex: 1; }
+  .nivel-nome-input { font-size: 0.95rem; font-weight: 700; color: var(--azul-escuro); border: 1px solid var(--borda); border-radius: 6px; padding: 0.35rem 0.5rem; flex: 1; font-family: 'Raleway', sans-serif; }
+  .nivel-descricao { font-size: 0.8rem; color: var(--texto-secundario); margin: -0.3rem 0 0.9rem; }
+  .nivel-descricao-input { width: 100%; font-size: 0.8rem; color: var(--texto-secundario); border: 1px solid var(--borda); border-radius: 6px; padding: 0.4rem 0.5rem; margin: 0 0 0.9rem; font-family: inherit; resize: vertical; }
 
-  .conector {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin: 0.6rem 0 0.9rem;
-    padding-left: 0.2rem;
-  }
-  .conector-linha {
-    flex: 0 0 auto;
-    color: var(--azul-vivo);
-    font-size: 1.1rem;
-  }
-  .conector-texto {
-    font-size: 0.76rem;
-    color: var(--texto-secundario);
-    font-style: italic;
-  }
+  .conector { display: flex; align-items: center; gap: 0.6rem; margin: 0.6rem 0 0.9rem; padding-left: 0.2rem; }
+  .conector-linha { flex: 0 0 auto; color: var(--azul-vivo); font-size: 1.1rem; }
+  .conector-texto { font-size: 0.76rem; color: var(--texto-secundario); font-style: italic; }
 
-  .trilha-blocos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 0.85rem;
-  }
+  .trilha-blocos { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.85rem; }
+  .bloco-card { background: var(--card-bg); border: 1px solid var(--borda); border-radius: var(--radius); box-shadow: var(--sombra); overflow: hidden; display: flex; flex-direction: column; }
+  .bloco-header { padding: 0.7rem 0.85rem; background: #eef3fb; border-bottom: 1px solid var(--borda); display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+  .bloco-header h3 { font-size: 0.86rem; font-weight: 700; color: var(--azul-escuro); }
 
-  .bloco-card {
-    background: var(--card-bg);
-    border: 1px solid var(--borda);
-    border-radius: var(--radius);
-    box-shadow: var(--sombra);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .bloco-header {
-    padding: 0.7rem 0.85rem;
-    background: #eef3fb;
-    border-bottom: 1px solid var(--borda);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
-  .bloco-header h3 {
-    font-size: 0.86rem;
-    font-weight: 700;
-    color: var(--azul-escuro);
-  }
-
-  .marcadores-row {
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  .marcador {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    box-shadow: inset 0 0 0 1.5px rgba(0,0,0,0.1);
-  }
+  .marcadores-row { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+  .marcador { width: 15px; height: 15px; border-radius: 50%; border: none; padding: 0; cursor: pointer; box-shadow: inset 0 0 0 1.5px rgba(0,0,0,0.1); }
   .marcador:hover { transform: scale(1.18); }
   .marcador.vazio { background: var(--cinza-marcador); }
   .marcador.existente_monitorado { background: var(--verde); }
   .marcador.exigido_pendente { background: var(--ambar); }
   .marcador.aspiracional { background: var(--roxo); }
-
-  .marcador-add {
-    width: 15px; height: 15px; border-radius: 50%;
-    border: 1.5px dashed #9aa5b1;
-    background: transparent;
-    color: #9aa5b1;
-    font-size: 10px;
-    line-height: 1;
-    display: flex; align-items: center; justify-content: center;
-    padding: 0;
-  }
+  .marcador-add { width: 15px; height: 15px; border-radius: 50%; border: 1.5px dashed #9aa5b1; background: transparent; color: #9aa5b1; font-size: 10px; line-height: 1; display: flex; align-items: center; justify-content: center; padding: 0; }
   .marcador-add:hover { border-color: var(--azul-vivo); color: var(--azul-vivo); }
 
-  .bloco-body {
-    padding: 0.7rem 0.85rem 0.85rem;
-    flex: 1;
-  }
-
-  .grupo-linha {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    padding: 0.4rem 0;
-    border-bottom: 1px dashed #eef0f3;
-  }
-  .grupo-linha:last-child { border-bottom: none; }
-
-  .grupo-nome-area {
-    font-size: 0.78rem;
-    color: var(--texto-principal);
-    flex: 1;
-    cursor: default;
-  }
-  .grupo-nome-area .contagem {
-    color: var(--texto-secundario);
-    font-size: 0.7rem;
-  }
-
-  .grupo-acoes-estrutura {
-    display: flex;
-    gap: 3px;
-  }
-  .icone-btn {
-    background: transparent;
-    border: none;
-    color: var(--texto-secundario);
-    cursor: pointer;
-    font-size: 0.75rem;
-    padding: 2px 4px;
-    border-radius: 4px;
-  }
+  .bloco-body { padding: 0.7rem 0.85rem 0.85rem; flex: 1; }
+  .grupo-wrap { border-bottom: 1px dashed #eef0f3; padding: 0.15rem 0; }
+  .grupo-wrap:last-child { border-bottom: none; }
+  .grupo-linha { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.4rem 0; }
+  .grupo-nome-area { font-size: 0.78rem; color: var(--texto-principal); flex: 1; cursor: default; }
+  .grupo-nome-area .contagem { color: var(--texto-secundario); font-size: 0.7rem; }
+  .seta-expandir { background: transparent; border: none; cursor: pointer; color: var(--texto-secundario); font-size: 0.7rem; padding: 2px 5px 2px 0; flex-shrink: 0; }
+  .seta-expandir:hover { color: var(--azul-vivo); }
+  .itens-colapsavel { list-style: disc; margin: 0 0 0.55rem 1.55rem; padding: 0; font-size: 0.74rem; color: var(--texto-secundario); }
+  .itens-colapsavel li { margin-bottom: 5px; line-height: 1.45; }
+  .grupo-acoes-estrutura { display: flex; gap: 3px; }
+  .icone-btn { background: transparent; border: none; color: var(--texto-secundario); cursor: pointer; font-size: 0.75rem; padding: 2px 4px; border-radius: 4px; }
   .icone-btn:hover { background: #eef0f3; color: var(--azul-vivo); }
-
-  .add-grupo-btn {
-    margin-top: 0.5rem;
-    background: transparent;
-    border: 1px dashed var(--borda);
-    color: var(--texto-secundario);
-    width: 100%;
-    padding: 0.4rem;
-    border-radius: 7px;
-    font-size: 0.74rem;
-  }
+  .add-grupo-btn { margin-top: 0.5rem; background: transparent; border: 1px dashed var(--borda); color: var(--texto-secundario); width: 100%; padding: 0.4rem; border-radius: 7px; font-size: 0.74rem; }
   .add-grupo-btn:hover { border-color: var(--azul-vivo); color: var(--azul-vivo); }
-
-  .toggle-bloco-aplicavel {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.72rem;
-    color: var(--texto-secundario);
-  }
-
+  .toggle-bloco-aplicavel { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; color: var(--texto-secundario); }
   .bloco-desativado { opacity: 0.45; }
   .bloco-desativado .bloco-body { pointer-events: none; }
 
-  /* ===== PAINEL LATERAL DESLIZANTE ===== */
-  .overlay {
-    position: fixed; inset: 0;
-    background: rgba(15, 23, 42, 0.35);
-    z-index: 50;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-  }
+  .add-nivel-btn { margin-top: 0.6rem; background: transparent; border: 1.5px dashed var(--azul-vivo); color: var(--azul-vivo); width: 100%; padding: 0.6rem; border-radius: var(--radius); font-size: 0.82rem; font-weight: 700; }
+  .add-nivel-btn:hover { background: #eef3fc; }
+  .del-nivel-btn { background: transparent; border: none; color: #a3241a; cursor: pointer; font-size: 0.78rem; padding: 4px 6px; }
+  .del-nivel-btn:hover { background: #fdecec; border-radius: 5px; }
+
+  .teoria-card { background: white; border: 1px solid var(--borda); border-radius: var(--radius); padding: 1.2rem; box-shadow: var(--sombra); }
+  .teoria-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
+  .teoria-card h3 { color: var(--azul-escuro); }
+  .teoria-card .dica-topo { font-size: 0.78rem; color: var(--texto-secundario); margin-bottom: 0.9rem; }
+  .teoria-textarea { width: 100%; min-height: 460px; font-family: 'Source Sans 3', sans-serif; font-size: 0.85rem; padding: 0.9rem; border: 1px solid var(--borda); border-radius: 8px; line-height: 1.65; resize: vertical; }
+  .teoria-textarea:focus { outline: 2px solid var(--azul-vivo); outline-offset: 1px; }
+  .teoria-leitura { font-size: 0.88rem; line-height: 1.7; }
+  .teoria-leitura h4 { color: var(--azul-escuro); font-size: 1.02rem; margin: 1.1rem 0 0.5rem; }
+  .teoria-leitura h4:first-child { margin-top: 0; }
+  .teoria-leitura h5 { color: var(--azul-vivo); font-size: 0.94rem; margin: 0.9rem 0 0.4rem; }
+  .teoria-leitura p { margin: 0 0 0.75rem; text-align: justify; }
+  .teoria-vazia { color: var(--texto-secundario); font-style: italic; font-size: 0.85rem; }
+
+  .overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.35); z-index: 50; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
   .overlay.aberto { opacity: 1; pointer-events: auto; }
-
-  .painel-lateral {
-    position: fixed;
-    top: 0; right: 0;
-    height: 100%;
-    width: min(480px, 100%);
-    background: white;
-    z-index: 51;
-    box-shadow: -6px 0 24px rgba(0,0,0,0.18);
-    transform: translateX(100%);
-    transition: transform 0.28s cubic-bezier(.4,0,.2,1);
-    display: flex;
-    flex-direction: column;
-  }
+  .painel-lateral { position: fixed; top: 0; right: 0; height: 100%; width: min(480px, 100%); background: white; z-index: 51; box-shadow: -6px 0 24px rgba(0,0,0,0.18); transform: translateX(100%); transition: transform 0.28s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column; }
   .painel-lateral.aberto { transform: translateX(0); }
-
-  .painel-header {
-    padding: 1rem 1.25rem;
-    border-bottom: 1px solid var(--borda);
-    background: #f8f9fb;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0.6rem;
-  }
-  .painel-header .contexto {
-    font-size: 0.72rem;
-    color: var(--texto-secundario);
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    margin-bottom: 2px;
-  }
-  .painel-header h2 {
-    font-size: 1.02rem;
-    color: var(--azul-escuro);
-  }
-  .fechar-painel {
-    background: transparent; border: none; font-size: 1.2rem;
-    color: var(--texto-secundario); cursor: pointer; line-height: 1;
-    padding: 2px 6px;
-  }
+  .painel-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--borda); background: #f8f9fb; display: flex; align-items: flex-start; justify-content: space-between; gap: 0.6rem; }
+  .painel-header .contexto { font-size: 0.72rem; color: var(--texto-secundario); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 2px; }
+  .painel-header h2 { font-size: 1.02rem; color: var(--azul-escuro); }
+  .fechar-painel { background: transparent; border: none; font-size: 1.2rem; color: var(--texto-secundario); cursor: pointer; line-height: 1; padding: 2px 6px; }
   .fechar-painel:hover { color: var(--texto-principal); }
-
-  .painel-corpo {
-    flex: 1;
-    overflow-y: auto;
-    padding: 1rem 1.25rem 2rem;
-  }
-
-  .lista-indicadores-ancora {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-bottom: 1rem;
-  }
-  .chip-indicador {
-    font-size: 0.74rem;
-    padding: 0.32rem 0.6rem;
-    border-radius: 20px;
-    border: 1px solid var(--borda);
-    background: #f8f9fb;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .chip-indicador.selecionado {
-    background: #eef3fc;
-    border-color: var(--azul-vivo);
-    color: var(--azul-vivo);
-    font-weight: 600;
-  }
+  .painel-corpo { flex: 1; overflow-y: auto; padding: 1rem 1.25rem 2rem; }
+  .lista-indicadores-ancora { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+  .chip-indicador { font-size: 0.74rem; padding: 0.32rem 0.6rem; border-radius: 20px; border: 1px solid var(--borda); background: #f8f9fb; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+  .chip-indicador.selecionado { background: #eef3fc; border-color: var(--azul-vivo); color: var(--azul-vivo); font-weight: 600; }
   .chip-indicador .marcador-dot { width: 9px; height: 9px; }
-
-  .chip-novo {
-    font-size: 0.74rem;
-    padding: 0.32rem 0.7rem;
-    border-radius: 20px;
-    border: 1px dashed var(--azul-vivo);
-    background: white;
-    color: var(--azul-vivo);
-    cursor: pointer;
-    font-weight: 600;
-  }
-
-  .campo-bloco-titulo {
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--azul-escuro);
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    margin: 1.1rem 0 0.5rem;
-    padding-top: 0.7rem;
-    border-top: 1px solid var(--borda);
-  }
+  .chip-novo { font-size: 0.74rem; padding: 0.32rem 0.7rem; border-radius: 20px; border: 1px dashed var(--azul-vivo); background: white; color: var(--azul-vivo); cursor: pointer; font-weight: 600; }
+  .campo-bloco-titulo { font-size: 0.72rem; font-weight: 700; color: var(--azul-escuro); text-transform: uppercase; letter-spacing: 0.4px; margin: 1.1rem 0 0.5rem; padding-top: 0.7rem; border-top: 1px solid var(--borda); }
   .campo-bloco-titulo:first-child { margin-top: 0; padding-top: 0; border-top: none; }
-
-  .campo {
-    margin-bottom: 0.8rem;
-  }
-  .campo label {
-    display: block;
-    font-size: 0.76rem;
-    font-weight: 600;
-    color: var(--texto-principal);
-    margin-bottom: 0.25rem;
-  }
-  .campo .dica {
-    font-size: 0.68rem;
-    color: var(--texto-secundario);
-    margin-top: 2px;
-    display: block;
-  }
-  .campo input[type="text"],
-  .campo textarea,
-  .campo select {
-    width: 100%;
-    padding: 0.5rem 0.6rem;
-    border: 1px solid var(--borda);
-    border-radius: 7px;
-    font-size: 0.82rem;
-    font-family: inherit;
-    color: var(--texto-principal);
-    background: white;
-  }
+  .campo { margin-bottom: 0.8rem; }
+  .campo label { display: block; font-size: 0.76rem; font-weight: 600; color: var(--texto-principal); margin-bottom: 0.25rem; }
+  .campo .dica { font-size: 0.68rem; color: var(--texto-secundario); margin-top: 2px; display: block; }
+  .campo input[type="text"], .campo textarea, .campo select { width: 100%; padding: 0.5rem 0.6rem; border: 1px solid var(--borda); border-radius: 7px; font-size: 0.82rem; font-family: inherit; color: var(--texto-principal); background: white; }
   .campo textarea { resize: vertical; min-height: 56px; }
-  .campo input:focus, .campo textarea:focus, .campo select:focus {
-    outline: 2px solid var(--azul-vivo);
-    outline-offset: 1px;
-    border-color: var(--azul-vivo);
-  }
-
-  .painel-rodape {
-    padding: 0.9rem 1.25rem;
-    border-top: 1px solid var(--borda);
-    display: flex;
-    gap: 0.5rem;
-    justify-content: space-between;
-    background: #f8f9fb;
-  }
+  .campo input:focus, .campo textarea:focus, .campo select:focus { outline: 2px solid var(--azul-vivo); outline-offset: 1px; border-color: var(--azul-vivo); }
+  .painel-rodape { padding: 0.9rem 1.25rem; border-top: 1px solid var(--borda); display: flex; gap: 0.5rem; justify-content: space-between; background: #f8f9fb; }
   .painel-rodape .grupo-esq { display: flex; gap: 0.5rem; }
 
-  /* ===== MODAL SIMPLES ===== */
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(15,23,42,0.45);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 60; padding: 1rem;
-  }
-  .modal-caixa {
-    background: white; border-radius: var(--radius);
-    max-width: 460px; width: 100%;
-    padding: 1.4rem;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
-  }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.45); display: flex; align-items: center; justify-content: center; z-index: 60; padding: 1rem; }
+  .modal-caixa { background: white; border-radius: var(--radius); max-width: 460px; width: 100%; padding: 1.4rem; box-shadow: 0 10px 40px rgba(0,0,0,0.25); }
   .modal-caixa h3 { margin-bottom: 0.7rem; color: var(--azul-escuro); }
   .modal-caixa p { font-size: 0.85rem; color: var(--texto-secundario); margin-bottom: 0.9rem; }
   .modal-acoes { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1rem; }
-
-  /* ===== CONFIGURAÇÃO GITHUB ===== */
-  .config-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem;
-  }
+  .config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
   .config-grid .campo-full { grid-column: 1 / -1; }
 
-  /* ===== TOAST ===== */
-  .toast {
-    position: fixed;
-    bottom: 1.3rem; left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: #1c1c1c; color: white;
-    padding: 0.65rem 1.1rem;
-    border-radius: 8px;
-    font-size: 0.82rem;
-    z-index: 80;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.25s ease;
-    max-width: 90%;
-  }
+  .toast { position: fixed; bottom: 1.3rem; left: 50%; transform: translateX(-50%) translateY(20px); background: #1c1c1c; color: white; padding: 0.65rem 1.1rem; border-radius: 8px; font-size: 0.82rem; z-index: 80; opacity: 0; pointer-events: none; transition: all 0.25s ease; max-width: 90%; }
   .toast.mostrar { opacity: 1; transform: translateX(-50%) translateY(0); }
   .toast.erro { background: #a3241a; }
   .toast.ok { background: #14532d; }
 
+  .area-impressao { display: none; }
   @media print {
-    header.topo, .status-bar, .legenda, .painel-lateral, .overlay, .modal-overlay, .toast, .marcador-add, .add-grupo-btn, .grupo-acoes-estrutura { display: none !important; }
-    body { background: white; }
-    .container { padding: 0; max-width: 100%; }
-    .bloco-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+    body * { visibility: hidden; }
+    .area-impressao, .area-impressao * { visibility: visible; }
+    .area-impressao { display: block !important; position: absolute; top: 0; left: 0; width: 100%; padding: 0; }
+    .imp-capa { margin-bottom: 1.6rem; }
+    .imp-capa h1 { font-size: 1.5rem; color: #004580; margin-bottom: 0.2rem; }
+    .imp-capa .imp-metodologia { font-size: 0.85rem; color: #5f6368; }
+    .imp-secao-titulo { font-size: 1.05rem; color: #004580; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #004580; padding-bottom: 0.3rem; margin: 1.8rem 0 0.9rem; break-after: avoid; }
+    .imp-secao-titulo:first-of-type { margin-top: 0; }
+    .imp-teoria p { font-size: 0.86rem; line-height: 1.6; margin-bottom: 0.7rem; text-align: justify; }
+    .imp-teoria h4 { font-size: 0.95rem; color: #004580; margin: 1rem 0 0.4rem; }
+    .imp-teoria h5 { font-size: 0.88rem; color: #1351b4; margin: 0.8rem 0 0.3rem; }
+    .imp-nivel-titulo { font-size: 0.95rem; font-weight: 700; color: #004580; margin: 1.2rem 0 0.2rem; break-after: avoid; }
+    .imp-nivel-descricao { font-size: 0.78rem; color: #5f6368; margin-bottom: 0.6rem; }
+    .imp-colunas { display: flex; gap: 0.5rem; align-items: flex-start; margin-bottom: 1.3rem; }
+    .imp-coluna { flex: 1; border: 1px solid #dde2e9; border-radius: 6px; overflow: hidden; break-inside: avoid; }
+    .imp-coluna-header { background: #004580; color: white; font-size: 0.74rem; font-weight: 700; text-transform: uppercase; text-align: center; padding: 0.35rem; letter-spacing: 0.4px; }
+    .imp-coluna-body { padding: 0.5rem 0.55rem; }
+    .imp-coluna-grupo { font-size: 0.7rem; font-weight: 700; color: #1351b4; margin: 0.5rem 0 0.15rem; }
+    .imp-coluna-grupo:first-child { margin-top: 0; }
+    .imp-coluna ul { margin: 0 0 0 0.9rem; padding: 0; font-size: 0.66rem; color: #1c1c1c; }
+    .imp-coluna li { margin-bottom: 4px; line-height: 1.35; }
+    .imp-indice-bloco { font-size: 0.82rem; font-weight: 700; color: #004580; margin: 0.9rem 0 0.3rem; break-after: avoid; }
+    .imp-indice-item { font-size: 0.78rem; margin-bottom: 0.35rem; padding-left: 0.2rem; break-inside: avoid; }
+    .imp-indice-item .imp-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
+    .imp-indice-item .imp-codigo { font-weight: 700; color: #004580; margin-right: 4px; }
+    .imp-indice-item .imp-desc { color: #5f6368; }
+    .imp-ficha { border: 1px solid #dde2e9; border-radius: 6px; padding: 0.8rem 1rem; margin-bottom: 1rem; break-inside: avoid; }
+    .imp-ficha-titulo { font-size: 0.92rem; font-weight: 700; color: #004580; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 6px; }
+    .imp-ficha-titulo .imp-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .imp-ficha table { width: 100%; border-collapse: collapse; font-size: 0.73rem; }
+    .imp-ficha td { padding: 3px 6px; vertical-align: top; border-bottom: 1px solid #f0f2f5; }
+    .imp-ficha td.imp-label { width: 30%; font-weight: 600; color: #5f6368; white-space: nowrap; }
+    .imp-ficha-bloco-nome { font-size: 0.68rem; font-weight: 700; color: #1351b4; text-transform: uppercase; margin: 0.6rem 0 0.15rem; }
+    .imp-ficha-bloco-nome:first-of-type { margin-top: 0; }
+    @page { margin: 1.4cm; }
   }
 
   @media (max-width: 720px) {
@@ -541,6 +219,7 @@
   <div class="topo-acoes">
     <button class="btn-ghost-topo" id="btnModoIndicadores">📊 Indicadores</button>
     <button class="btn-ghost-topo" id="btnModoEstrutura">🛠️ Estruturação</button>
+    <button class="btn-ghost-topo" id="btnModoTeoria">📖 Teoria do Programa</button>
     <button class="btn-secundario" id="btnConfigGithub">⚙️ Conectar GitHub</button>
     <button class="btn-secundario" id="btnExportarMd">⬇ Markdown</button>
     <button class="btn-secundario" id="btnExportarPdf">🖨 PDF</button>
@@ -553,20 +232,39 @@
 </div>
 
 <div class="container">
-  <div class="legenda">
+  <div class="legenda" id="legendaBarra">
     <strong>Legenda dos marcadores:</strong>
     <span class="legenda-item"><span class="marcador-dot" style="background:#9ca3af"></span> Sem indicador</span>
     <span class="legenda-item"><span class="marcador-dot" style="background:#168821"></span> Existente e monitorado</span>
     <span class="legenda-item"><span class="marcador-dot" style="background:#b5790a"></span> Exigido por norma, pendente</span>
     <span class="legenda-item"><span class="marcador-dot" style="background:#7d4f9e"></span> Aspiracional — a criar</span>
+    <button class="btn-secundario btn-pequeno" id="btnExpandirTudo" style="margin-left:auto">Expandir tudo</button>
+  </div>
+
+  <div class="barra-modo-secundaria" id="barraEstrutura" style="display:none">
+    <button class="btn-secundario btn-pequeno" id="btnToggleEdicaoEstrutura">✏️ Editar estrutura</button>
+    <button class="btn-secundario btn-pequeno" id="btnExpandirTudoEstrutura">Expandir tudo</button>
   </div>
 
   <div id="trilhaContainer"></div>
+
+  <div id="teoriaContainer" style="display:none">
+    <div class="teoria-card">
+      <div class="teoria-card-header">
+        <div>
+          <h3>Teoria do Programa</h3>
+          <p class="dica-topo">Texto livre, em Markdown simples (use <code>##</code> e <code>###</code> para títulos, <code>**texto**</code> para negrito). Este texto abre a exportação em PDF e em Markdown, antes do Mapa de Processos.</p>
+        </div>
+        <button class="btn-secundario btn-pequeno" id="btnToggleEdicaoTeoria" style="flex-shrink:0">✏️ Editar</button>
+      </div>
+      <textarea class="teoria-textarea" id="campoTeoriaTexto" placeholder="Escreva aqui a Teoria do Programa: o problema que justifica a intervenção, a hipótese de mudança, os mecanismos de transmissão e as premissas e pressupostos..." style="display:none"></textarea>
+      <div class="teoria-leitura" id="teoriaLeitura"></div>
+    </div>
+  </div>
 </div>
 
 <div class="overlay" id="overlay"></div>
 
-<!-- PAINEL LATERAL DE INDICADOR -->
 <div class="painel-lateral" id="painelIndicador">
   <div class="painel-header">
     <div>
@@ -577,17 +275,10 @@
   </div>
   <div class="painel-corpo">
     <div class="lista-indicadores-ancora" id="listaIndicadoresAncora"></div>
-
     <form id="formIndicador">
       <div class="campo-bloco-titulo">1 · Identificação e conceito</div>
-      <div class="campo">
-        <label>Nome do indicador</label>
-        <input type="text" id="campoNome" required>
-      </div>
-      <div class="campo">
-        <label>Grupo temático (dentro do bloco)</label>
-        <select id="campoGrupo"><option value="">N/A — vincular apenas ao bloco</option></select>
-      </div>
+      <div class="campo"><label>Nome do indicador</label><input type="text" id="campoNome" required></div>
+      <div class="campo"><label>Grupo temático (dentro do bloco)</label><select id="campoGrupo"><option value="">N/A — vincular apenas ao bloco</option></select></div>
       <div class="campo">
         <label>Status de maturidade</label>
         <select id="campoStatus">
@@ -596,58 +287,20 @@
           <option value="aspiracional">🟣 Aspiracional — a criar</option>
         </select>
       </div>
-      <div class="campo">
-        <label>Tipo / classificação</label>
-        <input type="text" id="campoTipo" placeholder="ex.: eficácia, eficiência, efetividade">
-      </div>
-      <div class="campo">
-        <label>Descrição</label>
-        <textarea id="campoDescricao"></textarea>
-      </div>
-      <div class="campo">
-        <label>O que o indicador mostra</label>
-        <textarea id="campoOQueMostra"></textarea>
-      </div>
-
+      <div class="campo"><label>Tipo / classificação</label><input type="text" id="campoTipo" placeholder="ex.: eficácia, eficiência, efetividade"></div>
+      <div class="campo"><label>Descrição</label><textarea id="campoDescricao"></textarea></div>
+      <div class="campo"><label>O que o indicador mostra</label><textarea id="campoOQueMostra"></textarea></div>
       <div class="campo-bloco-titulo">2 · Metodologia de apuração</div>
-      <div class="campo">
-        <label>Fórmula de cálculo</label>
-        <textarea id="campoFormula"></textarea>
-      </div>
-      <div class="campo">
-        <label>Unidade de medida</label>
-        <input type="text" id="campoUnidade" placeholder="ex.: %, R$, nº absoluto">
-      </div>
-      <div class="campo">
-        <label>Fonte de dados</label>
-        <input type="text" id="campoFonte">
-      </div>
-      <div class="campo">
-        <label>Como apurar o indicador</label>
-        <textarea id="campoComoApurar"></textarea>
-      </div>
-      <div class="campo">
-        <label>Periodicidade de apuração</label>
-        <input type="text" id="campoPeriodicidade" placeholder="ex.: Anual">
-      </div>
-      <div class="campo">
-        <label>Prazo máximo para apuração</label>
-        <input type="text" id="campoPrazoMaximo">
-      </div>
-      <div class="campo">
-        <label>Responsabilidade pela apuração</label>
-        <input type="text" id="campoResponsavel">
-      </div>
-
+      <div class="campo"><label>Fórmula de cálculo</label><textarea id="campoFormula"></textarea></div>
+      <div class="campo"><label>Unidade de medida</label><input type="text" id="campoUnidade" placeholder="ex.: %, R$, nº absoluto"></div>
+      <div class="campo"><label>Fonte de dados</label><input type="text" id="campoFonte"></div>
+      <div class="campo"><label>Como apurar o indicador</label><textarea id="campoComoApurar"></textarea></div>
+      <div class="campo"><label>Periodicidade de apuração</label><input type="text" id="campoPeriodicidade" placeholder="ex.: Anual"></div>
+      <div class="campo"><label>Prazo máximo para apuração</label><input type="text" id="campoPrazoMaximo"></div>
+      <div class="campo"><label>Responsabilidade pela apuração</label><input type="text" id="campoResponsavel"></div>
       <div class="campo-bloco-titulo">3 · Parâmetros de avaliação</div>
-      <div class="campo">
-        <label>Linha de base</label>
-        <input type="text" id="campoLinhaBase">
-      </div>
-      <div class="campo">
-        <label>Meta</label>
-        <input type="text" id="campoMeta">
-      </div>
+      <div class="campo"><label>Linha de base</label><input type="text" id="campoLinhaBase"></div>
+      <div class="campo"><label>Meta</label><input type="text" id="campoMeta"></div>
       <div class="campo">
         <label>Polaridade</label>
         <select id="campoPolaridade">
@@ -656,32 +309,13 @@
           <option value="Não se aplica">Não se aplica</option>
         </select>
       </div>
-      <div class="campo">
-        <label>Série histórica</label>
-        <textarea id="campoSerieHistorica" placeholder="ex.: 2023: 19,25% | 2024: 13,09% | 2025: 11,15%"></textarea>
-      </div>
-      <div class="campo">
-        <label>Nível de desagregação</label>
-        <input type="text" id="campoDesagregacao" placeholder="ex.: por região, por UPB, por sexo">
-      </div>
-
+      <div class="campo"><label>Série histórica</label><textarea id="campoSerieHistorica" placeholder="ex.: 2023: 19,25% | 2024: 13,09% | 2025: 11,15%"></textarea></div>
+      <div class="campo"><label>Nível de desagregação</label><input type="text" id="campoDesagregacao" placeholder="ex.: por região, por UPB, por sexo"></div>
       <div class="campo-bloco-titulo">4 · Qualidade e uso</div>
-      <div class="campo">
-        <label>O que pode causar um resultado aquém da meta <span class="dica">(ligar aos pressupostos do MAPr quando possível)</span></label>
-        <textarea id="campoCausas"></textarea>
-      </div>
-      <div class="campo">
-        <label>Qual o impacto de um resultado aquém da meta</label>
-        <textarea id="campoImpacto"></textarea>
-      </div>
-      <div class="campo">
-        <label>Limitações do indicador</label>
-        <textarea id="campoLimitacoes"></textarea>
-      </div>
-      <div class="campo">
-        <label>Forma de disponibilização</label>
-        <input type="text" id="campoDisponibilizacao">
-      </div>
+      <div class="campo"><label>O que pode causar um resultado aquém da meta <span class="dica">(ligar aos pressupostos do MAPr quando possível)</span></label><textarea id="campoCausas"></textarea></div>
+      <div class="campo"><label>Qual o impacto de um resultado aquém da meta</label><textarea id="campoImpacto"></textarea></div>
+      <div class="campo"><label>Limitações do indicador</label><textarea id="campoLimitacoes"></textarea></div>
+      <div class="campo"><label>Forma de disponibilização</label><input type="text" id="campoDisponibilizacao"></div>
     </form>
   </div>
   <div class="painel-rodape">
@@ -693,7 +327,6 @@
   </div>
 </div>
 
-<!-- MODAL DE CONFIGURAÇÃO GITHUB -->
 <div class="modal-overlay" id="modalGithub" style="display:none">
   <div class="modal-caixa">
     <h3>Conectar ao GitHub</h3>
@@ -711,7 +344,6 @@
   </div>
 </div>
 
-<!-- MODAL DE CONFIRMAÇÃO GENÉRICO -->
 <div class="modal-overlay" id="modalConfirmacao" style="display:none">
   <div class="modal-caixa">
     <h3 id="confirmTitulo">Confirmar ação</h3>
@@ -723,7 +355,6 @@
   </div>
 </div>
 
-<!-- MODAL DE NOVO GRUPO -->
 <div class="modal-overlay" id="modalNovoGrupo" style="display:none">
   <div class="modal-caixa">
     <h3>Novo grupo temático</h3>
@@ -736,7 +367,6 @@
   </div>
 </div>
 
-<!-- MODAL DE NOVO ITEM -->
 <div class="modal-overlay" id="modalNovoItem" style="display:none">
   <div class="modal-caixa">
     <h3>Novo item</h3>
@@ -748,7 +378,21 @@
   </div>
 </div>
 
+<div class="modal-overlay" id="modalNovoNivel" style="display:none">
+  <div class="modal-caixa">
+    <h3>Novo nível</h3>
+    <p>Um novo nível repete o mesmo padrão de colunas (Recursos, Atividades, Produtos, Resultados, Impactos), todas aplicáveis por padrão — ajuste depois quais se aplicam.</p>
+    <div class="campo"><label>Nome do nível</label><input type="text" id="novoNivelNome" placeholder="ex.: Estado (órgão gestor)"></div>
+    <div class="campo"><label>Descrição (opcional)</label><textarea id="novoNivelDescricao"></textarea></div>
+    <div class="modal-acoes">
+      <button class="btn-secundario" id="btnCancelarNovoNivel">Cancelar</button>
+      <button class="btn-primario" id="btnSalvarNovoNivel">Criar nível</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
+<div id="areaImpressao" class="area-impressao"></div>
 
 <script>
 /* =====================================================================
@@ -771,31 +415,29 @@ const STATUS_INFO = {
 let estado = {
   estrutura: null,
   indicadores: [],
-  modo: 'indicadores', // 'indicadores' | 'estrutura'
+  modo: 'indicadores',
+  estruturaEditando: false,
+  teoriaEditando: false,
   github: { owner: '', repo: '', branch: 'main', token: '', shaEstrutura: null, shaIndicadores: null },
-  ancoraAtual: null,        // { nivel_id, bloco_id, grupo_id }
+  ancoraAtual: null,
   indicadorEmEdicaoId: null,
-  novoGrupoContexto: null,  // { nivel_id, bloco_id }
-  novoItemContexto: null    // { nivel_id, bloco_id, grupo_id }
+  novoGrupoContexto: null,
+  novoItemContexto: null,
+  expandirTodos: false,
+  gruposExpandidos: new Set()
 };
 
-/* =====================================================================
-   CARREGAMENTO INICIAL (leitura local relativa — funciona em GitHub
-   Pages e em servidor local; não funciona abrindo o arquivo direto
-   via duplo-clique, por restrição do próprio navegador)
-===================================================================== */
 async function carregarDadosLocais() {
   try {
-    const [respEstrutura, respIndicadores] = await Promise.all([
-      fetch('./estrutura.json'),
-      fetch('./indicadores.json')
-    ]);
+    const [respEstrutura, respIndicadores] = await Promise.all([fetch('./estrutura.json'), fetch('./indicadores.json')]);
     estado.estrutura = await respEstrutura.json();
+    if (estado.estrutura.teoria_do_programa === undefined) estado.estrutura.teoria_do_programa = '';
     const dadosInd = await respIndicadores.json();
     estado.indicadores = dadosInd.indicadores || [];
     document.getElementById('tituloApp').textContent = estado.estrutura.politica || 'MAPr';
-    document.getElementById('subtituloApp').textContent =
-      'Metodologia: ' + (estado.estrutura.metodologia || '—');
+    document.getElementById('subtituloApp').textContent = 'Metodologia: ' + (estado.estrutura.metodologia || '—');
+    document.getElementById('campoTeoriaTexto').value = estado.estrutura.teoria_do_programa || '';
+    renderTeoriaLeitura();
     renderTrilha();
   } catch (e) {
     mostrarToast('Não foi possível carregar estrutura.json / indicadores.json. Se você abriu este arquivo por duplo-clique, rode um servidor local (veja o README).', 'erro');
@@ -803,54 +445,56 @@ async function carregarDadosLocais() {
   }
 }
 
-/* =====================================================================
-   RENDERIZAÇÃO DA TRILHA
-===================================================================== */
+function ordemEstrutural(nivelId, blocoId, grupoId) {
+  const idxNivel = estado.estrutura.niveis.findIndex(n => n.id === nivelId);
+  const idxBloco = BLOCOS_CANONICOS.findIndex(b => b.id === blocoId);
+  let idxGrupo = -1;
+  if (grupoId) {
+    const nivel = estado.estrutura.niveis[idxNivel];
+    idxGrupo = (nivel.grupos_por_bloco[blocoId] || []).findIndex(g => g.id === grupoId);
+  }
+  return [idxNivel, idxBloco, idxGrupo];
+}
+function gerarCodigosIndicadores() {
+  const comOrdem = estado.indicadores.map(ind => {
+    const primeiroVinculo = ind.vinculos[0] || { nivel_id: '', bloco_id: '', grupo_id: null };
+    return { ind, ordem: ordemEstrutural(primeiroVinculo.nivel_id, primeiroVinculo.bloco_id, primeiroVinculo.grupo_id) };
+  });
+  comOrdem.sort((a, b) => { for (let i = 0; i < 3; i++) { if (a.ordem[i] !== b.ordem[i]) return a.ordem[i] - b.ordem[i]; } return 0; });
+  const codigos = new Map();
+  comOrdem.forEach((item, i) => codigos.set(item.ind.id, 'IN' + String(i + 1).padStart(2, '0')));
+  return codigos;
+}
+
 function marcadoresDoAncora(nivelId, blocoId, grupoId) {
-  return estado.indicadores.filter(ind =>
-    ind.vinculos.some(v =>
-      v.nivel_id === nivelId &&
-      v.bloco_id === blocoId &&
-      (v.grupo_id || null) === (grupoId || null)
-    )
-  );
+  return estado.indicadores.filter(ind => ind.vinculos.some(v => v.nivel_id === nivelId && v.bloco_id === blocoId && (v.grupo_id || null) === (grupoId || null)));
 }
 
 function renderMarcadores(nivelId, blocoId, grupoId) {
   const inds = marcadoresDoAncora(nivelId, blocoId, grupoId);
   const wrap = document.createElement('div');
   wrap.className = 'marcadores-row';
-
   inds.forEach(ind => {
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'marcador ' + ind.status_maturidade;
     b.title = ind.nome;
-    b.addEventListener('click', (e) => {
-      e.stopPropagation();
-      abrirPainelIndicador(nivelId, blocoId, grupoId, ind.id);
-    });
+    b.addEventListener('click', (e) => { e.stopPropagation(); abrirPainelIndicador(nivelId, blocoId, grupoId, ind.id); });
     wrap.appendChild(b);
   });
-
   if (inds.length === 0) {
     const vazio = document.createElement('span');
     vazio.className = 'marcador vazio';
     vazio.style.display = 'inline-block';
     wrap.appendChild(vazio);
   }
-
   const addBtn = document.createElement('button');
   addBtn.type = 'button';
   addBtn.className = 'marcador-add';
   addBtn.title = 'Novo indicador aqui';
   addBtn.textContent = '+';
-  addBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    abrirPainelIndicador(nivelId, blocoId, grupoId, null);
-  });
+  addBtn.addEventListener('click', (e) => { e.stopPropagation(); abrirPainelIndicador(nivelId, blocoId, grupoId, null); });
   wrap.appendChild(addBtn);
-
   return wrap;
 }
 
@@ -858,26 +502,55 @@ function renderTrilha() {
   const container = document.getElementById('trilhaContainer');
   container.innerHTML = '';
 
+  const modoEdicaoEstrutura = estado.modo === 'estrutura' && estado.estruturaEditando;
+  const mostrarMarcadores = estado.modo === 'indicadores';
+  const totalNiveis = estado.estrutura.niveis.length;
+
   estado.estrutura.niveis.forEach((nivel, idx) => {
-    if (idx > 0) {
-      const anterior = estado.estrutura.niveis[idx - 1];
-      if (nivel.conexao_com_nivel_anterior) {
-        const conector = document.createElement('div');
-        conector.className = 'conector';
-        conector.innerHTML = `<span class="conector-linha">⬇</span><span class="conector-texto">${escapeHtml(nivel.conexao_com_nivel_anterior.descricao)}</span>`;
-        container.appendChild(conector);
-      }
+    if (idx > 0 && nivel.conexao_com_nivel_anterior) {
+      const conector = document.createElement('div');
+      conector.className = 'conector';
+      conector.innerHTML = '<span class="conector-linha">⬇</span><span class="conector-texto">' + escapeHtml(nivel.conexao_com_nivel_anterior.descricao) + '</span>';
+      container.appendChild(conector);
     }
 
     const wrap = document.createElement('div');
     wrap.className = 'nivel-bloco-wrap';
 
-    const titulo = document.createElement('div');
-    titulo.className = 'nivel-titulo';
-    titulo.textContent = 'Nível ' + (idx + 1) + ' — ' + nivel.nome;
-    wrap.appendChild(titulo);
+    const tituloLinha = document.createElement('div');
+    tituloLinha.className = 'nivel-titulo-linha';
 
-    if (nivel.descricao) {
+    if (modoEdicaoEstrutura) {
+      const inputNome = document.createElement('input');
+      inputNome.type = 'text';
+      inputNome.className = 'nivel-nome-input';
+      inputNome.value = nivel.nome;
+      inputNome.addEventListener('change', (e) => { nivel.nome = e.target.value; marcarSujoParaSalvar(); renderTrilha(); });
+      tituloLinha.appendChild(inputNome);
+      if (totalNiveis > 1) {
+        const delBtn = document.createElement('button');
+        delBtn.className = 'del-nivel-btn';
+        delBtn.textContent = '🗑 Excluir nível';
+        delBtn.addEventListener('click', () => confirmarExclusaoNivel(nivel.id));
+        tituloLinha.appendChild(delBtn);
+      }
+    } else {
+      const titulo = document.createElement('div');
+      titulo.className = 'nivel-titulo';
+      titulo.textContent = (totalNiveis > 1 ? 'Nível ' + (idx + 1) + ' — ' : '') + nivel.nome;
+      tituloLinha.appendChild(titulo);
+    }
+    wrap.appendChild(tituloLinha);
+
+    if (modoEdicaoEstrutura) {
+      const descInput = document.createElement('textarea');
+      descInput.className = 'nivel-descricao-input';
+      descInput.value = nivel.descricao || '';
+      descInput.rows = 2;
+      descInput.placeholder = 'Descrição do nível (opcional)';
+      descInput.addEventListener('change', (e) => { nivel.descricao = e.target.value; marcarSujoParaSalvar(); });
+      wrap.appendChild(descInput);
+    } else if (nivel.descricao) {
       const desc = document.createElement('div');
       desc.className = 'nivel-descricao';
       desc.textContent = nivel.descricao;
@@ -889,30 +562,26 @@ function renderTrilha() {
 
     BLOCOS_CANONICOS.forEach(blocoCanon => {
       const aplicavel = nivel.blocos_aplicaveis.includes(blocoCanon.id);
-      if (!aplicavel && estado.modo === 'indicadores') return; // esconde blocos não aplicáveis no modo indicadores
+      if (!aplicavel && !modoEdicaoEstrutura) return;
 
       const card = document.createElement('div');
       card.className = 'bloco-card' + (!aplicavel ? ' bloco-desativado' : '');
 
       const header = document.createElement('div');
       header.className = 'bloco-header';
-
       const h3 = document.createElement('h3');
       h3.textContent = blocoCanon.nome;
       header.appendChild(h3);
 
-      if (estado.modo === 'estrutura') {
+      if (modoEdicaoEstrutura) {
         const toggle = document.createElement('label');
         toggle.className = 'toggle-bloco-aplicavel';
-        toggle.innerHTML = `<input type="checkbox" ${aplicavel ? 'checked' : ''}> aplicável`;
-        toggle.querySelector('input').addEventListener('change', (e) => {
-          toggleBlocoAplicavel(nivel.id, blocoCanon.id, e.target.checked);
-        });
+        toggle.innerHTML = '<input type="checkbox" ' + (aplicavel ? 'checked' : '') + '> aplicável';
+        toggle.querySelector('input').addEventListener('change', (e) => toggleBlocoAplicavel(nivel.id, blocoCanon.id, e.target.checked));
         header.appendChild(toggle);
-      } else {
+      } else if (mostrarMarcadores) {
         header.appendChild(renderMarcadores(nivel.id, blocoCanon.id, null));
       }
-
       card.appendChild(header);
 
       const body = document.createElement('div');
@@ -920,22 +589,22 @@ function renderTrilha() {
 
       const grupos = (nivel.grupos_por_bloco[blocoCanon.id] || []);
       grupos.forEach(grupo => {
+        const grupoWrap = document.createElement('div');
+        grupoWrap.className = 'grupo-wrap';
         const linha = document.createElement('div');
         linha.className = 'grupo-linha';
-
         const nomeArea = document.createElement('div');
         nomeArea.className = 'grupo-nome-area';
-        if (estado.modo === 'estrutura') {
+
+        if (modoEdicaoEstrutura) {
           const inputNome = document.createElement('input');
           inputNome.type = 'text';
           inputNome.value = grupo.nome;
           inputNome.style.cssText = 'font-size:0.78rem;border:1px solid transparent;background:transparent;width:100%;padding:2px 4px;border-radius:4px;';
           inputNome.addEventListener('focus', (e) => e.target.style.border = '1px solid #dde2e9');
-          inputNome.addEventListener('change', (e) => {
-            grupo.nome = e.target.value;
-            marcarSujoParaSalvar();
-          });
+          inputNome.addEventListener('change', (e) => { grupo.nome = e.target.value; marcarSujoParaSalvar(); });
           nomeArea.appendChild(inputNome);
+
           const itensWrap = document.createElement('div');
           itensWrap.style.cssText = 'margin-top:4px;padding-left:6px;';
           (grupo.itens || []).forEach(item => {
@@ -949,11 +618,7 @@ function renderTrilha() {
             delBtn.className = 'icone-btn';
             delBtn.textContent = '✕';
             delBtn.title = 'Remover item';
-            delBtn.addEventListener('click', () => {
-              grupo.itens = grupo.itens.filter(i => i.id !== item.id);
-              marcarSujoParaSalvar();
-              renderTrilha();
-            });
+            delBtn.addEventListener('click', () => { grupo.itens = grupo.itens.filter(i => i.id !== item.id); marcarSujoParaSalvar(); renderTrilha(); });
             itemLinha.appendChild(itemTxt);
             itemLinha.appendChild(delBtn);
             itensWrap.appendChild(itemLinha);
@@ -965,12 +630,8 @@ function renderTrilha() {
           addItemBtn.addEventListener('click', () => abrirModalNovoItem(nivel.id, blocoCanon.id, grupo.id));
           itensWrap.appendChild(addItemBtn);
           nomeArea.appendChild(itensWrap);
-        } else {
-          nomeArea.innerHTML = `${escapeHtml(grupo.nome)} <span class="contagem">(${(grupo.itens || []).length} itens)</span>`;
-        }
-        linha.appendChild(nomeArea);
 
-        if (estado.modo === 'estrutura') {
+          linha.appendChild(nomeArea);
           const acoes = document.createElement('div');
           acoes.className = 'grupo-acoes-estrutura';
           const delGrupoBtn = document.createElement('button');
@@ -980,14 +641,32 @@ function renderTrilha() {
           delGrupoBtn.addEventListener('click', () => confirmarExclusaoGrupo(nivel.id, blocoCanon.id, grupo.id));
           acoes.appendChild(delGrupoBtn);
           linha.appendChild(acoes);
+          grupoWrap.appendChild(linha);
         } else {
-          linha.appendChild(renderMarcadores(nivel.id, blocoCanon.id, grupo.id));
-        }
+          const expandido = estado.gruposExpandidos.has(grupo.id);
+          const arrow = document.createElement('button');
+          arrow.type = 'button';
+          arrow.className = 'seta-expandir';
+          arrow.textContent = expandido ? '▾' : '▸';
+          arrow.title = expandido ? 'Recolher itens' : 'Expandir itens';
+          arrow.addEventListener('click', () => { if (expandido) estado.gruposExpandidos.delete(grupo.id); else estado.gruposExpandidos.add(grupo.id); renderTrilha(); });
+          nomeArea.innerHTML = escapeHtml(grupo.nome) + ' <span class="contagem">(' + (grupo.itens || []).length + ' itens)</span>';
+          linha.appendChild(arrow);
+          linha.appendChild(nomeArea);
+          if (mostrarMarcadores) linha.appendChild(renderMarcadores(nivel.id, blocoCanon.id, grupo.id));
+          grupoWrap.appendChild(linha);
 
-        body.appendChild(linha);
+          if (expandido) {
+            const itensLista = document.createElement('ul');
+            itensLista.className = 'itens-colapsavel';
+            (grupo.itens || []).forEach(item => { const li = document.createElement('li'); li.textContent = item.texto; itensLista.appendChild(li); });
+            grupoWrap.appendChild(itensLista);
+          }
+        }
+        body.appendChild(grupoWrap);
       });
 
-      if (estado.modo === 'estrutura') {
+      if (modoEdicaoEstrutura) {
         const addGrupoBtn = document.createElement('button');
         addGrupoBtn.className = 'add-grupo-btn';
         addGrupoBtn.textContent = '+ Novo grupo temático';
@@ -1002,17 +681,32 @@ function renderTrilha() {
     wrap.appendChild(trilhaBlocos);
     container.appendChild(wrap);
   });
+
+  if (modoEdicaoEstrutura) {
+    const addNivelBtn = document.createElement('button');
+    addNivelBtn.className = 'add-nivel-btn';
+    addNivelBtn.textContent = '+ Adicionar nível';
+    addNivelBtn.addEventListener('click', abrirModalNovoNivel);
+    container.appendChild(addNivelBtn);
+  }
 }
 
-function escapeHtml(str) {
-  const d = document.createElement('div');
-  d.textContent = str || '';
-  return d.innerHTML;
-}
+function escapeHtml(str) { const d = document.createElement('div'); d.textContent = str || ''; return d.innerHTML; }
 
-/* =====================================================================
-   MODO ESTRUTURAÇÃO — ações
-===================================================================== */
+function aplicarExpandirTudo(ligar) {
+  estado.expandirTodos = ligar;
+  if (ligar) {
+    estado.estrutura.niveis.forEach(nivel => { Object.values(nivel.grupos_por_bloco).forEach(lista => lista.forEach(g => estado.gruposExpandidos.add(g.id))); });
+  } else {
+    estado.gruposExpandidos.clear();
+  }
+  document.getElementById('btnExpandirTudo').textContent = ligar ? 'Recolher tudo' : 'Expandir tudo';
+  document.getElementById('btnExpandirTudoEstrutura').textContent = ligar ? 'Recolher tudo' : 'Expandir tudo';
+  renderTrilha();
+}
+document.getElementById('btnExpandirTudo').addEventListener('click', () => aplicarExpandirTudo(!estado.expandirTodos));
+document.getElementById('btnExpandirTudoEstrutura').addEventListener('click', () => aplicarExpandirTudo(!estado.expandirTodos));
+
 function toggleBlocoAplicavel(nivelId, blocoId, aplicavel) {
   const nivel = estado.estrutura.niveis.find(n => n.id === nivelId);
   const set = new Set(nivel.blocos_aplicaveis);
@@ -1023,9 +717,7 @@ function toggleBlocoAplicavel(nivelId, blocoId, aplicavel) {
   renderTrilha();
 }
 
-function gerarId(prefixo) {
-  return prefixo + '_' + Math.random().toString(36).slice(2, 9);
-}
+function gerarId(prefixo) { return prefixo + '_' + Math.random().toString(36).slice(2, 9); }
 
 function abrirModalNovoGrupo(nivelId, blocoId) {
   estado.novoGrupoContexto = { nivel_id: nivelId, bloco_id: blocoId };
@@ -1033,25 +725,16 @@ function abrirModalNovoGrupo(nivelId, blocoId) {
   document.getElementById('novoGrupoFundamentacao').value = '';
   document.getElementById('modalNovoGrupo').style.display = 'flex';
 }
-
-document.getElementById('btnCancelarNovoGrupo').addEventListener('click', () => {
-  document.getElementById('modalNovoGrupo').style.display = 'none';
-});
-
+document.getElementById('btnCancelarNovoGrupo').addEventListener('click', () => { document.getElementById('modalNovoGrupo').style.display = 'none'; });
 document.getElementById('btnSalvarNovoGrupo').addEventListener('click', () => {
   const nome = document.getElementById('novoGrupoNome').value.trim();
   const fundamentacao = document.getElementById('novoGrupoFundamentacao').value.trim();
   if (!nome) { mostrarToast('Informe o nome do grupo.', 'erro'); return; }
   if (!fundamentacao) { mostrarToast('A fundamentação é obrigatória — mesmo uma frase curta.', 'erro'); return; }
-  const { nivel_id, bloco_id } = estado.novoGrupoContexto;
-  const nivel = estado.estrutura.niveis.find(n => n.id === nivel_id);
-  if (!nivel.grupos_por_bloco[bloco_id]) nivel.grupos_por_bloco[bloco_id] = [];
-  nivel.grupos_por_bloco[bloco_id].push({
-    id: gerarId('grp'),
-    nome,
-    fundamentacao,
-    itens: []
-  });
+  const ctx = estado.novoGrupoContexto;
+  const nivel = estado.estrutura.niveis.find(n => n.id === ctx.nivel_id);
+  if (!nivel.grupos_por_bloco[ctx.bloco_id]) nivel.grupos_por_bloco[ctx.bloco_id] = [];
+  nivel.grupos_por_bloco[ctx.bloco_id].push({ id: gerarId('grp'), nome, fundamentacao, itens: [] });
   marcarSujoParaSalvar();
   document.getElementById('modalNovoGrupo').style.display = 'none';
   renderTrilha();
@@ -1063,17 +746,13 @@ function abrirModalNovoItem(nivelId, blocoId, grupoId) {
   document.getElementById('novoItemTexto').value = '';
   document.getElementById('modalNovoItem').style.display = 'flex';
 }
-
-document.getElementById('btnCancelarNovoItem').addEventListener('click', () => {
-  document.getElementById('modalNovoItem').style.display = 'none';
-});
-
+document.getElementById('btnCancelarNovoItem').addEventListener('click', () => { document.getElementById('modalNovoItem').style.display = 'none'; });
 document.getElementById('btnSalvarNovoItem').addEventListener('click', () => {
   const texto = document.getElementById('novoItemTexto').value.trim();
   if (!texto) { mostrarToast('Informe o texto do item.', 'erro'); return; }
-  const { nivel_id, bloco_id, grupo_id } = estado.novoItemContexto;
-  const nivel = estado.estrutura.niveis.find(n => n.id === nivel_id);
-  const grupo = nivel.grupos_por_bloco[bloco_id].find(g => g.id === grupo_id);
+  const ctx = estado.novoItemContexto;
+  const nivel = estado.estrutura.niveis.find(n => n.id === ctx.nivel_id);
+  const grupo = nivel.grupos_por_bloco[ctx.bloco_id].find(g => g.id === ctx.grupo_id);
   grupo.itens.push({ id: gerarId('item'), texto });
   marcarSujoParaSalvar();
   document.getElementById('modalNovoItem').style.display = 'none';
@@ -1081,76 +760,137 @@ document.getElementById('btnSalvarNovoItem').addEventListener('click', () => {
   mostrarToast('Item adicionado.', 'ok');
 });
 
+function abrirModalNovoNivel() {
+  document.getElementById('novoNivelNome').value = '';
+  document.getElementById('novoNivelDescricao').value = '';
+  document.getElementById('modalNovoNivel').style.display = 'flex';
+}
+document.getElementById('btnCancelarNovoNivel').addEventListener('click', () => { document.getElementById('modalNovoNivel').style.display = 'none'; });
+document.getElementById('btnSalvarNovoNivel').addEventListener('click', () => {
+  const nome = document.getElementById('novoNivelNome').value.trim();
+  if (!nome) { mostrarToast('Informe o nome do nível.', 'erro'); return; }
+  const descricao = document.getElementById('novoNivelDescricao').value.trim();
+  const grupos_por_bloco = {};
+  BLOCOS_CANONICOS.forEach(b => grupos_por_bloco[b.id] = []);
+  estado.estrutura.niveis.push({ id: gerarId('nivel'), nome, descricao, blocos_aplicaveis: BLOCOS_CANONICOS.map(b => b.id), grupos_por_bloco });
+  marcarSujoParaSalvar();
+  document.getElementById('modalNovoNivel').style.display = 'none';
+  renderTrilha();
+  mostrarToast('Nível criado.', 'ok');
+});
+
+function confirmarExclusaoNivel(nivelId) {
+  const nivel = estado.estrutura.niveis.find(n => n.id === nivelId);
+  let totalIndicadores = 0;
+  Object.keys(nivel.grupos_por_bloco).forEach(blocoId => {
+    totalIndicadores += marcadoresDoAncora(nivelId, blocoId, null).length;
+    (nivel.grupos_por_bloco[blocoId] || []).forEach(g => { totalIndicadores += marcadoresDoAncora(nivelId, blocoId, g.id).length; });
+  });
+  const texto = totalIndicadores > 0
+    ? 'Este nível tem ' + totalIndicadores + ' vínculo(s) de indicador. Ao excluir o nível, esses vínculos serão removidos dos indicadores (o indicador em si não será apagado, a menos que fique sem nenhum vínculo restante). Confirmar exclusão do nível "' + nivel.nome + '"?'
+    : 'Confirma a exclusão do nível "' + nivel.nome + '"? Esta ação não pode ser desfeita.';
+  document.getElementById('confirmTitulo').textContent = 'Excluir nível';
+  document.getElementById('confirmTexto').textContent = texto;
+  document.getElementById('modalConfirmacao').style.display = 'flex';
+  confirmCallback = () => {
+    estado.indicadores.forEach(ind => { ind.vinculos = ind.vinculos.filter(v => v.nivel_id !== nivelId); });
+    estado.indicadores = estado.indicadores.filter(ind => ind.vinculos.length > 0);
+    estado.estrutura.niveis = estado.estrutura.niveis.filter(n => n.id !== nivelId);
+    marcarSujoParaSalvar();
+    renderTrilha();
+    mostrarToast('Nível excluído.', 'ok');
+  };
+}
+
 let confirmCallback = null;
 function confirmarExclusaoGrupo(nivelId, blocoId, grupoId) {
   const inds = marcadoresDoAncora(nivelId, blocoId, grupoId);
   const nivel = estado.estrutura.niveis.find(n => n.id === nivelId);
   const blocoNome = BLOCOS_CANONICOS.find(b => b.id === blocoId).nome;
   const texto = inds.length > 0
-    ? `Este grupo tem ${inds.length} indicador(es) vinculado(s). Ao excluir, ele(s) passará(ão) a ficar vinculado(s) diretamente ao bloco "${blocoNome}". Confirmar exclusão do grupo?`
+    ? 'Este grupo tem ' + inds.length + ' indicador(es) vinculado(s). Ao excluir, ele(s) passará(ão) a ficar vinculado(s) diretamente ao bloco "' + blocoNome + '". Confirmar exclusão do grupo?'
     : 'Confirma a exclusão deste grupo? Esta ação não pode ser desfeita.';
   document.getElementById('confirmTitulo').textContent = 'Excluir grupo';
   document.getElementById('confirmTexto').textContent = texto;
   document.getElementById('modalConfirmacao').style.display = 'flex';
   confirmCallback = () => {
-    // reatribuição automática dos indicadores ao bloco
-    inds.forEach(ind => {
-      ind.vinculos.forEach(v => {
-        if (v.nivel_id === nivelId && v.bloco_id === blocoId && v.grupo_id === grupoId) {
-          v.grupo_id = null;
-        }
-      });
-    });
+    inds.forEach(ind => { ind.vinculos.forEach(v => { if (v.nivel_id === nivelId && v.bloco_id === blocoId && v.grupo_id === grupoId) v.grupo_id = null; }); });
     nivel.grupos_por_bloco[blocoId] = nivel.grupos_por_bloco[blocoId].filter(g => g.id !== grupoId);
     marcarSujoParaSalvar();
     renderTrilha();
     mostrarToast('Grupo excluído. Indicadores reatribuídos ao bloco.', 'ok');
   };
 }
+document.getElementById('btnConfirmCancelar').addEventListener('click', () => { document.getElementById('modalConfirmacao').style.display = 'none'; confirmCallback = null; });
+document.getElementById('btnConfirmOk').addEventListener('click', () => { if (confirmCallback) confirmCallback(); document.getElementById('modalConfirmacao').style.display = 'none'; confirmCallback = null; });
 
-document.getElementById('btnConfirmCancelar').addEventListener('click', () => {
-  document.getElementById('modalConfirmacao').style.display = 'none';
-  confirmCallback = null;
-});
-document.getElementById('btnConfirmOk').addEventListener('click', () => {
-  if (confirmCallback) confirmCallback();
-  document.getElementById('modalConfirmacao').style.display = 'none';
-  confirmCallback = null;
+document.getElementById('btnToggleEdicaoEstrutura').addEventListener('click', () => {
+  estado.estruturaEditando = !estado.estruturaEditando;
+  document.getElementById('btnToggleEdicaoEstrutura').textContent = estado.estruturaEditando ? '✅ Concluir edição' : '✏️ Editar estrutura';
+  renderTrilha();
 });
 
-/* =====================================================================
-   PAINEL LATERAL DE INDICADOR
-===================================================================== */
-const CAMPOS_FORM = [
-  'nome','tipoClassificacao','descricao','oQueMostra','formula','unidade','fonte','comoApurar',
-  'periodicidade','prazoMaximo','responsavel','linhaBase','meta','polaridade','serieHistorica',
-  'desagregacao','causas','impacto','limitacoes','disponibilizacao'
-];
+function teoriaParaHtml(texto) {
+  if (!texto || !texto.trim()) return '<p class="teoria-vazia">Teoria do Programa ainda não preenchida. Clique em "Editar" para começar.</p>';
+  const linhas = texto.split('\n');
+  let html = '';
+  let paragrafoAtual = [];
+  const fecharParagrafo = () => { if (paragrafoAtual.length) { html += '<p>' + paragrafoAtual.join(' ') + '</p>'; paragrafoAtual = []; } };
+  linhas.forEach(linha => {
+    const l = linha.trim();
+    if (l === '' || l === '---') { fecharParagrafo(); return; }
+    if (l.indexOf('### ') === 0) { fecharParagrafo(); html += '<h5>' + escapeHtml(l.slice(4)) + '</h5>'; return; }
+    if (l.indexOf('## ') === 0) { fecharParagrafo(); html += '<h4>' + escapeHtml(l.slice(3)) + '</h4>'; return; }
+    if (l.indexOf('# ') === 0) { fecharParagrafo(); html += '<h4>' + escapeHtml(l.slice(2)) + '</h4>'; return; }
+    paragrafoAtual.push(escapeHtml(l).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'));
+  });
+  fecharParagrafo();
+  return html;
+}
+function teoriaParaMd(texto) { return texto && texto.trim() ? texto.trim() : '_Teoria do Programa ainda não preenchida._'; }
+
+function renderTeoriaLeitura() { document.getElementById('teoriaLeitura').innerHTML = teoriaParaHtml(estado.estrutura.teoria_do_programa); }
+
+document.getElementById('btnToggleEdicaoTeoria').addEventListener('click', () => {
+  estado.teoriaEditando = !estado.teoriaEditando;
+  const textarea = document.getElementById('campoTeoriaTexto');
+  const leitura = document.getElementById('teoriaLeitura');
+  const btn = document.getElementById('btnToggleEdicaoTeoria');
+  if (estado.teoriaEditando) {
+    textarea.style.display = 'block';
+    leitura.style.display = 'none';
+    btn.textContent = '✅ Concluir edição';
+  } else {
+    renderTeoriaLeitura();
+    textarea.style.display = 'none';
+    leitura.style.display = 'block';
+    btn.textContent = '✏️ Editar';
+  }
+});
+document.getElementById('campoTeoriaTexto').addEventListener('input', (e) => { estado.estrutura.teoria_do_programa = e.target.value; marcarSujoParaSalvar(); });
+
+function atualizarBotoesModo() {
+  document.getElementById('btnModoIndicadores').classList.toggle('ativo', estado.modo === 'indicadores');
+  document.getElementById('btnModoEstrutura').classList.toggle('ativo', estado.modo === 'estrutura');
+  document.getElementById('btnModoTeoria').classList.toggle('ativo', estado.modo === 'teoria');
+  document.getElementById('trilhaContainer').style.display = estado.modo === 'teoria' ? 'none' : 'block';
+  document.getElementById('teoriaContainer').style.display = estado.modo === 'teoria' ? 'block' : 'none';
+  document.getElementById('legendaBarra').style.display = estado.modo === 'indicadores' ? 'flex' : 'none';
+  document.getElementById('barraEstrutura').style.display = estado.modo === 'estrutura' ? 'flex' : 'none';
+}
+document.getElementById('btnModoIndicadores').addEventListener('click', () => { estado.modo = 'indicadores'; atualizarBotoesModo(); renderTrilha(); });
+document.getElementById('btnModoEstrutura').addEventListener('click', () => { estado.modo = 'estrutura'; atualizarBotoesModo(); renderTrilha(); });
+document.getElementById('btnModoTeoria').addEventListener('click', () => { estado.modo = 'teoria'; atualizarBotoesModo(); if (!estado.teoriaEditando) renderTeoriaLeitura(); });
+atualizarBotoesModo();
 
 function limparForm() {
-  document.getElementById('campoNome').value = '';
-  document.getElementById('campoTipo').value = '';
-  document.getElementById('campoDescricao').value = '';
-  document.getElementById('campoOQueMostra').value = '';
-  document.getElementById('campoFormula').value = '';
-  document.getElementById('campoUnidade').value = '';
-  document.getElementById('campoFonte').value = '';
-  document.getElementById('campoComoApurar').value = '';
-  document.getElementById('campoPeriodicidade').value = '';
-  document.getElementById('campoPrazoMaximo').value = '';
-  document.getElementById('campoResponsavel').value = '';
-  document.getElementById('campoLinhaBase').value = '';
-  document.getElementById('campoMeta').value = '';
+  ['campoNome','campoTipo','campoDescricao','campoOQueMostra','campoFormula','campoUnidade','campoFonte',
+   'campoComoApurar','campoPeriodicidade','campoPrazoMaximo','campoResponsavel','campoLinhaBase','campoMeta',
+   'campoSerieHistorica','campoDesagregacao','campoCausas','campoImpacto','campoLimitacoes','campoDisponibilizacao']
+   .forEach(id => document.getElementById(id).value = '');
   document.getElementById('campoPolaridade').value = 'Quanto maior, melhor';
-  document.getElementById('campoSerieHistorica').value = '';
-  document.getElementById('campoDesagregacao').value = '';
-  document.getElementById('campoCausas').value = '';
-  document.getElementById('campoImpacto').value = '';
-  document.getElementById('campoLimitacoes').value = '';
-  document.getElementById('campoDisponibilizacao').value = '';
   document.getElementById('campoStatus').value = 'existente_monitorado';
 }
-
 function preencherFormComIndicador(ind) {
   document.getElementById('campoNome').value = ind.nome || '';
   document.getElementById('campoTipo').value = ind.tipo_classificacao || '';
@@ -1174,30 +914,24 @@ function preencherFormComIndicador(ind) {
   document.getElementById('campoDisponibilizacao').value = ind.forma_disponibilizacao || '';
   document.getElementById('campoStatus').value = ind.status_maturidade || 'existente_monitorado';
 }
-
 function popularSelectGrupo(nivelId, blocoId, grupoIdSelecionado) {
   const select = document.getElementById('campoGrupo');
   select.innerHTML = '<option value="">N/A — vincular apenas ao bloco</option>';
   const nivel = estado.estrutura.niveis.find(n => n.id === nivelId);
   (nivel.grupos_por_bloco[blocoId] || []).forEach(g => {
     const opt = document.createElement('option');
-    opt.value = g.id;
-    opt.textContent = g.nome;
+    opt.value = g.id; opt.textContent = g.nome;
     if (g.id === grupoIdSelecionado) opt.selected = true;
     select.appendChild(opt);
   });
 }
-
 function abrirPainelIndicador(nivelId, blocoId, grupoId, indicadorId) {
   estado.ancoraAtual = { nivel_id: nivelId, bloco_id: blocoId, grupo_id: grupoId };
   estado.indicadorEmEdicaoId = indicadorId;
-
   const nivel = estado.estrutura.niveis.find(n => n.id === nivelId);
   const blocoNome = BLOCOS_CANONICOS.find(b => b.id === blocoId).nome;
   const grupo = grupoId ? (nivel.grupos_por_bloco[blocoId] || []).find(g => g.id === grupoId) : null;
-
-  document.getElementById('painelContexto').textContent =
-    `${nivel.nome} · ${blocoNome}` + (grupo ? ' · ' + grupo.nome : '');
+  document.getElementById('painelContexto').textContent = nivel.nome + ' · ' + blocoNome + (grupo ? ' · ' + grupo.nome : '');
 
   const todosNaAncora = marcadoresDoAncora(nivelId, blocoId, grupoId);
   const listaWrap = document.getElementById('listaIndicadoresAncora');
@@ -1233,16 +967,10 @@ function abrirPainelIndicador(nivelId, blocoId, grupoId, indicadorId) {
     limparForm();
     document.getElementById('btnExcluirIndicador').style.display = 'none';
   }
-
   document.getElementById('overlay').classList.add('aberto');
   document.getElementById('painelIndicador').classList.add('aberto');
 }
-
-function fecharPainelIndicador() {
-  document.getElementById('overlay').classList.remove('aberto');
-  document.getElementById('painelIndicador').classList.remove('aberto');
-}
-
+function fecharPainelIndicador() { document.getElementById('overlay').classList.remove('aberto'); document.getElementById('painelIndicador').classList.remove('aberto'); }
 document.getElementById('fecharPainel').addEventListener('click', fecharPainelIndicador);
 document.getElementById('btnCancelarIndicador').addEventListener('click', fecharPainelIndicador);
 document.getElementById('overlay').addEventListener('click', fecharPainelIndicador);
@@ -1250,14 +978,11 @@ document.getElementById('overlay').addEventListener('click', fecharPainelIndicad
 document.getElementById('btnSalvarIndicador').addEventListener('click', () => {
   const nome = document.getElementById('campoNome').value.trim();
   if (!nome) { mostrarToast('Informe o nome do indicador.', 'erro'); return; }
-
   const grupoSelecionado = document.getElementById('campoGrupo').value || null;
-  const { nivel_id, bloco_id } = estado.ancoraAtual;
+  const nivel_id = estado.ancoraAtual.nivel_id, bloco_id = estado.ancoraAtual.bloco_id;
   const vinculoAtual = { nivel_id, bloco_id, grupo_id: grupoSelecionado };
-
   const dadosFicha = {
-    nome,
-    status_maturidade: document.getElementById('campoStatus').value,
+    nome, status_maturidade: document.getElementById('campoStatus').value,
     tipo_classificacao: document.getElementById('campoTipo').value,
     descricao: document.getElementById('campoDescricao').value,
     o_que_mostra: document.getElementById('campoOQueMostra').value,
@@ -1278,28 +1003,19 @@ document.getElementById('btnSalvarIndicador').addEventListener('click', () => {
     limitacoes: document.getElementById('campoLimitacoes').value,
     forma_disponibilizacao: document.getElementById('campoDisponibilizacao').value
   };
-
   if (estado.indicadorEmEdicaoId) {
     const ind = estado.indicadores.find(i => i.id === estado.indicadorEmEdicaoId);
     Object.assign(ind, dadosFicha);
-    // atualiza apenas o vínculo referente à âncora que estava sendo editada
-    const idxVinculo = ind.vinculos.findIndex(v =>
-      v.nivel_id === estado.ancoraAtual.nivel_id &&
-      v.bloco_id === estado.ancoraAtual.bloco_id &&
-      (v.grupo_id || null) === (estado.ancoraAtual.grupo_id || null)
-    );
+    const idxVinculo = ind.vinculos.findIndex(v => v.nivel_id === estado.ancoraAtual.nivel_id && v.bloco_id === estado.ancoraAtual.bloco_id && (v.grupo_id || null) === (estado.ancoraAtual.grupo_id || null));
     if (idxVinculo >= 0) ind.vinculos[idxVinculo] = vinculoAtual;
   } else {
-    const novo = Object.assign({ id: gerarId('ind'), vinculos: [vinculoAtual] }, dadosFicha);
-    estado.indicadores.push(novo);
+    estado.indicadores.push(Object.assign({ id: gerarId('ind'), vinculos: [vinculoAtual] }, dadosFicha));
   }
-
   marcarSujoParaSalvar();
   fecharPainelIndicador();
   renderTrilha();
   mostrarToast('Indicador salvo (em memória). Use "Salvar no GitHub" para persistir.', 'ok');
 });
-
 document.getElementById('btnExcluirIndicador').addEventListener('click', () => {
   document.getElementById('confirmTitulo').textContent = 'Excluir indicador';
   document.getElementById('confirmTexto').textContent = 'Confirma a exclusão deste indicador? Esta ação não pode ser desfeita.';
@@ -1313,47 +1029,19 @@ document.getElementById('btnExcluirIndicador').addEventListener('click', () => {
   };
 });
 
-/* =====================================================================
-   MODOS (Indicadores / Estruturação)
-===================================================================== */
-function atualizarBotoesModo() {
-  document.getElementById('btnModoIndicadores').classList.toggle('ativo', estado.modo === 'indicadores');
-  document.getElementById('btnModoEstrutura').classList.toggle('ativo', estado.modo === 'estrutura');
-}
-document.getElementById('btnModoIndicadores').addEventListener('click', () => {
-  estado.modo = 'indicadores'; atualizarBotoesModo(); renderTrilha();
-});
-document.getElementById('btnModoEstrutura').addEventListener('click', () => {
-  estado.modo = 'estrutura'; atualizarBotoesModo(); renderTrilha();
-});
-atualizarBotoesModo();
-
-/* =====================================================================
-   INTEGRAÇÃO COM GITHUB (leitura opcional + escrita via API)
-===================================================================== */
 let salvamentoPendente = false;
-function marcarSujoParaSalvar() {
-  salvamentoPendente = true;
-  atualizarStatusBar();
-}
-
+function marcarSujoParaSalvar() { salvamentoPendente = true; atualizarStatusBar(); }
 function atualizarStatusBar() {
   const dot = document.getElementById('statusDot');
   const texto = document.getElementById('statusTexto');
   const conectado = !!(estado.github.owner && estado.github.repo && estado.github.token);
-  if (!conectado) {
+  if (!conectado) { dot.className = 'status-dot'; texto.textContent = 'Dados carregados localmente (leitura). Conecte ao GitHub para salvar alterações.'; }
+  else if (salvamentoPendente) {
     dot.className = 'status-dot';
-    texto.textContent = 'Dados carregados localmente (leitura). Conecte ao GitHub para salvar alterações.';
-  } else if (salvamentoPendente) {
-    dot.className = 'status-dot';
-    texto.innerHTML = `Conectado a <strong>${estado.github.owner}/${estado.github.repo}</strong> — há alterações não salvas. <button class="btn-primario btn-pequeno" id="btnSalvarAgora" style="margin-left:6px">Salvar no GitHub</button>`;
+    texto.innerHTML = 'Conectado a <strong>' + estado.github.owner + '/' + estado.github.repo + '</strong> — há alterações não salvas. <button class="btn-primario btn-pequeno" id="btnSalvarAgora" style="margin-left:6px">Salvar no GitHub</button>';
     document.getElementById('btnSalvarAgora').addEventListener('click', salvarNoGithub);
-  } else {
-    dot.className = 'status-dot ok';
-    texto.textContent = `Conectado a ${estado.github.owner}/${estado.github.repo} — tudo salvo.`;
-  }
+  } else { dot.className = 'status-dot ok'; texto.textContent = 'Conectado a ' + estado.github.owner + '/' + estado.github.repo + ' — tudo salvo.'; }
 }
-
 document.getElementById('btnConfigGithub').addEventListener('click', () => {
   document.getElementById('cfgOwner').value = estado.github.owner;
   document.getElementById('cfgRepo').value = estado.github.repo;
@@ -1361,9 +1049,7 @@ document.getElementById('btnConfigGithub').addEventListener('click', () => {
   document.getElementById('cfgToken').value = estado.github.token;
   document.getElementById('modalGithub').style.display = 'flex';
 });
-document.getElementById('btnCancelarConfig').addEventListener('click', () => {
-  document.getElementById('modalGithub').style.display = 'none';
-});
+document.getElementById('btnCancelarConfig').addEventListener('click', () => { document.getElementById('modalGithub').style.display = 'none'; });
 document.getElementById('btnSalvarConfig').addEventListener('click', async () => {
   estado.github.owner = document.getElementById('cfgOwner').value.trim();
   estado.github.repo = document.getElementById('cfgRepo').value.trim();
@@ -1376,69 +1062,40 @@ document.getElementById('btnSalvarConfig').addEventListener('click', async () =>
   }
   atualizarStatusBar();
 });
-
 async function githubFetchArquivo(path) {
-  const url = `https://api.github.com/repos/${estado.github.owner}/${estado.github.repo}/contents/${path}?ref=${estado.github.branch}`;
-  const resp = await fetch(url, {
-    headers: estado.github.token ? { Authorization: `token ${estado.github.token}` } : {}
-  });
-  if (!resp.ok) throw new Error(`Falha ao buscar ${path}: ${resp.status}`);
+  const url = 'https://api.github.com/repos/' + estado.github.owner + '/' + estado.github.repo + '/contents/' + path + '?ref=' + estado.github.branch;
+  const resp = await fetch(url, { headers: estado.github.token ? { Authorization: 'token ' + estado.github.token } : {} });
+  if (!resp.ok) throw new Error('Falha ao buscar ' + path + ': ' + resp.status);
   const json = await resp.json();
-  const conteudo = decodeURIComponent(escape(atob(json.content)));
-  return { conteudo: JSON.parse(conteudo), sha: json.sha };
+  return { conteudo: JSON.parse(decodeURIComponent(escape(atob(json.content)))), sha: json.sha };
 }
-
 async function carregarDadosDoGithub() {
   try {
-    const [e, i] = await Promise.all([
-      githubFetchArquivo('estrutura.json'),
-      githubFetchArquivo('indicadores.json')
-    ]);
+    const [e, i] = await Promise.all([githubFetchArquivo('estrutura.json'), githubFetchArquivo('indicadores.json')]);
     estado.estrutura = e.conteudo;
+    if (estado.estrutura.teoria_do_programa === undefined) estado.estrutura.teoria_do_programa = '';
     estado.github.shaEstrutura = e.sha;
     estado.indicadores = i.conteudo.indicadores || [];
     estado.github.shaIndicadores = i.sha;
     salvamentoPendente = false;
     document.getElementById('tituloApp').textContent = estado.estrutura.politica || 'MAPr';
+    document.getElementById('campoTeoriaTexto').value = estado.estrutura.teoria_do_programa || '';
+    renderTeoriaLeitura();
     renderTrilha();
     mostrarToast('Dados carregados do GitHub.', 'ok');
-  } catch (e) {
-    mostrarToast('Erro ao carregar do GitHub: ' + e.message, 'erro');
-    console.error(e);
-  }
+  } catch (e) { mostrarToast('Erro ao carregar do GitHub: ' + e.message, 'erro'); console.error(e); }
 }
-
 async function githubSalvarArquivo(path, objeto, sha) {
-  const conteudoStr = JSON.stringify(objeto, null, 2);
-  const conteudoB64 = btoa(unescape(encodeURIComponent(conteudoStr)));
-  const url = `https://api.github.com/repos/${estado.github.owner}/${estado.github.repo}/contents/${path}`;
-  const body = {
-    message: `Atualiza ${path} via MAPr App`,
-    content: conteudoB64,
-    branch: estado.github.branch
-  };
+  const conteudoB64 = btoa(unescape(encodeURIComponent(JSON.stringify(objeto, null, 2))));
+  const url = 'https://api.github.com/repos/' + estado.github.owner + '/' + estado.github.repo + '/contents/' + path;
+  const body = { message: 'Atualiza ' + path + ' via MAPr App', content: conteudoB64, branch: estado.github.branch };
   if (sha) body.sha = sha;
-  const resp = await fetch(url, {
-    method: 'PUT',
-    headers: {
-      Authorization: `token ${estado.github.token}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  });
-  if (!resp.ok) {
-    const errJson = await resp.json().catch(() => ({}));
-    throw new Error(errJson.message || `Falha ao salvar ${path}: ${resp.status}`);
-  }
-  const json = await resp.json();
-  return json.content.sha;
+  const resp = await fetch(url, { method: 'PUT', headers: { Authorization: 'token ' + estado.github.token, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  if (!resp.ok) { const errJson = await resp.json().catch(() => ({})); throw new Error(errJson.message || 'Falha ao salvar ' + path + ': ' + resp.status); }
+  return (await resp.json()).content.sha;
 }
-
 async function salvarNoGithub() {
-  if (!estado.github.owner || !estado.github.repo || !estado.github.token) {
-    mostrarToast('Configure a conexão com o GitHub primeiro.', 'erro');
-    return;
-  }
+  if (!estado.github.owner || !estado.github.repo || !estado.github.token) { mostrarToast('Configure a conexão com o GitHub primeiro.', 'erro'); return; }
   try {
     mostrarToast('Salvando no GitHub…', 'ok');
     estado.github.shaEstrutura = await githubSalvarArquivo('estrutura.json', estado.estrutura, estado.github.shaEstrutura);
@@ -1446,71 +1103,141 @@ async function salvarNoGithub() {
     salvamentoPendente = false;
     atualizarStatusBar();
     mostrarToast('Salvo com sucesso no GitHub.', 'ok');
-  } catch (e) {
-    mostrarToast('Erro ao salvar: ' + e.message, 'erro');
-    console.error(e);
-  }
+  } catch (e) { mostrarToast('Erro ao salvar: ' + e.message, 'erro'); console.error(e); }
 }
 
-/* =====================================================================
-   EXPORTAÇÃO — Markdown e PDF (via impressão do navegador)
-===================================================================== */
-function gerarMarkdown() {
-  let md = `# ${estado.estrutura.politica}\n\n`;
-  md += `_Metodologia: ${estado.estrutura.metodologia}_\n\n`;
-  md += `**Contexto de operação:** ${estado.estrutura.contexto_operacao}\n\n`;
-
+function montarAreaImpressao() {
+  const area = document.getElementById('areaImpressao');
+  let html = '';
+  html += '<div class="imp-capa"><h1>' + escapeHtml(estado.estrutura.politica || '') + '</h1><div class="imp-metodologia">Metodologia: ' + escapeHtml(estado.estrutura.metodologia || '') + '</div></div>';
+  html += '<div class="imp-secao-titulo">Teoria do Programa</div><div class="imp-teoria">' + teoriaParaHtml(estado.estrutura.teoria_do_programa) + '</div>';
+  html += '<div class="imp-secao-titulo">Mapa de Processos (MAPr)</div>';
+  const totalNiveis = estado.estrutura.niveis.length;
   estado.estrutura.niveis.forEach((nivel, idx) => {
-    md += `## Nível ${idx + 1} — ${nivel.nome}\n\n`;
-    if (nivel.descricao) md += `${nivel.descricao}\n\n`;
-
+    html += '<div class="imp-nivel-titulo">' + (totalNiveis > 1 ? 'Nível ' + (idx + 1) + ' — ' : '') + escapeHtml(nivel.nome) + '</div>';
+    if (nivel.descricao) html += '<div class="imp-nivel-descricao">' + escapeHtml(nivel.descricao) + '</div>';
+    html += '<div class="imp-colunas">';
     BLOCOS_CANONICOS.forEach(blocoCanon => {
       if (!nivel.blocos_aplicaveis.includes(blocoCanon.id)) return;
-      md += `### ${blocoCanon.nome}\n\n`;
-
-      const indBloco = marcadoresDoAncora(nivel.id, blocoCanon.id, null);
-      indBloco.forEach(ind => { md += formatarIndicadorMd(ind); });
-
+      html += '<div class="imp-coluna"><div class="imp-coluna-header">' + blocoCanon.nome + '</div><div class="imp-coluna-body">';
       const grupos = nivel.grupos_por_bloco[blocoCanon.id] || [];
+      if (grupos.length === 0) html += '<div style="font-size:0.66rem;color:#9aa5b1;">—</div>';
       grupos.forEach(grupo => {
-        md += `**${grupo.nome}**\n\n`;
-        (grupo.itens || []).forEach(item => { md += `- ${item.texto}\n`; });
-        md += '\n';
-        const indGrupo = marcadoresDoAncora(nivel.id, blocoCanon.id, grupo.id);
-        indGrupo.forEach(ind => { md += formatarIndicadorMd(ind); });
+        html += '<div class="imp-coluna-grupo">' + escapeHtml(grupo.nome) + '</div><ul>';
+        (grupo.itens || []).forEach(item => { html += '<li>' + escapeHtml(item.texto) + '</li>'; });
+        html += '</ul>';
       });
+      html += '</div></div>';
+    });
+    html += '</div>';
+  });
+
+  const codigos = gerarCodigosIndicadores();
+  html += '<div class="imp-secao-titulo">Indicadores</div><div class="imp-nivel-titulo" style="margin-top:0">Índice por bloco</div>';
+  estado.estrutura.niveis.forEach((nivel, idxN) => {
+    BLOCOS_CANONICOS.forEach(blocoCanon => {
+      if (!nivel.blocos_aplicaveis.includes(blocoCanon.id)) return;
+      const indBloco = marcadoresDoAncora(nivel.id, blocoCanon.id, null);
+      const grupos = nivel.grupos_por_bloco[blocoCanon.id] || [];
+      const temAlgumIndicador = indBloco.length > 0 || grupos.some(g => marcadoresDoAncora(nivel.id, blocoCanon.id, g.id).length > 0);
+      if (!temAlgumIndicador) return;
+      html += '<div class="imp-indice-bloco">' + (totalNiveis > 1 ? 'Nível ' + (idxN + 1) + ' — ' : '') + blocoCanon.nome + '</div>';
+      indBloco.forEach(ind => { html += formatarIndiceItem(ind, codigos); });
+      grupos.forEach(grupo => { marcadoresDoAncora(nivel.id, blocoCanon.id, grupo.id).forEach(ind => { html += formatarIndiceItem(ind, codigos, grupo.nome); }); });
     });
   });
 
+  html += '<div class="imp-nivel-titulo">Fichas completas</div>';
+  const ordenados = Array.from(codigos.entries()).sort((a, b) => a[1].localeCompare(b[1]));
+  ordenados.forEach(entry => { const ind = estado.indicadores.find(i => i.id === entry[0]); html += formatarFichaImpressao(ind, entry[1]); });
+
+  area.innerHTML = html;
+}
+function formatarIndiceItem(ind, codigos, grupoNome) {
+  const codigo = codigos.get(ind.id);
+  const cor = STATUS_INFO[ind.status_maturidade].cor;
+  const sufixoGrupo = grupoNome ? ' <em>(' + escapeHtml(grupoNome) + ')</em>' : '';
+  return '<div class="imp-indice-item"><span class="imp-dot" style="background:' + cor + '"></span><span class="imp-codigo">' + codigo + '</span>' + escapeHtml(ind.nome) + sufixoGrupo + ' — <span class="imp-desc">' + escapeHtml(ind.descricao || '—') + '</span></div>';
+}
+function linhaFicha(label, valor) { return '<tr><td class="imp-label">' + label + '</td><td>' + escapeHtml(valor || '—') + '</td></tr>'; }
+function formatarFichaImpressao(ind, codigo) {
+  const cor = STATUS_INFO[ind.status_maturidade].cor;
+  const label = STATUS_INFO[ind.status_maturidade].label;
+  return '<div class="imp-ficha">' +
+    '<div class="imp-ficha-titulo"><span class="imp-dot" style="background:' + cor + '"></span>' + codigo + ' — ' + escapeHtml(ind.nome) + ' <span style="font-weight:400;font-size:0.7rem;color:#5f6368;">(' + label + ')</span></div>' +
+    '<div class="imp-ficha-bloco-nome">Identificação e conceito</div>' +
+    '<table>' + linhaFicha('Tipo/classificação', ind.tipo_classificacao) + linhaFicha('Descrição', ind.descricao) + linhaFicha('O que mostra', ind.o_que_mostra) + '</table>' +
+    '<div class="imp-ficha-bloco-nome">Metodologia de apuração</div>' +
+    '<table>' + linhaFicha('Fórmula', ind.formula_calculo) + linhaFicha('Unidade de medida', ind.unidade_medida) + linhaFicha('Fonte de dados', ind.fonte_dados) + linhaFicha('Como apurar', ind.como_apurar) + linhaFicha('Periodicidade', ind.periodicidade_apuracao) + linhaFicha('Prazo máximo', ind.prazo_maximo_apuracao) + linhaFicha('Responsável', ind.responsavel_apuracao) + '</table>' +
+    '<div class="imp-ficha-bloco-nome">Parâmetros de avaliação</div>' +
+    '<table>' + linhaFicha('Linha de base', ind.linha_base) + linhaFicha('Meta', ind.meta) + linhaFicha('Polaridade', ind.polaridade) + linhaFicha('Série histórica', ind.serie_historica) + linhaFicha('Desagregação', ind.desagregacao) + '</table>' +
+    '<div class="imp-ficha-bloco-nome">Qualidade e uso</div>' +
+    '<table>' + linhaFicha('Causas de desvio', ind.causas_desvio) + linhaFicha('Impacto do desvio', ind.impacto_desvio) + linhaFicha('Limitações', ind.limitacoes) + linhaFicha('Disponibilização', ind.forma_disponibilizacao) + '</table>' +
+    '</div>';
+}
+document.getElementById('btnExportarPdf').addEventListener('click', () => { montarAreaImpressao(); setTimeout(() => window.print(), 60); });
+
+function gerarMarkdown() {
+  let md = '# ' + estado.estrutura.politica + '\n\n_Metodologia: ' + estado.estrutura.metodologia + '_\n\n---\n\n';
+  md += '## Teoria do Programa\n\n' + teoriaParaMd(estado.estrutura.teoria_do_programa) + '\n\n---\n\n';
+  md += '## Mapa de Processos (MAPr)\n\n';
+  const totalNiveis = estado.estrutura.niveis.length;
+  estado.estrutura.niveis.forEach((nivel, idx) => {
+    md += '### ' + (totalNiveis > 1 ? 'Nível ' + (idx + 1) + ' — ' : '') + nivel.nome + '\n\n';
+    if (nivel.descricao) md += nivel.descricao + '\n\n';
+    BLOCOS_CANONICOS.forEach(blocoCanon => {
+      if (!nivel.blocos_aplicaveis.includes(blocoCanon.id)) return;
+      md += '#### ' + blocoCanon.nome + '\n\n';
+      (nivel.grupos_por_bloco[blocoCanon.id] || []).forEach(grupo => {
+        md += '##### ' + grupo.nome + '\n\n';
+        (grupo.itens || []).forEach(item => { md += '- ' + item.texto + '\n'; });
+        md += '\n';
+      });
+    });
+  });
+  md += '---\n\n';
+
+  const codigos = gerarCodigosIndicadores();
+  md += '## Indicadores\n\n### Índice por bloco\n\n';
+  estado.estrutura.niveis.forEach((nivel, idxN) => {
+    BLOCOS_CANONICOS.forEach(blocoCanon => {
+      if (!nivel.blocos_aplicaveis.includes(blocoCanon.id)) return;
+      const entradas = [];
+      marcadoresDoAncora(nivel.id, blocoCanon.id, null).forEach(ind => entradas.push({ ind: ind, grupoNome: null }));
+      (nivel.grupos_por_bloco[blocoCanon.id] || []).forEach(grupo => { marcadoresDoAncora(nivel.id, blocoCanon.id, grupo.id).forEach(ind => entradas.push({ ind: ind, grupoNome: grupo.nome })); });
+      if (entradas.length === 0) return;
+      md += '**' + (totalNiveis > 1 ? 'Nível ' + (idxN + 1) + ' — ' : '') + blocoCanon.nome + '**\n\n';
+      entradas.forEach(function(e) {
+        const codigo = codigos.get(e.ind.id);
+        const marca = e.ind.status_maturidade === 'existente_monitorado' ? '🟢' : e.ind.status_maturidade === 'exigido_pendente' ? '🟠' : '🟣';
+        md += '- ' + marca + ' **' + codigo + '** — ' + e.ind.nome + (e.grupoNome ? ' _(' + e.grupoNome + ')_' : '') + ' — ' + (e.ind.descricao || '—') + '\n';
+      });
+      md += '\n';
+    });
+  });
+
+  md += '### Fichas completas\n\n';
+  Array.from(codigos.entries()).sort((a, b) => a[1].localeCompare(b[1])).forEach(entry => {
+    const ind = estado.indicadores.find(i => i.id === entry[0]);
+    const codigo = entry[1];
+    const marca = ind.status_maturidade === 'existente_monitorado' ? '🟢' : ind.status_maturidade === 'exigido_pendente' ? '🟠' : '🟣';
+    md += '#### ' + marca + ' ' + codigo + ' — ' + ind.nome + '\n\n_Status: ' + STATUS_INFO[ind.status_maturidade].label + '_\n\n';
+    md += '**1 · Identificação e conceito**\n- Tipo/classificação: ' + (ind.tipo_classificacao || '—') + '\n- Descrição: ' + (ind.descricao || '—') + '\n- O que mostra: ' + (ind.o_que_mostra || '—') + '\n\n';
+    md += '**2 · Metodologia de apuração**\n- Fórmula: ' + (ind.formula_calculo || '—') + '\n- Unidade de medida: ' + (ind.unidade_medida || '—') + '\n- Fonte de dados: ' + (ind.fonte_dados || '—') + '\n- Como apurar: ' + (ind.como_apurar || '—') + '\n- Periodicidade: ' + (ind.periodicidade_apuracao || '—') + '\n- Prazo máximo: ' + (ind.prazo_maximo_apuracao || '—') + '\n- Responsável: ' + (ind.responsavel_apuracao || '—') + '\n\n';
+    md += '**3 · Parâmetros de avaliação**\n- Linha de base: ' + (ind.linha_base || '—') + '\n- Meta: ' + (ind.meta || '—') + '\n- Polaridade: ' + (ind.polaridade || '—') + '\n- Série histórica: ' + (ind.serie_historica || '—') + '\n- Desagregação: ' + (ind.desagregacao || '—') + '\n\n';
+    md += '**4 · Qualidade e uso**\n- Causas de desvio: ' + (ind.causas_desvio || '—') + '\n- Impacto do desvio: ' + (ind.impacto_desvio || '—') + '\n- Limitações: ' + (ind.limitacoes || '—') + '\n- Disponibilização: ' + (ind.forma_disponibilizacao || '—') + '\n\n---\n\n';
+  });
   return md;
 }
-
-function formatarIndicadorMd(ind) {
-  let md = `> **Indicador:** ${ind.nome} _(${STATUS_INFO[ind.status_maturidade].label})_\n`;
-  md += `> - Fórmula: ${ind.formula_calculo || '—'}\n`;
-  md += `> - Meta: ${ind.meta || '—'} | Linha de base: ${ind.linha_base || '—'} | Polaridade: ${ind.polaridade || '—'}\n`;
-  md += `> - Fonte: ${ind.fonte_dados || '—'} | Periodicidade: ${ind.periodicidade_apuracao || '—'}\n\n`;
-  return md;
-}
-
 document.getElementById('btnExportarMd').addEventListener('click', () => {
   const md = gerarMarkdown();
   const blob = new Blob([md], { type: 'text/markdown' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url;
-  a.download = 'mapr_indicadores.md';
-  a.click();
+  a.href = url; a.download = 'mapr_indicadores.md'; a.click();
   URL.revokeObjectURL(url);
 });
 
-document.getElementById('btnExportarPdf').addEventListener('click', () => {
-  window.print();
-});
-
-/* =====================================================================
-   TOAST
-===================================================================== */
 let toastTimeout = null;
 function mostrarToast(msg, tipo) {
   const toast = document.getElementById('toast');
@@ -1520,9 +1247,6 @@ function mostrarToast(msg, tipo) {
   toastTimeout = setTimeout(() => { toast.className = 'toast'; }, 4200);
 }
 
-/* =====================================================================
-   INICIALIZAÇÃO
-===================================================================== */
 carregarDadosLocais();
 </script>
 </body>
