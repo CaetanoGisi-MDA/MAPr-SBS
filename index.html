@@ -48,6 +48,14 @@
   .btn-perigo:hover { background: #fbdcda; }
   .btn-pequeno { padding: 0.32rem 0.6rem; font-size: 0.74rem; }
 
+  .export-combo { display: flex; align-items: stretch; }
+  .export-combo select {
+    font-family: inherit; font-size: 0.82rem; font-weight: 600; color: var(--azul-vivo);
+    background: var(--card-bg); border: 1px solid var(--borda); border-right: none;
+    border-radius: 7px 0 0 7px; padding: 0.5rem 0.4rem 0.5rem 0.7rem; cursor: pointer;
+  }
+  .export-combo .btn-secundario { border-radius: 0 7px 7px 0; border-left: 1px solid var(--borda); }
+
   .status-bar { background: white; border-bottom: 1px solid var(--borda); padding: 0.5rem 1.75rem; display: flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; color: var(--texto-secundario); flex-wrap: wrap; }
   .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cinza-marcador); flex-shrink: 0; }
   .status-dot.ok { background: var(--verde); }
@@ -174,6 +182,7 @@
     .imp-capa .imp-metodologia { font-size: 0.85rem; color: #5f6368; }
     .imp-secao-titulo { font-size: 1.05rem; color: #004580; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #004580; padding-bottom: 0.3rem; margin: 1.8rem 0 0.9rem; break-after: avoid; }
     .imp-secao-titulo:first-of-type { margin-top: 0; }
+    .imp-secao-titulo.imp-nova-pagina { break-before: page; page-break-before: always; margin-top: 0; }
     .imp-teoria p { font-size: 0.86rem; line-height: 1.6; margin-bottom: 0.7rem; text-align: justify; }
     .imp-teoria h4 { font-size: 0.95rem; color: #004580; margin: 1rem 0 0.4rem; }
     .imp-teoria h5 { font-size: 0.88rem; color: #1351b4; margin: 0.8rem 0 0.3rem; }
@@ -217,12 +226,17 @@
     <div class="subtitulo" id="subtituloApp">Carregando estrutura…</div>
   </div>
   <div class="topo-acoes">
-    <button class="btn-ghost-topo" id="btnModoIndicadores">📊 Indicadores</button>
-    <button class="btn-ghost-topo" id="btnModoEstrutura">🛠️ Estruturação</button>
     <button class="btn-ghost-topo" id="btnModoTeoria">📖 Teoria do Programa</button>
+    <button class="btn-ghost-topo" id="btnModoEstrutura">🗺️ Mapa de Processos</button>
+    <button class="btn-ghost-topo" id="btnModoIndicadores">📊 Indicadores</button>
     <button class="btn-secundario" id="btnConfigGithub">⚙️ Conectar GitHub</button>
-    <button class="btn-secundario" id="btnExportarMd">⬇ Markdown</button>
-    <button class="btn-secundario" id="btnExportarPdf">🖨 PDF</button>
+    <div class="export-combo">
+      <select id="selExportFormato" title="Formato de exportação">
+        <option value="pdf">🖨 PDF</option>
+        <option value="md">⬇ Markdown</option>
+      </select>
+      <button class="btn-secundario" id="btnExportar">Exportar</button>
+    </div>
   </div>
 </header>
 
@@ -242,7 +256,7 @@
   </div>
 
   <div class="barra-modo-secundaria" id="barraEstrutura" style="display:none">
-    <button class="btn-secundario btn-pequeno" id="btnToggleEdicaoEstrutura">✏️ Editar estrutura</button>
+    <button class="btn-secundario btn-pequeno" id="btnToggleEdicaoEstrutura">✏️ Editar MAPr</button>
     <button class="btn-secundario btn-pequeno" id="btnExpandirTudoEstrutura">Expandir tudo</button>
   </div>
 
@@ -435,7 +449,7 @@ async function carregarDadosLocais() {
     const dadosInd = await respIndicadores.json();
     estado.indicadores = dadosInd.indicadores || [];
     document.getElementById('tituloApp').textContent = estado.estrutura.politica || 'MAPr';
-    document.getElementById('subtituloApp').textContent = 'Metodologia: ' + (estado.estrutura.metodologia || '—');
+    document.getElementById('subtituloApp').textContent = '';
     document.getElementById('campoTeoriaTexto').value = estado.estrutura.teoria_do_programa || '';
     renderTeoriaLeitura();
     renderTrilha();
@@ -826,7 +840,7 @@ document.getElementById('btnConfirmOk').addEventListener('click', () => { if (co
 
 document.getElementById('btnToggleEdicaoEstrutura').addEventListener('click', () => {
   estado.estruturaEditando = !estado.estruturaEditando;
-  document.getElementById('btnToggleEdicaoEstrutura').textContent = estado.estruturaEditando ? '✅ Concluir edição' : '✏️ Editar estrutura';
+  document.getElementById('btnToggleEdicaoEstrutura').textContent = estado.estruturaEditando ? '✅ Concluir edição' : '✏️ Editar MAPr';
   renderTrilha();
 });
 
@@ -1050,22 +1064,64 @@ document.getElementById('btnConfigGithub').addEventListener('click', () => {
   document.getElementById('modalGithub').style.display = 'flex';
 });
 document.getElementById('btnCancelarConfig').addEventListener('click', () => { document.getElementById('modalGithub').style.display = 'none'; });
+async function verificarRepositorioGithub() {
+  const url = 'https://api.github.com/repos/' + estado.github.owner + '/' + estado.github.repo;
+  const resp = await fetch(url, { headers: authHeaderGithub() });
+  if (!resp.ok) throw new Error(await githubMensagemErro(resp, 'Repositório "' + estado.github.owner + '/' + estado.github.repo + '"'));
+  return await resp.json();
+}
+
 document.getElementById('btnSalvarConfig').addEventListener('click', async () => {
-  estado.github.owner = document.getElementById('cfgOwner').value.trim();
-  estado.github.repo = document.getElementById('cfgRepo').value.trim();
+  estado.github.owner = document.getElementById('cfgOwner').value.trim().replace(/^@/, '');
+  estado.github.repo = document.getElementById('cfgRepo').value.trim().replace(/\.git$/, '');
   estado.github.branch = document.getElementById('cfgBranch').value.trim() || 'main';
   estado.github.token = document.getElementById('cfgToken').value.trim();
   document.getElementById('modalGithub').style.display = 'none';
   if (estado.github.owner && estado.github.repo && estado.github.token) {
-    mostrarToast('Conectado. Buscando versão mais recente dos arquivos…', 'ok');
-    await carregarDadosDoGithub();
+    try {
+      mostrarToast('Verificando acesso ao repositório…', 'ok');
+      const infoRepo = await verificarRepositorioGithub();
+      if (infoRepo.default_branch && document.getElementById('cfgBranch').value.trim() === '') {
+        estado.github.branch = infoRepo.default_branch;
+      }
+      mostrarToast('Repositório encontrado. Buscando os arquivos…', 'ok');
+      await carregarDadosDoGithub();
+    } catch (e) {
+      mostrarToast(e.message, 'erro');
+      console.error(e);
+    }
   }
   atualizarStatusBar();
 });
+function authHeaderGithub() {
+  return estado.github.token ? { Authorization: 'Bearer ' + estado.github.token } : {};
+}
+
+async function githubMensagemErro(resp, contexto) {
+  let corpo = {};
+  try { corpo = await resp.json(); } catch (e) { /* corpo não é JSON */ }
+  const msgApi = corpo.message ? ' — ' + corpo.message : '';
+  if (resp.status === 404) return contexto + ': não encontrado (404)' + msgApi + '. Verifique se o usuário/organização e o nome do repositório estão corretos, se o arquivo existe na branch informada, e se — em caso de repositório privado — o token tem acesso a ele.';
+  if (resp.status === 401) return contexto + ': credencial inválida (401)' + msgApi + '. O token pode estar incorreto, expirado ou copiado com espaços extras.';
+  if (resp.status === 403) return contexto + ': acesso negado (403)' + msgApi + '. Confira se o token tem a permissão "Contents: Read and write" para este repositório específico.';
+  return contexto + ': erro ' + resp.status + msgApi;
+}
+
 async function githubFetchArquivo(path) {
-  const url = 'https://api.github.com/repos/' + estado.github.owner + '/' + estado.github.repo + '/contents/' + path + '?ref=' + estado.github.branch;
-  const resp = await fetch(url, { headers: estado.github.token ? { Authorization: 'token ' + estado.github.token } : {} });
-  if (!resp.ok) throw new Error('Falha ao buscar ' + path + ': ' + resp.status);
+  const urlComBranch = 'https://api.github.com/repos/' + estado.github.owner + '/' + estado.github.repo + '/contents/' + path + '?ref=' + estado.github.branch;
+  let resp = await fetch(urlComBranch, { headers: authHeaderGithub() });
+
+  // Fallback: se a branch informada não bateu (404), tenta a branch padrão do repositório
+  if (!resp.ok && resp.status === 404 && estado.github.branch) {
+    const urlSemBranch = 'https://api.github.com/repos/' + estado.github.owner + '/' + estado.github.repo + '/contents/' + path;
+    const respFallback = await fetch(urlSemBranch, { headers: authHeaderGithub() });
+    if (respFallback.ok) {
+      mostrarToast('Aviso: a branch "' + estado.github.branch + '" não foi encontrada — usando a branch padrão do repositório.', 'ok');
+      resp = respFallback;
+    }
+  }
+
+  if (!resp.ok) throw new Error(await githubMensagemErro(resp, 'Falha ao buscar ' + path));
   const json = await resp.json();
   return { conteudo: JSON.parse(decodeURIComponent(escape(atob(json.content)))), sha: json.sha };
 }
@@ -1090,8 +1146,10 @@ async function githubSalvarArquivo(path, objeto, sha) {
   const url = 'https://api.github.com/repos/' + estado.github.owner + '/' + estado.github.repo + '/contents/' + path;
   const body = { message: 'Atualiza ' + path + ' via MAPr App', content: conteudoB64, branch: estado.github.branch };
   if (sha) body.sha = sha;
-  const resp = await fetch(url, { method: 'PUT', headers: { Authorization: 'token ' + estado.github.token, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-  if (!resp.ok) { const errJson = await resp.json().catch(() => ({})); throw new Error(errJson.message || 'Falha ao salvar ' + path + ': ' + resp.status); }
+  const headers = authHeaderGithub();
+  headers['Content-Type'] = 'application/json';
+  const resp = await fetch(url, { method: 'PUT', headers: headers, body: JSON.stringify(body) });
+  if (!resp.ok) throw new Error(await githubMensagemErro(resp, 'Falha ao salvar ' + path));
   return (await resp.json()).content.sha;
 }
 async function salvarNoGithub() {
@@ -1111,7 +1169,7 @@ function montarAreaImpressao() {
   let html = '';
   html += '<div class="imp-capa"><h1>' + escapeHtml(estado.estrutura.politica || '') + '</h1><div class="imp-metodologia">Metodologia: ' + escapeHtml(estado.estrutura.metodologia || '') + '</div></div>';
   html += '<div class="imp-secao-titulo">Teoria do Programa</div><div class="imp-teoria">' + teoriaParaHtml(estado.estrutura.teoria_do_programa) + '</div>';
-  html += '<div class="imp-secao-titulo">Mapa de Processos (MAPr)</div>';
+  html += '<div class="imp-secao-titulo imp-nova-pagina">Mapa de Processos (MAPr)</div>';
   const totalNiveis = estado.estrutura.niveis.length;
   estado.estrutura.niveis.forEach((nivel, idx) => {
     html += '<div class="imp-nivel-titulo">' + (totalNiveis > 1 ? 'Nível ' + (idx + 1) + ' — ' : '') + escapeHtml(nivel.nome) + '</div>';
@@ -1133,7 +1191,7 @@ function montarAreaImpressao() {
   });
 
   const codigos = gerarCodigosIndicadores();
-  html += '<div class="imp-secao-titulo">Indicadores</div><div class="imp-nivel-titulo" style="margin-top:0">Índice por bloco</div>';
+  html += '<div class="imp-secao-titulo imp-nova-pagina">Indicadores</div><div class="imp-nivel-titulo" style="margin-top:0">Índice por bloco</div>';
   estado.estrutura.niveis.forEach((nivel, idxN) => {
     BLOCOS_CANONICOS.forEach(blocoCanon => {
       if (!nivel.blocos_aplicaveis.includes(blocoCanon.id)) return;
@@ -1175,7 +1233,6 @@ function formatarFichaImpressao(ind, codigo) {
     '<table>' + linhaFicha('Causas de desvio', ind.causas_desvio) + linhaFicha('Impacto do desvio', ind.impacto_desvio) + linhaFicha('Limitações', ind.limitacoes) + linhaFicha('Disponibilização', ind.forma_disponibilizacao) + '</table>' +
     '</div>';
 }
-document.getElementById('btnExportarPdf').addEventListener('click', () => { montarAreaImpressao(); setTimeout(() => window.print(), 60); });
 
 function gerarMarkdown() {
   let md = '# ' + estado.estrutura.politica + '\n\n_Metodologia: ' + estado.estrutura.metodologia + '_\n\n---\n\n';
@@ -1229,13 +1286,21 @@ function gerarMarkdown() {
   });
   return md;
 }
-document.getElementById('btnExportarMd').addEventListener('click', () => {
+function exportarMarkdown() {
   const md = gerarMarkdown();
   const blob = new Blob([md], { type: 'text/markdown' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url; a.download = 'mapr_indicadores.md'; a.click();
   URL.revokeObjectURL(url);
+}
+function exportarPdf() {
+  montarAreaImpressao();
+  setTimeout(() => window.print(), 60);
+}
+document.getElementById('btnExportar').addEventListener('click', () => {
+  const formato = document.getElementById('selExportFormato').value;
+  if (formato === 'pdf') exportarPdf(); else exportarMarkdown();
 });
 
 let toastTimeout = null;
