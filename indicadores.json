@@ -8,33 +8,28 @@
         {
           "nivel_id": "nivel1",
           "bloco_id": "produtos",
-          "grupo_id": null
-        },
-        {
-          "nivel_id": "nivel2",
-          "bloco_id": "produtos",
-          "grupo_id": "n2_prod_execucao"
+          "grupo_id": "n1_prod_normatizacao"
         }
       ],
-      "tipo_classificacao": "eficácia — indicador de eficácia do instrumento regulatório, em posição intersticial entre produto (Nível 1) e resultado (Nível 2)",
+      "tipo_classificacao": "produto — indicador de eficácia do instrumento regulatório.",
       "descricao": "Mede a parcela do valor total do mercado de biodiesel comercializado pelos detentores do Selo que retornou à agricultura familiar na forma de aquisições, ATER e fomento.",
-      "o_que_mostra": "O desempenho geral do SBS quanto à inclusão da agricultura familiar, tomando como parâmetro os dispêndios efetivos em comparação ao valor bruto de biodiesel comercializado pelos detentores do Selo.",
+      "o_que_mostra": "Se os mecanismos de indução calibrados no marco normativo do SBS — Portaria MDA nº 28/2024 — estão convertendo o crescimento do mercado de biodiesel em transferência proporcional de valor à agricultura familiar. Funciona como medida da eficácia do desenho regulatório vigente, e não como indicador de mudança na condição do agricultor familiar.",
       "formula_calculo": "PMEN = Valor total de dispêndios em aquisições, ATER e fomento à agricultura familiar / Valor total bruto de biodiesel comercializado no mercado nacional pelos detentores do Selo",
       "unidade_medida": "Percentual (%)",
       "fonte_dados": "Sistema SABIDO — MDA (dados autodeclarados pelas UPBs detentoras do Selo)",
       "como_apurar": "1) Somar os dispêndios efetivos em aquisições, ATER e fomento de todas as UPBs detentoras do Selo. 2) Somar o valor bruto de biodiesel comercializado por essas UPBs. 3) Dividir (1) por (2) e multiplicar por 100.",
       "periodicidade_apuracao": "Anual",
-      "prazo_maximo_apuracao": "28 de fevereiro do ano subsequente ao ano de referência",
+      "prazo_maximo_apuracao": "",
       "responsavel_apuracao": "DMAITE/CGIAF/DINOV/SAF/MDA",
       "linha_base": "19,25% (2023 — patamar pré-vigência da Portaria MDA nº 28/2024)",
       "meta": "22% (art. 31, §4º da Portaria MDA nº 28/2024)",
       "polaridade": "Quanto maior, melhor",
       "serie_historica": "2018: 26,12% | 2019: 29,11% | 2020: 21,41% | 2021: 23,73% | 2022: 16,41% | 2023: 19,25% | 2024: 13,09% | 2025: 11,15%",
-      "desagregacao": "Não desagregado por região nesta versão do indicador (ver indicador de Inclusão Regional para a dimensão N/NE/Semiárido)",
-      "causas_desvio": "Dissociação estrutural entre o crescimento do mercado de biodiesel (denominador) e o valor real destinado à agricultura familiar (numerador), agravada pelo sistema de multiplicadores vigente (Portaria MDA nº 28/2024, art. 31, §1º), que amplia o percentual ponderado sem gerar valor real adicional. Ver pressupostos de Atividades e Produtos do Nível 2.",
+      "desagregacao": "Não aplicável — o indicador mede a eficácia do marco normativo nacional como sistema único.",
+      "causas_desvio": "Dissociação estrutural entre o crescimento do mercado de biodiesel (denominador) e o valor real destinado à agricultura familiar (numerador), agravada pelo sistema de multiplicadores vigente (Portaria MDA nº 28/2024, art. 31, §1º), que amplia o percentual ponderado sem gerar valor real adicional.",
       "impacto_desvio": "Distanciamento progressivo da meta normativa de 22%, com redução real do número de agricultores familiares beneficiados (queda de 33% entre 2023 e 2025) e enfraquecimento do propósito redistributivo do SBS.",
       "limitacoes": "Enquanto não for desenvolvido o novo sistema informatizado do SBS, a apuração depende de dados declaratórios e manuseio manual em planilhas. Divergência metodológica conhecida entre denominador SABIDO (mais confiável) e denominador ANP, usado em apuração anterior (NT 2/2025).",
-      "forma_disponibilizacao": "Sítio eletrônico do MDA; Notas Técnicas anuais (NT 28/2026 e sucessoras); balanço anual encaminhado ao CNPE (Resolução CNPE nº 5/2026, art. 1º, §2º)"
+      "forma_disponibilizacao": "Sítio eletrônico do MDA; Notas Técnicas anuais; balanço anual encaminhado ao CNPE (Resolução CNPE nº 5/2026, art. 1º, §2º)"
     },
     {
       "id": "ind_agricultores",
@@ -43,11 +38,11 @@
       "vinculos": [
         {
           "nivel_id": "nivel2",
-          "bloco_id": "resultados",
-          "grupo_id": null
+          "bloco_id": "produtos",
+          "grupo_id": "n2_prod_execucao"
         }
       ],
-      "tipo_classificacao": "eficácia — indicador de cobertura/alcance",
+      "tipo_classificacao": "produto — indicador de cobertura/alcance",
       "descricao": "Monitora a quantidade de agricultores familiares incluídos (com contrato assinado e em atividade) no Selo Biocombustível Social.",
       "o_que_mostra": "A evolução da base de agricultores familiares efetivamente participantes dos arranjos produtivos do SBS.",
       "formula_calculo": "Soma da quantidade de CPFs distintos de agricultores familiares registrados no sistema de gestão do SBS no período de referência",
@@ -55,7 +50,7 @@
       "fonte_dados": "Sistema SABIDO; empresas detentoras do Selo; cooperativas; ANP",
       "como_apurar": "Receber os dados das empresas detentoras da concessão do Selo, diretamente e por intermédio de pessoas jurídicas contratadas/fomentadas por elas, via sistema informatizado. Consolidar os CPFs distintos.",
       "periodicidade_apuracao": "Anual",
-      "prazo_maximo_apuracao": "28 de fevereiro do ano subsequente ao ano de referência",
+      "prazo_maximo_apuracao": "",
       "responsavel_apuracao": "DMAITE/CGIAF/DINOV/SAF/MDA",
       "linha_base": "70.620 agricultores familiares (2021)",
       "meta": "Igual ou maior que o melhor resultado anual dos 3 anos civis anteriores; a partir de 2027, meta do ano anterior acrescida do crescimento proporcional do volume de biodiesel comercializado",
@@ -78,7 +73,7 @@
           "grupo_id": "n2_prod_execucao"
         }
       ],
-      "tipo_classificacao": "eficácia — indicador de participação da AF na produção física de biodiesel",
+      "tipo_classificacao": "produto — indicador que descreve a composição do abastecimento nacional de biodiesel",
       "descricao": "Mostra o percentual do volume de biodiesel produzido com matérias-primas da agricultura familiar em relação ao volume total de biodiesel comercializado no mercado nacional.",
       "o_que_mostra": "A proporção estimada de participação efetiva da agricultura familiar na produção física do biodiesel comercializado no mercado nacional.",
       "formula_calculo": "Volume total estimado de biodiesel produzido com matérias-primas da agricultura familiar / Volume total de biodiesel comercializado no mercado nacional no período",
@@ -86,17 +81,17 @@
       "fonte_dados": "Sistema de gestão do SBS; empresas beneficiárias; cooperativas; ANP",
       "como_apurar": "Receber dos produtores de biodiesel a estimativa de biodiesel produzido com matérias-primas da AF; obter da ANP o volume total de biodiesel comercializado; aplicar a fórmula.",
       "periodicidade_apuracao": "Anual",
-      "prazo_maximo_apuracao": "28 de fevereiro do ano subsequente ao ano de referência",
+      "prazo_maximo_apuracao": "",
       "responsavel_apuracao": "DMAITE/CGIAF/DINOV/SAF/MDA",
       "linha_base": "Não apurável nas condições atuais",
-      "meta": "Condicionada à primeira consolidação de resultados com a nova plataforma do SBS",
-      "polaridade": "Quanto maior, melhor",
+      "meta": "Não se aplica — indicador de caracterização, sem meta de direção definida (ver campo de polaridade)",
+      "polaridade": "Não se aplica — indicador de caracterização, sem juízo de valor sobre a direção do resultado",
       "serie_historica": "Não é possível apurar resultados anteriores",
-      "desagregacao": "A definir quando o novo sistema estiver disponível",
-      "causas_desvio": "Redução do uso efetivo de matérias-primas da agricultura familiar na produção de biodiesel em relação ao volume total de matérias-primas utilizadas.",
-      "impacto_desvio": "Manutenção da baixa eficiência do PNPB em incluir a agricultura familiar na cadeia produtiva do biodiesel.",
-      "limitacoes": "Depende da disponibilização do novo sistema informatizado do SBS, com funcionalidade específica para registrar o volume de matérias-primas utilizadas e a respectiva projeção de biodiesel produzido. Enquanto o sistema não estiver disponível, não haverá apuração.",
-      "forma_disponibilizacao": "Sítio eletrônico do MDA (quando disponível)"
+      "desagregacao": "A definir quando o novo sistema estiver disponível — deve contemplar, no mínimo, desagregação por tipo de matéria-prima e por região, dado que a leitura estratégica do indicador depende dessa composição (ver nota em limitações)",
+      "causas_desvio": "Não se aplica — indicador de caracterização, sem meta ou direção de valor que permita configurar desvio (ver campos de polaridade e meta).",
+      "impacto_desvio": "Não se aplica — indicador de caracterização, sem meta ou direção de valor que permita configurar desvio (ver campos de polaridade e meta).",
+      "limitacoes": "Depende da disponibilização do novo sistema informatizado do SBS, com funcionalidade específica para registrar o volume de matérias-primas utilizadas e a respectiva projeção de biodiesel produzido. Enquanto o sistema não estiver disponível, não haverá apuração.\n\nEste indicador, isoladamente, mede apenas o volume agregado de biodiesel produzido com matéria-prima da agricultura familiar, sem distinguir a composição dessa matéria-prima por tipo. O valor estratégico frequentemente associado a esse tipo de indicador — sua contribuição para a resiliência da matriz energética — depende, segundo o Relatório Final do Subcomitê 2 (abril de 2025), da diversificação das fontes de matéria-prima, não do volume agregado: em 2023, cerca de 90% das aquisições da agricultura familiar que respaldaram o Selo vieram da soja, concentração que o próprio relatório associa a maior exposição a riscos econômicos, ambientais e sociais. Um percentual elevado neste indicador, sustentado majoritariamente por uma única matéria-prima, não indica, por si só, ganho de resiliência energética. A leitura estratégica completa deste indicador depende, portanto, de dado complementar sobre a composição da matéria-prima por tipo e região — hoje não disponível, condicionado ao mesmo novo sistema mencionado no parágrafo anterior.",
+      "forma_disponibilizacao": "Sítio eletrônico do MDA"
     },
     {
       "id": "ind_inclusao_regional",
@@ -109,7 +104,7 @@
           "grupo_id": "n2_ativ_execucao"
         }
       ],
-      "tipo_classificacao": "eficácia — indicador de distribuição regional (equidade territorial)",
+      "tipo_classificacao": "atividade — indicador de eficácia da distribuição regional (equidade territorial)",
       "descricao": "Monitora o cumprimento de percentuais mínimos de dispêndios efetivos para aquisições e fomento nas regiões Norte, Nordeste e no Semiárido, conforme estabelecido a partir da Resolução CNPE nº 3/2023, com o intuito de incrementar o fomento e as aquisições de matérias-primas e produtos da agricultura familiar para o PNPB.",
       "o_que_mostra": "O desempenho do SBS quanto à inclusão da agricultura familiar das regiões Norte, Nordeste e do Semiárido em relação à inclusão nacional, com o intuito de monitorar e buscar soluções para reduzir as diferenças regionais de inclusão da agricultura familiar na transição energética.",
       "formula_calculo": "SBS Inclusão Regional AF = Valor total dos dispêndios em aquisições, ATER e fomento à agricultura familiar no âmbito do SBS nas regiões Norte, Nordeste e Semiárido / Valor total dos dispêndios em aquisições, ATER e fomento à agricultura familiar no âmbito do SBS nacional",
@@ -117,8 +112,8 @@
       "fonte_dados": "Sistema informatizado de gestão do Selo Biocombustível Social, empresas detentoras do Selo e suas contratadas",
       "como_apurar": "a) Coletar os valores efetivos, em reais, dos dispêndios em aquisições, em serviços de ATER e em fomento realizados por todos os detentores de concessão do Selo nas regiões Norte, Nordeste e no Semiárido e somá-los. b) Coletar os valores efetivos nacionais equivalentes e somá-los. c) Dividir o valor consolidado de \"a\" pelo valor consolidado de \"b\" e multiplicar por 100.",
       "periodicidade_apuracao": "Anual",
-      "prazo_maximo_apuracao": "Até 28 de fevereiro do ano subsequente ao ano de referência",
-      "responsavel_apuracao": "Departamento de Inovação para a Produção Familiar e Transição Agroecológica (Art. 21 do Anexo I do Decreto 11.396/2023)",
+      "prazo_maximo_apuracao": "",
+      "responsavel_apuracao": "DMAITE/CGIAF/DINOV/SAF/MDA",
       "linha_base": "9,95% (2022)",
       "meta": "10% em 2024; 15% em 2025; 20% a partir de 2026",
       "polaridade": "Quanto maior, melhor",
@@ -127,7 +122,7 @@
       "causas_desvio": "Detentores da concessão do Selo realizarem dispêndios abaixo do esperado para inclusão efetiva da agricultura familiar nas regiões Norte, Nordeste e no Semiárido. Agricultura familiar não entregar quantidade contratada por motivo de comprovada frustração de safra.",
       "impacto_desvio": "Risco de manutenção das desigualdades regionais de participação da agricultura familiar no SBS, ou de redução dessas desigualdades aquém do pretendido.",
       "limitacoes": "Enquanto não for desenvolvido e disponibilizado o novo sistema, a coleta de dados inclui informações declaratórias e a apuração de resultados exige manuseio de dados por meio de documentos e planilhas eletrônicas.",
-      "forma_disponibilizacao": "Sítio eletrônico do Ministério do Desenvolvimento Agrário e Agricultura Familiar na internet"
+      "forma_disponibilizacao": "Sítio eletrônico do MDA"
     },
     {
       "id": "ind_recursos_af",
@@ -140,7 +135,7 @@
           "grupo_id": "n2_prod_execucao"
         }
       ],
-      "tipo_classificacao": "eficácia — indicador de volume de recursos transferidos",
+      "tipo_classificacao": "produto — indicador de volume de recursos transferidos",
       "descricao": "Monitoramento do volume de recursos aplicados na agricultura familiar pelos detentores do Selo Biocombustível Social, por meio de aquisições, serviços de ATER e fomento.",
       "o_que_mostra": "A evolução dos valores efetivos, em reais, aplicados na agricultura familiar pelos detentores do Selo Biocombustível Social.",
       "formula_calculo": "SBS Recursos aplicados AF = Valor total de recursos, em reais, aplicados na agricultura familiar pelos detentores do Selo Biocombustível Social, por meio de aquisições, serviços de ATER e fomento",
@@ -148,48 +143,48 @@
       "fonte_dados": "Sistema informatizado de gestão do Selo, ANP e empresas detentoras da concessão do Selo e pessoas jurídicas por elas contratadas",
       "como_apurar": "Receber os dados sobre os valores aplicados na agricultura familiar e consolidá-los. Os dados devem ser disponibilizados pelas empresas detentoras do Selo e por suas contratadas no âmbito do SBS, por meio de sistema informatizado.",
       "periodicidade_apuracao": "Anual",
-      "prazo_maximo_apuracao": "Até 28 de fevereiro do ano subsequente ao ano de referência",
-      "responsavel_apuracao": "Departamento de Inovação para a Produção Familiar e Transição Agroecológica (Art. 21 do Anexo I do Decreto 11.396/2023)",
+      "prazo_maximo_apuracao": "",
+      "responsavel_apuracao": "DMAITE/CGIAF/DINOV/SAF/MDA",
       "linha_base": "R$ 8.826.760.000,00 (2021)",
-      "meta": "Resultado igual ou superior ao Percentual Mínimo Efetivo Nacional estabelecido em Portaria",
+      "meta": "Resultado igual ou superior ao valor correspondente à meta do PMEN para o ano monitorado",
       "polaridade": "Quanto maior, melhor",
       "serie_historica": "2021: R$ 8.826.760.000,00 | 2022: R$ 5.954.062.633,29 | 2023: R$ 6.767.488.961,80 | 2024: R$ 6.591.474.410,94 | 2025: R$ 6.953.034.864,82",
       "desagregacao": "Possível por UPB e por tipo de dispêndio (aquisições, ATER, fomento), quando as condições de coleta permitirem",
       "causas_desvio": "Detentores da concessão do Selo aplicarem menos que o mínimo exigido para manutenção do SBS; redução da produção de biodiesel pelas beneficiárias do Selo com redução das aquisições; recursos aplicados em itens com incidência de multiplicadores; desistência ou cancelamento da concessão do Selo de empresa produtora de biodiesel.",
-      "impacto_desvio": "Menos renda e redução de oportunidades para agricultura familiar; inclusão insuficiente da agricultura familiar na transição energética.",
+      "impacto_desvio": "Menos recursos e redução de oportunidades para agricultura familiar; inclusão insuficiente da agricultura familiar na transição energética.",
       "limitacoes": "Enquanto não for desenvolvido e disponibilizado o novo sistema, a coleta de dados inclui alguns dados declaratórios, e a apuração de resultados exige manuseio de dados em documentos e planilhas eletrônicas.",
-      "forma_disponibilizacao": "Sítio eletrônico do Ministério do Desenvolvimento Agrário e Agricultura Familiar na internet"
+      "forma_disponibilizacao": "Sítio eletrônico do MDA"
     },
     {
       "id": "ind_receita_bruta_af",
-      "nome": "Receita bruta de venda anual do agricultor familiar oriunda do SBS",
+      "nome": "Valor médio anual de aquisições da agricultura familiar por agricultor incluído no SBS",
       "status_maturidade": "existente_monitorado",
       "vinculos": [
         {
           "nivel_id": "nivel2",
-          "bloco_id": "resultados",
-          "grupo_id": "n2_resultados_gerais"
+          "bloco_id": "atividades",
+          "grupo_id": "n2_ativ_execucao"
         }
       ],
-      "tipo_classificacao": "resultado — indicador de efetividade (impacto sobre a renda do agricultor familiar)",
-      "descricao": "Uma das exigências para que o produtor de biodiesel mantenha a concessão do Selo é a realização de aquisições de matérias-primas, insumos e outros produtos da agricultura familiar. Este indicador monitora a renda média bruta obtida pelo agricultor familiar por meio do fornecimento desses produtos a um produtor de biodiesel detentor do Selo.",
-      "o_que_mostra": "A contribuição do Selo Biocombustível Social para a renda bruta das famílias agricultoras que fornecem matérias-primas, insumos ou produtos para produtores de biodiesel detentores da concessão do Selo.",
-      "formula_calculo": "SBS Renda bruta AF = Somatório dos valores efetivos, em reais, recebidos pelos agricultores familiares em atividade no Selo em função da venda de matérias-primas, insumos ou produtos / Número total de agricultores familiares em atividade no SBS no período",
+      "tipo_classificacao": "produto — valor médio de aquisições por agricultor familiar incluído",
+      "descricao": "Uma das exigências para que o produtor de biodiesel mantenha a concessão do Selo é a realização de aquisições de matérias-primas, insumos e outros produtos da agricultura familiar. Este indicador monitora o valor médio dispendido pelo produtor de biodiesel por agricultor familiar fornecedor, por meio dessas aquisições.",
+      "o_que_mostra": "O valor médio que os produtores de biodiesel destinam, por agricultor familiar fornecedor, às aquisições de matérias-primas, insumos ou produtos no âmbito do SBS.",
+      "formula_calculo": "SBS Valor médio de aquisições por agricultor familiar = Somatório dos valores efetivos, em reais, dispendidos pelas UPBs detentoras do Selo em aquisições de matérias-primas, insumos ou produtos da agricultura familiar / Número total de agricultores familiares em atividade no SBS no período",
       "unidade_medida": "Reais (R$), média por agricultor familiar",
       "fonte_dados": "Sistema informatizado de gestão do Programa, empresas beneficiárias do Selo e suas contratadas, cooperativas, ANP",
       "como_apurar": "Receber dos produtores de biodiesel os dados (quantidades e valores) e comprovantes de aquisições da agricultura familiar, por meio de sistema informatizado, consolidá-los e aplicar a fórmula.",
       "periodicidade_apuracao": "Anual",
-      "prazo_maximo_apuracao": "Até 28 de fevereiro do ano subsequente ao ano de referência",
-      "responsavel_apuracao": "Departamento de Inovação para a Produção Familiar e Transição Agroecológica (Art. 21 do Anexo I do Decreto 11.396/2023)",
+      "prazo_maximo_apuracao": "",
+      "responsavel_apuracao": "DMAITE/CGIAF/DINOV/SAF/MDA",
       "linha_base": "R$ 109.568,51 (2022)",
       "meta": "2026: igual ou maior que o melhor resultado anual dos 3 anos civis anteriores (2023, 2024 e 2025); a partir de 2027: resultado igual ou superior ao do ano anterior corrigido pelo IPCA anual acumulado",
       "polaridade": "Quanto maior, melhor",
       "serie_historica": "2022: R$ 109.568,51 | 2023: R$ 107.161,40 | 2024: R$ 118.120,65 | 2025: R$ 162.695,92",
       "desagregacao": "Não desagregado nesta versão do indicador",
-      "causas_desvio": "a) Aumento da quantidade de agricultores familiares fornecedores sem o correspondente aumento no volume das aquisições — pode indicar ampliação do acesso a mais agricultores, porém com menor renda média. b) Manutenção da quantidade de agricultores ativos com diminuição do valor total destinado a aquisições, por queda do volume ou do preço das matérias-primas, insumos ou produtos adquiridos.",
-      "impacto_desvio": "Na hipótese \"a\", renda menor por agricultor, relativamente compensada pelo aumento do número de agricultores incluídos. Na hipótese \"b\", impacto negativo para os agricultores familiares, com perda de renda em relação ao esperado e, em algumas situações, eventual redução da quantidade de agricultores familiares incluídos — o cenário mais prejudicial para a agricultura familiar neste indicador.",
-      "limitacoes": "Impossibilidade de apurar quanto a renda bruta obtida pelo agricultor familiar no SBS representa em relação à renda bruta total da família, por indisponibilidade de informação oficial sobre a renda bruta familiar. Enquanto não for desenvolvido o novo sistema, os procedimentos dependem de alguns dados declaratórios das empresas, inseridos no SABIDO, e a apuração exige manuseio de dados em documentos e planilhas eletrônicas.",
-      "forma_disponibilizacao": "Sítio eletrônico do Ministério do Desenvolvimento Agrário e Agricultura Familiar na internet"
+      "causas_desvio": "a) Aumento da quantidade de agricultores familiares fornecedores sem o correspondente aumento no volume das aquisições — pode indicar ampliação do acesso a mais agricultores, porém com menor valor médio dispendido por agricultor. b) Manutenção da quantidade de agricultores ativos com diminuição do valor total destinado a aquisições, por queda do volume ou do preço das matérias-primas, insumos ou produtos adquiridos.",
+      "impacto_desvio": "Na hipótese \"a\", valor médio menor por agricultor, relativamente compensado pelo aumento do número de agricultores incluídos. Na hipótese \"b\", impacto negativo para os agricultores familiares, com valor dispendido abaixo do esperado e, em algumas situações, eventual redução da quantidade de agricultores familiares incluídos — o cenário mais prejudicial para a agricultura familiar neste indicador.",
+      "limitacoes": "Enquanto não for desenvolvido o novo sistema, os procedimentos dependem de alguns dados declaratórios das empresas, inseridos no SABIDO, e a apuração exige manuseio de dados em documentos e planilhas eletrônicas. O indicador reflete o valor dispendido pela UPB, não o valor efetivamente recebido pelo agricultor — quando há intermediação por cooperativa, agente promotor ou cerealista, pode haver diferença entre os dois.",
+      "forma_disponibilizacao": "Sítio eletrônico do MDA"
     },
     {
       "id": "ind_ater_af",
@@ -202,7 +197,7 @@
           "grupo_id": "n2_ativ_execucao"
         }
       ],
-      "tipo_classificacao": "eficácia — indicador de intensidade de assistência técnica",
+      "tipo_classificacao": "atividade — indicador de dispêndios na execução da ATER",
       "descricao": "Monitoramento do valor médio de recursos, em reais, por agricultor familiar incluído no Selo Biocombustível Social, aplicados para cumprir a exigência de prestar serviços de ATER às respectivas unidades familiares de produção agrária.",
       "o_que_mostra": "A evolução dos valores efetivos, em reais, aplicados pelos detentores do Selo Biocombustível Social para a prestação de serviços de ATER aos agricultores familiares incluídos.",
       "formula_calculo": "SBS ATER-AF = Valor total de recursos, em reais, aplicados na agricultura familiar pelos detentores do Selo para prestação de serviços de ATER aos agricultores familiares incluídos / Número de CPFs distintos de agricultores familiares incluídos",
@@ -210,17 +205,17 @@
       "fonte_dados": "Sistema informatizado de gestão do Selo, empresas detentoras da concessão do Selo e pessoas jurídicas por elas contratadas",
       "como_apurar": "Receber os dados sobre os valores aplicados em ATER para os agricultores familiares incluídos, tratá-los e consolidá-los. Os dados devem ser disponibilizados, por meio de sistema informatizado, pelas empresas detentoras do Selo e por suas contratadas para prestação de serviços de ATER no âmbito do SBS.",
       "periodicidade_apuracao": "Anual",
-      "prazo_maximo_apuracao": "Até 28 de fevereiro do ano subsequente ao ano de referência",
-      "responsavel_apuracao": "Departamento de Inovação para a Produção Familiar e Transição Agroecológica (Art. 21 do Anexo I do Decreto 11.396/2023)",
+      "prazo_maximo_apuracao": "",
+      "responsavel_apuracao": "DMAITE/CGIAF/DINOV/SAF/MDA",
       "linha_base": "R$ 1.288,35 por agricultor familiar incluído (2022)",
       "meta": "2026: igual ou maior que o melhor resultado anual dos 3 anos civis anteriores (2023, 2024 e 2025); a partir de 2027: resultado igual ou superior ao do ano anterior corrigido pelo IPCA anual acumulado",
       "polaridade": "Quanto maior, melhor",
       "serie_historica": "2022: R$ 70.009.140,70 / 54.340 = R$ 1.288,35 | 2023: R$ 75.722.178,53 / 62.445 = R$ 1.212,62 | 2024: R$ 76.255.168,93 / 55.137 = R$ 1.383,01 | 2025: R$ 133.315.634,08 / 41.887 = R$ 3.182,75 (valores por agricultor familiar incluído)",
       "desagregacao": "Não desagregado nesta versão do indicador",
-      "causas_desvio": "Disponibilização de profissionais em quantidade insuficiente para assegurar os serviços de ATER necessários. Inobservância da proporção adequada de famílias a serem atendidas por profissional de ATER, conforme indicado em regulamento do SBS.",
-      "impacto_desvio": "Serviços de ATER prestados de maneira inadequada ou insuficiente. Profissionais de ATER com excesso de famílias a atender, prejudicando a qualidade do atendimento.",
-      "limitacoes": "Enquanto não for desenvolvido o novo sistema, a coleta de dados inclui alguns dados declaratórios e a apuração exige manuseio de dados em documentos e planilhas eletrônicas. Este indicador não permite monitorar resultados qualitativos dos serviços de ATER prestados, por indisponibilidade de recursos tecnológicos que permitam coletar adequadamente os dados. Quando existirem tais condições, será necessário e possível criar indicador(es) específico(s) para essa finalidade.",
-      "forma_disponibilizacao": "Sítio eletrônico do Ministério do Desenvolvimento Agrário e Agricultura Familiar na internet"
+      "causas_desvio": "Estagnação ou redução do valor total investido em ATER pelas empresas detentoras do Selo, sem redução proporcional do número de agricultores atendidos. Expansão do número de agricultores incluídos sem ampliação proporcional do orçamento destinado a ATER.",
+      "impacto_desvio": "Redução do valor de assistência técnica disponível por agricultor, com risco de atendimento mais superficial ou insuficiente por unidade familiar.",
+      "limitacoes": "Enquanto não for desenvolvido o novo sistema, a coleta de dados inclui alguns dados declaratórios e a apuração exige manuseio de dados em documentos e planilhas eletrônicas. Este indicador não permite monitorar resultados qualitativos dos serviços de ATER prestados, por indisponibilidade de recursos tecnológicos que permitam coletar adequadamente os dados. Quando existirem tais condições, será necessário e possível criar indicador(es) específico(s) para essa finalidade. O indicador pode subir por motivos que não representam melhora na assistência prestada — concentração de recursos em um número menor de agricultores (redução da base de beneficiários), sem ampliação do benefício técnico direto. A leitura de \"quanto maior, melhor\" deve considerar a tendência do número de agricultores atendidos em paralelo.",
+      "forma_disponibilizacao": "Sítio eletrônico do MDA"
     }
   ]
 }
