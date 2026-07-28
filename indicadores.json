@@ -216,6 +216,68 @@
       "impacto_desvio": "Redução do valor de assistência técnica disponível por agricultor, com risco de atendimento mais superficial ou insuficiente por unidade familiar.",
       "limitacoes": "Enquanto não for desenvolvido o novo sistema, a coleta de dados inclui alguns dados declaratórios e a apuração exige manuseio de dados em documentos e planilhas eletrônicas. Este indicador não permite monitorar resultados qualitativos dos serviços de ATER prestados, por indisponibilidade de recursos tecnológicos que permitam coletar adequadamente os dados. Quando existirem tais condições, será necessário e possível criar indicador(es) específico(s) para essa finalidade. O indicador pode subir por motivos que não representam melhora na assistência prestada — concentração de recursos em um número menor de agricultores (redução da base de beneficiários), sem ampliação do benefício técnico direto. A leitura de \"quanto maior, melhor\" deve considerar a tendência do número de agricultores atendidos em paralelo.",
       "forma_disponibilizacao": "Sítio eletrônico do MDA"
+    },
+    {
+      "id": "ind_varf_sbs",
+      "nome": "VARF-SBS — Valor Anual da Renúncia Fiscal do Selo Biocombustível Social",
+      "status_maturidade": "exigido_pendente",
+      "vinculos": [
+        {
+          "nivel_id": "nivel1",
+          "bloco_id": "recursos",
+          "grupo_id": "n1_rec_fiscais"
+        }
+      ],
+      "tipo_classificacao": "recurso — indicador do valor de renúncia fiscal disponibilizada pelo Estado no âmbito do SBS",
+      "descricao": "Mede o valor total, em reais, da renúncia fiscal efetivamente apropriada pelas UPBs detentoras do Selo Biocombustível Social, em decorrência da aplicação de alíquota diferenciada sobre o volume de biodiesel atribuível à matéria-prima da agricultura familiar, apurado com base no valor declarado de aquisições.",
+      "o_que_mostra": "O montante de recursos que o Estado efetivamente disponibiliza à política do SBS por meio de renúncia fiscal — a base de cálculo para o Índice de Suficiência Fiscal (ISF).",
+      "formula_calculo": "VARF-SBS = [(Valor da matéria-prima da agricultura familiar adquirida / Valor total da matéria-prima adquirida, apurado por UPB) x Volume total de biodiesel produzido pela UPB] x Alíquota ad rem aplicável por m³ — somado para todas as UPBs detentoras do Selo.",
+      "unidade_medida": "Reais (R$)",
+      "fonte_dados": "Sistema informatizado de gestão do SBS (declaração de matéria-prima por faixa de isenção, por UPB); Secretaria Especial da Receita Federal do Brasil / Ministério da Fazenda (metodologia e alíquotas aplicáveis); ANP (volume de biodiesel produzido).",
+      "como_apurar": "Para cada UPB detentora do Selo: (1) calcular a proporção entre o valor da matéria-prima da agricultura familiar adquirida e o valor total de matéria-prima adquirida no período; (2) aplicar essa proporção ao volume total de biodiesel produzido pela UPB, para estimar o volume atribuível à matéria-prima da AF; (3) aplicar a alíquota ad rem vigente sobre esse volume, para obter o valor de renúncia fiscal por UPB. Somar os resultados de todas as UPBs para o valor nacional agregado — mantendo os dados por UPB e por faixa de isenção disponíveis para consulta desagregada.",
+      "periodicidade_apuracao": "Anual",
+      "prazo_maximo_apuracao": "",
+      "responsavel_apuracao": "DMAITE/CGIAF/DINOV/SAF/MDA",
+      "linha_base": "Não apurável nas condições atuais",
+      "meta": "Não se aplica — indicador de caracterização do recurso fiscal, sem meta de direção definida (ver campo de polaridade).",
+      "polaridade": "Não se aplica — indicador de caracterização, sem juízo de valor sobre a direção do resultado (mais ou menos renúncia fiscal não é, isoladamente, melhor ou pior; a suficiência é avaliada pelo ISF).",
+      "serie_historica": "Não apurável nas condições atuais. O Relatório Final do Subcomitê 2 (abril de 2025) apresenta série histórica de renúncia fiscal para 2013–2022, mas com metodologia distinta — baseada em estimativa de volume de matéria-prima convertido em biodiesel, não no valor declarado de aquisições usado nesta ficha —, não diretamente comparável.",
+      "desagregacao": "O indicador é apresentado de forma agregada nacionalmente, mas a gestão dos dados subjacentes deve permitir desagregação por UPB e por categoria/faixa de isenção (região, arranjo, tipo de matéria-prima), viabilizando auditoria e análise por empresa quando necessário.",
+      "causas_desvio": "Não se aplica — indicador de caracterização, sem meta ou direção de valor que permita configurar desvio (ver campos de polaridade e meta).",
+      "impacto_desvio": "Não se aplica — indicador de caracterização, sem meta ou direção de valor que permita configurar desvio (ver campos de polaridade e meta).",
+      "limitacoes": "A metodologia de cálculo apresentada é uma proposta técnica da CGIAF, ainda não confirmada pela Secretaria Especial da Receita Federal do Brasil ou pelo Ministério da Fazenda — é necessário verificar formalmente junto a esses órgãos se o cálculo da renúncia fiscal seguirá, de fato, a lógica de proporção por valor aqui descrita.\n\nO cálculo está referenciado ao regime tributário atual (redução diferenciada de PIS/Cofins, Decreto nº 10.527/2020, art. 6º). A partir da vigência do IVA (reforma tributária), a metodologia deverá ser revisada conforme o decreto que definir as faixas de isenção específicas do SBS no novo regime — ainda não publicado.\n\nA apuração depende da disponibilização do novo sistema informatizado do SBS, com funcionalidade específica para que as empresas declarem o enquadramento de cada nota fiscal na faixa de isenção correspondente. Enquanto o sistema não estiver disponível, não haverá apuração.",
+      "forma_disponibilizacao": "Sítio eletrônico do MDA"
+    },
+    {
+      "id": "ind_isf",
+      "nome": "ISF — Índice de Suficiência Fiscal",
+      "status_maturidade": "exigido_pendente",
+      "vinculos": [
+        {
+          "nivel_id": "nivel1",
+          "bloco_id": "produtos",
+          "grupo_id": "n1_prod_normatizacao"
+        }
+      ],
+      "tipo_classificacao": "produto — indicador de suficiência do instrumento fiscal regulatório",
+      "descricao": "Mede a relação entre o valor da renúncia fiscal efetivamente apropriada pelas UPBs detentoras do Selo Biocombustível Social (VARF-SBS) e o valor total de dispêndios em ATER, doações e fomento no mesmo período, com o objetivo de avaliar se o benefício fiscal concedido é suficiente para cobrir o custo social que a política exige das empresas.",
+      "o_que_mostra": "Se a renúncia fiscal concedida pelo Estado está em equilíbrio com o custo que o SBS exige das empresas em ATER, doações e fomento — funcionando como instrumento de calibragem do desenho regulatório: valores muito abaixo de 1 sinalizam renúncia insuficiente diante da obrigação; valores muito acima podem sinalizar renúncia superior ao necessário, sujeitos a estudo adicional.",
+      "formula_calculo": "ISF = VARF-SBS ÷ (Valor total de dispêndios em ATER + doações + fomento no período, por UPB, agregado nacionalmente)",
+      "unidade_medida": "Índice (razão adimensional; referência de equilíbrio = 1,0)",
+      "fonte_dados": "Ficha do indicador VARF-SBS (numerador); sistema informatizado de gestão do SBS — dados declarados de ATER, doações e fomento, por UPB (denominador).",
+      "como_apurar": "Obter o valor do VARF-SBS apurado no período. Somar os valores efetivos de ATER, doações e fomento declarados por todas as UPBs detentoras do Selo no mesmo período. Dividir o primeiro valor pelo segundo.",
+      "periodicidade_apuracao": "Anual",
+      "prazo_maximo_apuracao": "",
+      "responsavel_apuracao": "DMAITE/CGIAF/DINOV/SAF/MDA",
+      "linha_base": "Não apurável nas condições atuais (depende do VARF-SBS — ver ficha correspondente quanto à referência histórica aproximada do Relatório SC2).",
+      "meta": "Aproximadamente igual a 1, com a margem indicada em limitações. Valores muito abaixo ou muito acima do intervalo de equilíbrio indicam desvio, em qualquer direção.",
+      "polaridade": "Equilíbrio — o valor ideal é o mais próximo possível de 1 (considerada a margem indicada em limitações), não um valor máximo. Não há, até o momento, base de dados para avaliar se valores muito acima desse patamar seriam positivos ou negativos.",
+      "serie_historica": "Não apurável nas condições atuais.",
+      "desagregacao": "Possível por UPB, permitindo identificar empresas com desequilíbrio individual entre renúncia recebida e custo social exigido.",
+      "causas_desvio": "Desvio para baixo (ISF abaixo do equilíbrio): redução do valor ou volume de matéria-prima da agricultura familiar declarado, reduzindo o VARF-SBS; aumento dos dispêndios em ATER, doações ou fomento sem correspondente ajuste nas alíquotas ou faixas de isenção; desatualização do decreto que define as faixas de isenção, não acompanhando o crescimento do custo real da política.\n\nDesvio para cima (ISF acima do equilíbrio): redução dos dispêndios em ATER, doações ou fomento sem redução correspondente na renúncia fiscal concedida; alíquotas ou faixas de isenção desatualizadas, concedendo benefício superior ao custo social atualmente exigido pela política.",
+      "impacto_desvio": "Se para baixo: risco de repasse do custo não coberto ao preço do biodiesel comercializado, ou de redução do investimento das empresas em ATER, doações e fomento para compensar a insuficiência da renúncia.\n\nSe para cima: o Estado abre mão de arrecadação além do necessário para sustentar os objetivos da política, sem gerar benefício adicional proporcional à agricultura familiar — ineficiência fiscal a ser considerada em eventual recalibragem das alíquotas.",
+      "limitacoes": "O valor de referência (1) não inclui o custo administrativo do produtor de biodiesel — uma despesa real, mas hoje não auditável, e por isso fora do cálculo deste índice. Isso significa que um resultado igual a 1 pode, na prática, não representar cobertura completa. Um estudo anterior (Relatório Final do Subcomitê 2, 2013–2022) estimou esse custo administrativo entre 15% e 21% do valor de ATER e doações somados — margem que deve ser considerada, com cautela, na leitura do resultado. Essa margem poderá ser calculada ano a ano e acrescida percentualmente ao índice para a avaliação da meta quanto ao equilíbrio.",
+      "forma_disponibilizacao": "Sítio eletrônico do MDA"
     }
   ]
 }
