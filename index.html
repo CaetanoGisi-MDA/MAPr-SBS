@@ -132,6 +132,19 @@
   .teoria-leitura h5 { color: var(--azul-vivo); font-size: 0.94rem; margin: 0.9rem 0 0.4rem; }
   .teoria-leitura p { margin: 0 0 0.75rem; text-align: justify; }
   .teoria-vazia { color: var(--texto-secundario); font-style: italic; font-size: 0.85rem; }
+  .teoria-leitura ul { margin: 0 0 0.85rem 1.3rem; padding: 0; }
+  .teoria-leitura li { margin-bottom: 0.3rem; }
+  .teoria-leitura table { width: 100%; border-collapse: collapse; margin: 0 0 1rem; font-size: 0.82rem; }
+  .teoria-leitura th, .teoria-leitura td { border: 1px solid var(--borda); padding: 0.45rem 0.6rem; text-align: left; vertical-align: top; }
+  .teoria-leitura th { background: #eef3fb; color: var(--azul-escuro); font-weight: 700; }
+  .teoria-leitura tr:nth-child(even) td { background: #fafbfc; }
+
+  .sync-aviso {
+    display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; flex-wrap: wrap;
+    background: #fff8e8; border: 1px solid #f0d38a; border-radius: 8px; padding: 0.7rem 0.9rem; margin-bottom: 1rem;
+  }
+  .sync-aviso-texto { font-size: 0.82rem; color: #7a5b06; }
+  .sync-aviso-acoes { display: flex; gap: 0.5rem; flex-shrink: 0; }
 
   .overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.35); z-index: 50; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
   .overlay.aberto { opacity: 1; pointer-events: auto; }
@@ -186,6 +199,11 @@
     .imp-teoria p { font-size: 0.86rem; line-height: 1.6; margin-bottom: 0.7rem; text-align: justify; }
     .imp-teoria h4 { font-size: 0.95rem; color: #004580; margin: 1rem 0 0.4rem; }
     .imp-teoria h5 { font-size: 0.88rem; color: #1351b4; margin: 0.8rem 0 0.3rem; }
+    .imp-teoria ul { margin: 0 0 0.7rem 1.2rem; padding: 0; font-size: 0.82rem; }
+    .imp-teoria li { margin-bottom: 0.25rem; }
+    .imp-teoria table { width: 100%; border-collapse: collapse; margin: 0 0 0.9rem; font-size: 0.72rem; break-inside: avoid; }
+    .imp-teoria th, .imp-teoria td { border: 1px solid #dde2e9; padding: 0.3rem 0.45rem; text-align: left; vertical-align: top; }
+    .imp-teoria th { background: #eef3fb; color: #004580; font-weight: 700; }
     .imp-nivel-titulo { font-size: 0.95rem; font-weight: 700; color: #004580; margin: 1.2rem 0 0.2rem; break-after: avoid; }
     .imp-nivel-descricao { font-size: 0.78rem; color: #5f6368; margin-bottom: 0.6rem; }
     .imp-colunas { display: flex; gap: 0.5rem; align-items: flex-start; margin-bottom: 1.3rem; }
@@ -228,7 +246,8 @@
   <div class="topo-acoes">
     <button class="btn-ghost-topo" id="btnModoTeoria">📖 Teoria do Programa</button>
     <button class="btn-ghost-topo" id="btnModoEstrutura">🗺️ Mapa de Processos</button>
-    <button class="btn-ghost-topo" id="btnModoIndicadores">📊 Indicadores</button>
+    <button class="btn-ghost-topo" id="btnModoPlano">📅 Plano de M&amp;A</button>
+    <button class="btn-ghost-topo" id="btnModoIndicadores">📊 Matriz de Indicadores</button>
     <button class="btn-secundario" id="btnConfigGithub">⚙️ Conectar GitHub</button>
     <div class="export-combo">
       <select id="selExportFormato" title="Formato de exportação">
@@ -273,6 +292,29 @@
       </div>
       <textarea class="teoria-textarea" id="campoTeoriaTexto" placeholder="Escreva aqui a Teoria do Programa: o problema que justifica a intervenção, a hipótese de mudança, os mecanismos de transmissão e as premissas e pressupostos..." style="display:none"></textarea>
       <div class="teoria-leitura" id="teoriaLeitura"></div>
+    </div>
+  </div>
+
+  <div id="planoContainer" style="display:none">
+    <div class="teoria-card">
+      <div class="teoria-card-header">
+        <div>
+          <h3>Plano de Monitoramento e Avaliação</h3>
+          <p class="dica-topo">Texto livre, em Markdown simples (títulos com <code>##</code>/<code>###</code>, <code>**negrito**</code>, listas com <code>-</code> e tabelas no formato Markdown padrão). Aparece como seção própria na exportação, entre o Mapa de Processos e a Matriz de Indicadores.</p>
+        </div>
+        <button class="btn-secundario btn-pequeno" id="btnToggleEdicaoPlano" style="flex-shrink:0">✏️ Editar</button>
+      </div>
+
+      <div class="sync-aviso" id="syncAviso" style="display:none">
+        <div class="sync-aviso-texto">⚠️ <span id="syncAvisoTexto"></span></div>
+        <div class="sync-aviso-acoes">
+          <button class="btn-secundario btn-pequeno" id="btnCopiarMatriz">📋 Copiar tabela da Matriz</button>
+          <button class="btn-secundario btn-pequeno" id="btnConfirmarSincronia">✓ Confirmar sincronia</button>
+        </div>
+      </div>
+
+      <textarea class="teoria-textarea" id="campoPlanoTexto" placeholder="Escreva aqui o Plano de Monitoramento e Avaliação: objetivo, base normativa, distinção entre monitoramento e avaliação, matriz de indicadores, governança do ciclo, cronograma, uso dos resultados, riscos e premissas..." style="display:none"></textarea>
+      <div class="teoria-leitura" id="planoLeitura"></div>
     </div>
   </div>
 </div>
@@ -432,29 +474,39 @@ let estado = {
   modo: 'indicadores',
   estruturaEditando: false,
   teoriaEditando: false,
-  github: { owner: '', repo: '', branch: 'main', token: '', shaEstrutura: null, shaIndicadores: null },
+  github: { owner: '', repo: '', branch: 'main', token: '', shaEstrutura: null, shaIndicadores: null, shaDocumentos: null },
   ancoraAtual: null,
   indicadorEmEdicaoId: null,
   novoGrupoContexto: null,
   novoItemContexto: null,
   expandirTodos: false,
-  gruposExpandidos: new Set()
+  gruposExpandidos: new Set(),
+  documentos: null,
+  planoEditando: false
 };
+
+function documentosPadrao() {
+  return { teoria_do_programa: '', plano_monitoramento_avaliacao: '', plano_sincronizacao_matriz: { total_indicadores: 0, ids_indicadores: [] } };
+}
 
 async function carregarDadosLocais() {
   try {
-    const [respEstrutura, respIndicadores] = await Promise.all([fetch('./estrutura.json'), fetch('./indicadores.json')]);
+    const [respEstrutura, respIndicadores, respDocumentos] = await Promise.all([fetch('./estrutura.json'), fetch('./indicadores.json'), fetch('./documentos.json')]);
     estado.estrutura = await respEstrutura.json();
-    if (estado.estrutura.teoria_do_programa === undefined) estado.estrutura.teoria_do_programa = '';
     const dadosInd = await respIndicadores.json();
     estado.indicadores = dadosInd.indicadores || [];
+    estado.documentos = respDocumentos.ok ? await respDocumentos.json() : documentosPadrao();
+    if (!estado.documentos.plano_sincronizacao_matriz) estado.documentos.plano_sincronizacao_matriz = { total_indicadores: 0, ids_indicadores: [] };
     document.getElementById('tituloApp').textContent = estado.estrutura.politica || 'MAPr';
     document.getElementById('subtituloApp').textContent = '';
-    document.getElementById('campoTeoriaTexto').value = estado.estrutura.teoria_do_programa || '';
+    document.getElementById('campoTeoriaTexto').value = estado.documentos.teoria_do_programa || '';
+    document.getElementById('campoPlanoTexto').value = estado.documentos.plano_monitoramento_avaliacao || '';
     renderTeoriaLeitura();
+    renderPlanoLeitura();
+    verificarSincroniaPlano();
     renderTrilha();
   } catch (e) {
-    mostrarToast('Não foi possível carregar estrutura.json / indicadores.json. Se você abriu este arquivo por duplo-clique, rode um servidor local (veja o README).', 'erro');
+    mostrarToast('Não foi possível carregar estrutura.json / indicadores.json / documentos.json. Se você abriu este arquivo por duplo-clique, rode um servidor local (veja o README).', 'erro');
     console.error(e);
   }
 }
@@ -844,26 +896,58 @@ document.getElementById('btnToggleEdicaoEstrutura').addEventListener('click', ()
   renderTrilha();
 });
 
-function teoriaParaHtml(texto) {
-  if (!texto || !texto.trim()) return '<p class="teoria-vazia">Teoria do Programa ainda não preenchida. Clique em "Editar" para começar.</p>';
+function markdownLiteParaHtml(texto, mensagemVazia) {
+  if (!texto || !texto.trim()) return '<p class="teoria-vazia">' + mensagemVazia + '</p>';
   const linhas = texto.split('\n');
   let html = '';
   let paragrafoAtual = [];
+  let listaAtual = [];
+  let tabelaAtual = [];
+
+  const negritoInline = (s) => escapeHtml(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
   const fecharParagrafo = () => { if (paragrafoAtual.length) { html += '<p>' + paragrafoAtual.join(' ') + '</p>'; paragrafoAtual = []; } };
+  const fecharLista = () => { if (listaAtual.length) { html += '<ul>' + listaAtual.map(i => '<li>' + i + '</li>').join('') + '</ul>'; listaAtual = []; } };
+  const ehSeparadorTabela = (l) => /^\|?[\s:|-]+\|?$/.test(l) && l.indexOf('-') >= 0;
+  const fecharTabela = () => {
+    if (!tabelaAtual.length) return;
+    const linhasCols = tabelaAtual.map(l => l.replace(/^\||\|$/g, '').split('|').map(c => c.trim()));
+    const cabecalho = linhasCols[0];
+    const corpoFinal = [];
+    for (let i = 1; i < tabelaAtual.length; i++) {
+      if (ehSeparadorTabela(tabelaAtual[i])) continue;
+      corpoFinal.push(linhasCols[i]);
+    }
+    html += '<table><thead><tr>' + cabecalho.map(c => '<th>' + negritoInline(c) + '</th>').join('') + '</tr></thead><tbody>';
+    corpoFinal.forEach(linha => { html += '<tr>' + linha.map(c => '<td>' + negritoInline(c) + '</td>').join('') + '</tr>'; });
+    html += '</tbody></table>';
+    tabelaAtual = [];
+  };
+
   linhas.forEach(linha => {
     const l = linha.trim();
-    if (l === '' || l === '---') { fecharParagrafo(); return; }
-    if (l.indexOf('### ') === 0) { fecharParagrafo(); html += '<h5>' + escapeHtml(l.slice(4)) + '</h5>'; return; }
-    if (l.indexOf('## ') === 0) { fecharParagrafo(); html += '<h4>' + escapeHtml(l.slice(3)) + '</h4>'; return; }
-    if (l.indexOf('# ') === 0) { fecharParagrafo(); html += '<h4>' + escapeHtml(l.slice(2)) + '</h4>'; return; }
-    paragrafoAtual.push(escapeHtml(l).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'));
+    if (l.indexOf('|') === 0 || (l.indexOf('|') > 0 && tabelaAtual.length > 0)) {
+      fecharParagrafo(); fecharLista();
+      tabelaAtual.push(l);
+      return;
+    }
+    if (tabelaAtual.length) fecharTabela();
+
+    if (l === '' || l === '---') { fecharParagrafo(); fecharLista(); return; }
+    if (l.indexOf('### ') === 0) { fecharParagrafo(); fecharLista(); html += '<h5>' + escapeHtml(l.slice(4)) + '</h5>'; return; }
+    if (l.indexOf('## ') === 0) { fecharParagrafo(); fecharLista(); html += '<h4>' + escapeHtml(l.slice(3)) + '</h4>'; return; }
+    if (l.indexOf('# ') === 0) { fecharParagrafo(); fecharLista(); html += '<h4>' + escapeHtml(l.slice(2)) + '</h4>'; return; }
+    if (l.indexOf('- ') === 0) { fecharParagrafo(); listaAtual.push(negritoInline(l.slice(2))); return; }
+    fecharLista();
+    paragrafoAtual.push(negritoInline(l));
   });
-  fecharParagrafo();
+  fecharTabela(); fecharParagrafo(); fecharLista();
   return html;
 }
-function teoriaParaMd(texto) { return texto && texto.trim() ? texto.trim() : '_Teoria do Programa ainda não preenchida._'; }
+function textoParaMd(texto, mensagemVazia) { return texto && texto.trim() ? texto.trim() : mensagemVazia; }
 
-function renderTeoriaLeitura() { document.getElementById('teoriaLeitura').innerHTML = teoriaParaHtml(estado.estrutura.teoria_do_programa); }
+function renderTeoriaLeitura() { document.getElementById('teoriaLeitura').innerHTML = markdownLiteParaHtml(estado.documentos.teoria_do_programa, 'Teoria do Programa ainda não preenchida. Clique em "Editar" para começar.'); }
+function renderPlanoLeitura() { document.getElementById('planoLeitura').innerHTML = markdownLiteParaHtml(estado.documentos.plano_monitoramento_avaliacao, 'Plano de Monitoramento e Avaliação ainda não preenchido. Clique em "Editar" para começar.'); }
 
 document.getElementById('btnToggleEdicaoTeoria').addEventListener('click', () => {
   estado.teoriaEditando = !estado.teoriaEditando;
@@ -881,20 +965,111 @@ document.getElementById('btnToggleEdicaoTeoria').addEventListener('click', () =>
     btn.textContent = '✏️ Editar';
   }
 });
-document.getElementById('campoTeoriaTexto').addEventListener('input', (e) => { estado.estrutura.teoria_do_programa = e.target.value; marcarSujoParaSalvar(); });
+document.getElementById('campoTeoriaTexto').addEventListener('input', (e) => { estado.documentos.teoria_do_programa = e.target.value; marcarSujoParaSalvar(); });
+
+document.getElementById('btnToggleEdicaoPlano').addEventListener('click', () => {
+  estado.planoEditando = !estado.planoEditando;
+  const textarea = document.getElementById('campoPlanoTexto');
+  const leitura = document.getElementById('planoLeitura');
+  const btn = document.getElementById('btnToggleEdicaoPlano');
+  if (estado.planoEditando) {
+    textarea.style.display = 'block';
+    leitura.style.display = 'none';
+    btn.textContent = '✅ Concluir edição';
+  } else {
+    renderPlanoLeitura();
+    textarea.style.display = 'none';
+    leitura.style.display = 'block';
+    btn.textContent = '✏️ Editar';
+  }
+});
+document.getElementById('campoPlanoTexto').addEventListener('input', (e) => { estado.documentos.plano_monitoramento_avaliacao = e.target.value; marcarSujoParaSalvar(); });
+
+/* =====================================================================
+   SINCRONIA ENTRE A MATRIZ DE INDICADORES E O TEXTO DO PLANO
+===================================================================== */
+function retratoAtualIndicadores() {
+  return { total_indicadores: estado.indicadores.length, ids_indicadores: estado.indicadores.map(i => i.id).sort() };
+}
+function retratosIguais(a, b) {
+  if (!a || !b) return false;
+  if (a.total_indicadores !== b.total_indicadores) return false;
+  const idsA = (a.ids_indicadores || []).slice().sort();
+  const idsB = (b.ids_indicadores || []).slice().sort();
+  return JSON.stringify(idsA) === JSON.stringify(idsB);
+}
+function verificarSincroniaPlano() {
+  if (!estado.documentos) return;
+  const atual = retratoAtualIndicadores();
+  const salvo = estado.documentos.plano_sincronizacao_matriz || { total_indicadores: 0, ids_indicadores: [] };
+  const aviso = document.getElementById('syncAviso');
+  if (!retratosIguais(atual, salvo)) {
+    document.getElementById('syncAvisoTexto').textContent =
+      'Os indicadores mudaram desde a última confirmação de sincronia (registrado: ' + salvo.total_indicadores + ' indicador(es); atual: ' + atual.total_indicadores + '). Revise as menções à matriz no texto do Plano.';
+    aviso.style.display = 'flex';
+  } else {
+    aviso.style.display = 'none';
+  }
+}
+
+function descreverVinculo(v) {
+  const nivel = estado.estrutura.niveis.find(n => n.id === v.nivel_id);
+  const blocoNome = (BLOCOS_CANONICOS.find(b => b.id === v.bloco_id) || {}).nome || v.bloco_id;
+  const totalNiveis = estado.estrutura.niveis.length;
+  const idxNivel = estado.estrutura.niveis.indexOf(nivel);
+  const nivelTexto = totalNiveis > 1 ? 'Nível ' + (idxNivel + 1) : (nivel ? nivel.nome : v.nivel_id);
+  let grupoTexto = '';
+  if (v.grupo_id && nivel) {
+    const grupo = (nivel.grupos_por_bloco[v.bloco_id] || []).find(g => g.id === v.grupo_id);
+    if (grupo) grupoTexto = ', ' + grupo.nome.charAt(0).toLowerCase() + grupo.nome.slice(1);
+  }
+  return nivelTexto + ', ' + blocoNome + grupoTexto;
+}
+
+function gerarTabelaMatrizMd() {
+  const codigos = gerarCodigosIndicadores();
+  let md = '| Indicador | Vínculo no mapa de processos | Status |\n|---|---|---|\n';
+  Array.from(codigos.entries()).sort((a, b) => a[1].localeCompare(b[1])).forEach(([id, codigo]) => {
+    const ind = estado.indicadores.find(i => i.id === id);
+    const vinculosTexto = ind.vinculos.map(descreverVinculo).join(' + ');
+    md += '| ' + codigo + ' — ' + ind.nome + ' | ' + vinculosTexto + ' | ' + STATUS_INFO[ind.status_maturidade].label + ' |\n';
+  });
+  return md;
+}
+
+document.getElementById('btnCopiarMatriz').addEventListener('click', async () => {
+  const tabela = gerarTabelaMatrizMd();
+  try {
+    await navigator.clipboard.writeText(tabela);
+    mostrarToast('Tabela copiada — cole onde preferir no texto do Plano.', 'ok');
+  } catch (e) {
+    mostrarToast('Não foi possível copiar automaticamente. Copie manualmente do console (F12).', 'erro');
+    console.log(tabela);
+  }
+});
+
+document.getElementById('btnConfirmarSincronia').addEventListener('click', () => {
+  estado.documentos.plano_sincronizacao_matriz = retratoAtualIndicadores();
+  marcarSujoParaSalvar();
+  verificarSincroniaPlano();
+  mostrarToast('Sincronia confirmada.', 'ok');
+});
 
 function atualizarBotoesModo() {
   document.getElementById('btnModoIndicadores').classList.toggle('ativo', estado.modo === 'indicadores');
   document.getElementById('btnModoEstrutura').classList.toggle('ativo', estado.modo === 'estrutura');
   document.getElementById('btnModoTeoria').classList.toggle('ativo', estado.modo === 'teoria');
-  document.getElementById('trilhaContainer').style.display = estado.modo === 'teoria' ? 'none' : 'block';
+  document.getElementById('btnModoPlano').classList.toggle('ativo', estado.modo === 'plano');
+  document.getElementById('trilhaContainer').style.display = (estado.modo === 'teoria' || estado.modo === 'plano') ? 'none' : 'block';
   document.getElementById('teoriaContainer').style.display = estado.modo === 'teoria' ? 'block' : 'none';
+  document.getElementById('planoContainer').style.display = estado.modo === 'plano' ? 'block' : 'none';
   document.getElementById('legendaBarra').style.display = estado.modo === 'indicadores' ? 'flex' : 'none';
   document.getElementById('barraEstrutura').style.display = estado.modo === 'estrutura' ? 'flex' : 'none';
 }
 document.getElementById('btnModoIndicadores').addEventListener('click', () => { estado.modo = 'indicadores'; atualizarBotoesModo(); renderTrilha(); });
 document.getElementById('btnModoEstrutura').addEventListener('click', () => { estado.modo = 'estrutura'; atualizarBotoesModo(); renderTrilha(); });
 document.getElementById('btnModoTeoria').addEventListener('click', () => { estado.modo = 'teoria'; atualizarBotoesModo(); if (!estado.teoriaEditando) renderTeoriaLeitura(); });
+document.getElementById('btnModoPlano').addEventListener('click', () => { estado.modo = 'plano'; atualizarBotoesModo(); if (!estado.planoEditando) renderPlanoLeitura(); verificarSincroniaPlano(); });
 atualizarBotoesModo();
 
 function limparForm() {
@@ -1028,6 +1203,7 @@ document.getElementById('btnSalvarIndicador').addEventListener('click', () => {
   marcarSujoParaSalvar();
   fecharPainelIndicador();
   renderTrilha();
+  verificarSincroniaPlano();
   mostrarToast('Indicador salvo (em memória). Use "Salvar no GitHub" para persistir.', 'ok');
 });
 document.getElementById('btnExcluirIndicador').addEventListener('click', () => {
@@ -1039,6 +1215,7 @@ document.getElementById('btnExcluirIndicador').addEventListener('click', () => {
     marcarSujoParaSalvar();
     fecharPainelIndicador();
     renderTrilha();
+    verificarSincroniaPlano();
     mostrarToast('Indicador excluído.', 'ok');
   };
 });
@@ -1129,14 +1306,28 @@ async function carregarDadosDoGithub() {
   try {
     const [e, i] = await Promise.all([githubFetchArquivo('estrutura.json'), githubFetchArquivo('indicadores.json')]);
     estado.estrutura = e.conteudo;
-    if (estado.estrutura.teoria_do_programa === undefined) estado.estrutura.teoria_do_programa = '';
     estado.github.shaEstrutura = e.sha;
     estado.indicadores = i.conteudo.indicadores || [];
     estado.github.shaIndicadores = i.sha;
+
+    try {
+      const d = await githubFetchArquivo('documentos.json');
+      estado.documentos = d.conteudo;
+      estado.github.shaDocumentos = d.sha;
+    } catch (erroDoc) {
+      mostrarToast('documentos.json não encontrado no repositório — será criado ao salvar.', 'ok');
+      estado.documentos = documentosPadrao();
+      estado.github.shaDocumentos = null;
+    }
+    if (!estado.documentos.plano_sincronizacao_matriz) estado.documentos.plano_sincronizacao_matriz = { total_indicadores: 0, ids_indicadores: [] };
+
     salvamentoPendente = false;
     document.getElementById('tituloApp').textContent = estado.estrutura.politica || 'MAPr';
-    document.getElementById('campoTeoriaTexto').value = estado.estrutura.teoria_do_programa || '';
+    document.getElementById('campoTeoriaTexto').value = estado.documentos.teoria_do_programa || '';
+    document.getElementById('campoPlanoTexto').value = estado.documentos.plano_monitoramento_avaliacao || '';
     renderTeoriaLeitura();
+    renderPlanoLeitura();
+    verificarSincroniaPlano();
     renderTrilha();
     mostrarToast('Dados carregados do GitHub.', 'ok');
   } catch (e) { mostrarToast('Erro ao carregar do GitHub: ' + e.message, 'erro'); console.error(e); }
@@ -1158,6 +1349,7 @@ async function salvarNoGithub() {
     mostrarToast('Salvando no GitHub…', 'ok');
     estado.github.shaEstrutura = await githubSalvarArquivo('estrutura.json', estado.estrutura, estado.github.shaEstrutura);
     estado.github.shaIndicadores = await githubSalvarArquivo('indicadores.json', { indicadores: estado.indicadores }, estado.github.shaIndicadores);
+    estado.github.shaDocumentos = await githubSalvarArquivo('documentos.json', estado.documentos, estado.github.shaDocumentos);
     salvamentoPendente = false;
     atualizarStatusBar();
     mostrarToast('Salvo com sucesso no GitHub.', 'ok');
@@ -1168,7 +1360,7 @@ function montarAreaImpressao() {
   const area = document.getElementById('areaImpressao');
   let html = '';
   html += '<div class="imp-capa"><h1>' + escapeHtml(estado.estrutura.politica || '') + '</h1><div class="imp-metodologia">Metodologia: ' + escapeHtml(estado.estrutura.metodologia || '') + '</div></div>';
-  html += '<div class="imp-secao-titulo">Teoria do Programa</div><div class="imp-teoria">' + teoriaParaHtml(estado.estrutura.teoria_do_programa) + '</div>';
+  html += '<div class="imp-secao-titulo">Teoria do Programa</div><div class="imp-teoria">' + markdownLiteParaHtml(estado.documentos.teoria_do_programa, 'Teoria do Programa ainda não preenchida.') + '</div>';
   html += '<div class="imp-secao-titulo imp-nova-pagina">Mapa de Processos (MAPr)</div>';
   const totalNiveis = estado.estrutura.niveis.length;
   estado.estrutura.niveis.forEach((nivel, idx) => {
@@ -1190,8 +1382,10 @@ function montarAreaImpressao() {
     html += '</div>';
   });
 
+  html += '<div class="imp-secao-titulo imp-nova-pagina">Plano de Monitoramento e Avaliação</div><div class="imp-teoria">' + markdownLiteParaHtml(estado.documentos.plano_monitoramento_avaliacao, 'Plano de Monitoramento e Avaliação ainda não preenchido.') + '</div>';
+
   const codigos = gerarCodigosIndicadores();
-  html += '<div class="imp-secao-titulo imp-nova-pagina">Indicadores</div><div class="imp-nivel-titulo" style="margin-top:0">Índice por bloco</div>';
+  html += '<div class="imp-secao-titulo imp-nova-pagina">Matriz de Indicadores</div><div class="imp-nivel-titulo" style="margin-top:0">Índice por bloco</div>';
   estado.estrutura.niveis.forEach((nivel, idxN) => {
     BLOCOS_CANONICOS.forEach(blocoCanon => {
       if (!nivel.blocos_aplicaveis.includes(blocoCanon.id)) return;
@@ -1236,7 +1430,7 @@ function formatarFichaImpressao(ind, codigo) {
 
 function gerarMarkdown() {
   let md = '# ' + estado.estrutura.politica + '\n\n_Metodologia: ' + estado.estrutura.metodologia + '_\n\n---\n\n';
-  md += '## Teoria do Programa\n\n' + teoriaParaMd(estado.estrutura.teoria_do_programa) + '\n\n---\n\n';
+  md += '## Teoria do Programa\n\n' + textoParaMd(estado.documentos.teoria_do_programa, '_Teoria do Programa ainda não preenchida._') + '\n\n---\n\n';
   md += '## Mapa de Processos (MAPr)\n\n';
   const totalNiveis = estado.estrutura.niveis.length;
   estado.estrutura.niveis.forEach((nivel, idx) => {
@@ -1253,9 +1447,10 @@ function gerarMarkdown() {
     });
   });
   md += '---\n\n';
+  md += '## Plano de Monitoramento e Avaliação\n\n' + textoParaMd(estado.documentos.plano_monitoramento_avaliacao, '_Plano de Monitoramento e Avaliação ainda não preenchido._') + '\n\n---\n\n';
 
   const codigos = gerarCodigosIndicadores();
-  md += '## Indicadores\n\n### Índice por bloco\n\n';
+  md += '## Matriz de Indicadores\n\n### Índice por bloco\n\n';
   estado.estrutura.niveis.forEach((nivel, idxN) => {
     BLOCOS_CANONICOS.forEach(blocoCanon => {
       if (!nivel.blocos_aplicaveis.includes(blocoCanon.id)) return;

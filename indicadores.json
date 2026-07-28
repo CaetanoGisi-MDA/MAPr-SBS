@@ -131,11 +131,11 @@
       "vinculos": [
         {
           "nivel_id": "nivel2",
-          "bloco_id": "produtos",
-          "grupo_id": "n2_prod_execucao"
+          "bloco_id": "atividades",
+          "grupo_id": "n2_ativ_execucao"
         }
       ],
-      "tipo_classificacao": "produto — indicador de volume de recursos transferidos",
+      "tipo_classificacao": "atividade — indicador de volume de recursos transferidos",
       "descricao": "Monitoramento do volume de recursos aplicados na agricultura familiar pelos detentores do Selo Biocombustível Social, por meio de aquisições, serviços de ATER e fomento.",
       "o_que_mostra": "A evolução dos valores efetivos, em reais, aplicados na agricultura familiar pelos detentores do Selo Biocombustível Social.",
       "formula_calculo": "SBS Recursos aplicados AF = Valor total de recursos, em reais, aplicados na agricultura familiar pelos detentores do Selo Biocombustível Social, por meio de aquisições, serviços de ATER e fomento",
@@ -166,7 +166,7 @@
           "grupo_id": "n2_ativ_execucao"
         }
       ],
-      "tipo_classificacao": "produto — valor médio de aquisições por agricultor familiar incluído",
+      "tipo_classificacao": "atividade — valor médio de aquisições por agricultor familiar incluído",
       "descricao": "Uma das exigências para que o produtor de biodiesel mantenha a concessão do Selo é a realização de aquisições de matérias-primas, insumos e outros produtos da agricultura familiar. Este indicador monitora o valor médio dispendido pelo produtor de biodiesel por agricultor familiar fornecedor, por meio dessas aquisições.",
       "o_que_mostra": "O valor médio que os produtores de biodiesel destinam, por agricultor familiar fornecedor, às aquisições de matérias-primas, insumos ou produtos no âmbito do SBS.",
       "formula_calculo": "SBS Valor médio de aquisições por agricultor familiar = Somatório dos valores efetivos, em reais, dispendidos pelas UPBs detentoras do Selo em aquisições de matérias-primas, insumos ou produtos da agricultura familiar / Número total de agricultores familiares em atividade no SBS no período",
