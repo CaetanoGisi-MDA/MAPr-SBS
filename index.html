@@ -63,12 +63,14 @@
 
   .container { max-width: 1180px; margin: 0 auto; padding: 1.5rem 1.75rem 4rem; }
 
-  .legenda { display: flex; gap: 1.1rem; flex-wrap: wrap; background: white; border: 1px solid var(--borda); border-radius: var(--radius); padding: 0.7rem 1rem; margin-bottom: 1.3rem; font-size: 0.78rem; color: var(--texto-secundario); align-items: center; }
+  .legenda { display: flex; gap: 1.1rem; flex-wrap: wrap; justify-content: space-between; background: white; border: 1px solid var(--borda); border-radius: var(--radius); padding: 0.7rem 1rem; margin-bottom: 1.3rem; font-size: 0.78rem; color: var(--texto-secundario); align-items: center; }
+  .legenda-itens-wrap { display: flex; gap: 1.1rem; flex-wrap: wrap; align-items: center; }
+  .legenda-acoes { display: flex; gap: 0.5rem; flex-shrink: 0; }
   .legenda strong { color: var(--texto-principal); font-size: 0.78rem; }
   .legenda-item { display: flex; align-items: center; gap: 0.4rem; }
   .marcador-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; box-shadow: inset 0 0 0 1.5px rgba(0,0,0,0.08); }
 
-  .barra-modo-secundaria { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; flex-wrap: wrap; }
+
 
   .nivel-bloco-wrap { margin-bottom: 1rem; border: 1px dashed transparent; }
   .nivel-titulo-linha { display: flex; align-items: center; gap: 0.5rem; margin: 1.6rem 0 0.6rem; }
@@ -245,9 +247,8 @@
   </div>
   <div class="topo-acoes">
     <button class="btn-ghost-topo" id="btnModoTeoria">📖 Teoria do Programa</button>
-    <button class="btn-ghost-topo" id="btnModoEstrutura">🗺️ Mapa de Processos</button>
+    <button class="btn-ghost-topo" id="btnModoEstrutura">🗺️ MAPr e Indicadores</button>
     <button class="btn-ghost-topo" id="btnModoPlano">📅 Plano de M&amp;A</button>
-    <button class="btn-ghost-topo" id="btnModoIndicadores">📊 Matriz de Indicadores</button>
     <button class="btn-secundario" id="btnConfigGithub">⚙️ Conectar GitHub</button>
     <div class="export-combo">
       <select id="selExportFormato" title="Formato de exportação">
@@ -266,17 +267,17 @@
 
 <div class="container">
   <div class="legenda" id="legendaBarra">
-    <strong>Legenda dos marcadores:</strong>
-    <span class="legenda-item"><span class="marcador-dot" style="background:#9ca3af"></span> Sem indicador</span>
-    <span class="legenda-item"><span class="marcador-dot" style="background:#168821"></span> Existente e monitorado</span>
-    <span class="legenda-item"><span class="marcador-dot" style="background:#b5790a"></span> Exigido por norma, pendente</span>
-    <span class="legenda-item"><span class="marcador-dot" style="background:#7d4f9e"></span> Aspiracional — a criar</span>
-    <button class="btn-secundario btn-pequeno" id="btnExpandirTudo" style="margin-left:auto">Expandir tudo</button>
-  </div>
-
-  <div class="barra-modo-secundaria" id="barraEstrutura" style="display:none">
-    <button class="btn-secundario btn-pequeno" id="btnToggleEdicaoEstrutura">✏️ Editar MAPr</button>
-    <button class="btn-secundario btn-pequeno" id="btnExpandirTudoEstrutura">Expandir tudo</button>
+    <span id="legendaItens" class="legenda-itens-wrap">
+      <strong>Legenda dos marcadores:</strong>
+      <span class="legenda-item"><span class="marcador-dot" style="background:#9ca3af"></span> Sem indicador</span>
+      <span class="legenda-item"><span class="marcador-dot" style="background:#168821"></span> Existente e monitorado</span>
+      <span class="legenda-item"><span class="marcador-dot" style="background:#b5790a"></span> Exigido por norma, pendente</span>
+      <span class="legenda-item"><span class="marcador-dot" style="background:#7d4f9e"></span> Aspiracional — a criar</span>
+    </span>
+    <div class="legenda-acoes">
+      <button class="btn-secundario btn-pequeno" id="btnExpandirTudo">Expandir tudo</button>
+      <button class="btn-secundario btn-pequeno" id="btnToggleEdicaoEstrutura">✏️ Editar MAPr</button>
+    </div>
   </div>
 
   <div id="trilhaContainer"></div>
@@ -569,7 +570,7 @@ function renderTrilha() {
   container.innerHTML = '';
 
   const modoEdicaoEstrutura = estado.modo === 'estrutura' && estado.estruturaEditando;
-  const mostrarMarcadores = estado.modo === 'indicadores';
+  const mostrarMarcadores = estado.modo === 'estrutura' && !estado.estruturaEditando;
   const totalNiveis = estado.estrutura.niveis.length;
 
   estado.estrutura.niveis.forEach((nivel, idx) => {
@@ -767,11 +768,9 @@ function aplicarExpandirTudo(ligar) {
     estado.gruposExpandidos.clear();
   }
   document.getElementById('btnExpandirTudo').textContent = ligar ? 'Recolher tudo' : 'Expandir tudo';
-  document.getElementById('btnExpandirTudoEstrutura').textContent = ligar ? 'Recolher tudo' : 'Expandir tudo';
   renderTrilha();
 }
 document.getElementById('btnExpandirTudo').addEventListener('click', () => aplicarExpandirTudo(!estado.expandirTodos));
-document.getElementById('btnExpandirTudoEstrutura').addEventListener('click', () => aplicarExpandirTudo(!estado.expandirTodos));
 
 function toggleBlocoAplicavel(nivelId, blocoId, aplicavel) {
   const nivel = estado.estrutura.niveis.find(n => n.id === nivelId);
@@ -1056,17 +1055,16 @@ document.getElementById('btnConfirmarSincronia').addEventListener('click', () =>
 });
 
 function atualizarBotoesModo() {
-  document.getElementById('btnModoIndicadores').classList.toggle('ativo', estado.modo === 'indicadores');
   document.getElementById('btnModoEstrutura').classList.toggle('ativo', estado.modo === 'estrutura');
   document.getElementById('btnModoTeoria').classList.toggle('ativo', estado.modo === 'teoria');
   document.getElementById('btnModoPlano').classList.toggle('ativo', estado.modo === 'plano');
   document.getElementById('trilhaContainer').style.display = (estado.modo === 'teoria' || estado.modo === 'plano') ? 'none' : 'block';
   document.getElementById('teoriaContainer').style.display = estado.modo === 'teoria' ? 'block' : 'none';
   document.getElementById('planoContainer').style.display = estado.modo === 'plano' ? 'block' : 'none';
-  document.getElementById('legendaBarra').style.display = estado.modo === 'indicadores' ? 'flex' : 'none';
-  document.getElementById('barraEstrutura').style.display = estado.modo === 'estrutura' ? 'flex' : 'none';
+  document.getElementById('legendaBarra').style.display = estado.modo === 'estrutura' ? 'flex' : 'none';
+  document.getElementById('legendaItens').style.display = (estado.modo === 'estrutura' && !estado.estruturaEditando) ? 'flex' : 'none';
+  document.getElementById('btnExpandirTudo').style.display = (estado.modo === 'estrutura' && !estado.estruturaEditando) ? 'inline-block' : 'none';
 }
-document.getElementById('btnModoIndicadores').addEventListener('click', () => { estado.modo = 'indicadores'; atualizarBotoesModo(); renderTrilha(); });
 document.getElementById('btnModoEstrutura').addEventListener('click', () => { estado.modo = 'estrutura'; atualizarBotoesModo(); renderTrilha(); });
 document.getElementById('btnModoTeoria').addEventListener('click', () => { estado.modo = 'teoria'; atualizarBotoesModo(); if (!estado.teoriaEditando) renderTeoriaLeitura(); });
 document.getElementById('btnModoPlano').addEventListener('click', () => { estado.modo = 'plano'; atualizarBotoesModo(); if (!estado.planoEditando) renderPlanoLeitura(); verificarSincroniaPlano(); });
