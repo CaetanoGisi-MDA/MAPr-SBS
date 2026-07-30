@@ -32,6 +32,8 @@
     flex-wrap: wrap; gap: 0.75rem; box-shadow: var(--sombra); position: sticky; top: 0; z-index: 40;
   }
   header.topo .titulo-area h1 { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.2px; }
+  .titulo-clicavel { cursor: pointer; display: inline-block; border-bottom: 1px dashed transparent; transition: border-color 0.15s ease; }
+  .titulo-clicavel:hover { border-bottom-color: rgba(255,255,255,0.6); }
   header.topo .titulo-area .subtitulo { font-size: 0.78rem; opacity: 0.85; margin-top: 2px; }
   .topo-acoes { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 
@@ -176,6 +178,7 @@
 
   .modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.45); display: flex; align-items: center; justify-content: center; z-index: 60; padding: 1rem; }
   .modal-caixa { background: white; border-radius: var(--radius); max-width: 460px; width: 100%; padding: 1.4rem; box-shadow: 0 10px 40px rgba(0,0,0,0.25); }
+  .modal-caixa-larga { max-width: 560px; }
   .modal-caixa h3 { margin-bottom: 0.7rem; color: var(--azul-escuro); }
   .modal-caixa p { font-size: 0.85rem; color: var(--texto-secundario); margin-bottom: 0.9rem; }
   .modal-acoes { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1rem; }
@@ -192,9 +195,18 @@
     body * { visibility: hidden; }
     .area-impressao, .area-impressao * { visibility: visible; }
     .area-impressao { display: block !important; position: absolute; top: 0; left: 0; width: 100%; padding: 0; }
-    .imp-capa { margin-bottom: 1.6rem; }
-    .imp-capa h1 { font-size: 1.5rem; color: #004580; margin-bottom: 0.2rem; }
-    .imp-capa .imp-metodologia { font-size: 0.85rem; color: #5f6368; }
+    .imp-capa { min-height: 96vh; display: flex; flex-direction: column; justify-content: space-between; break-after: page; page-break-after: always; }
+    .imp-capa-cabecalho { white-space: pre-line; font-size: 0.8rem; color: #5f6368; line-height: 1.6; }
+    .imp-capa-central { text-align: center; margin: auto 0; }
+    .imp-capa-central h1 { font-size: 2.1rem; color: #004580; margin-bottom: 0.7rem; }
+    .imp-capa-subtitulo { font-style: italic; font-size: 1.05rem; color: #5f6368; }
+    .imp-capa-rodape { text-align: center; font-size: 0.82rem; color: #5f6368; }
+
+    .imp-indice-pagina { min-height: 96vh; break-after: page; page-break-after: always; }
+    .imp-indice-titulo { font-size: 1.3rem; font-weight: 700; color: #004580; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #004580; padding-bottom: 0.4rem; margin-bottom: 1.2rem; }
+    .imp-indice-lista { font-size: 0.95rem; line-height: 2.1; padding-left: 1.3rem; }
+    .imp-indice-lista a { color: #1c1c1c; text-decoration: none; }
+    .imp-indice-lista ol { font-size: 0.85rem; line-height: 1.8; margin: 0.2rem 0 0.4rem; }
     .imp-secao-titulo { font-size: 1.05rem; color: #004580; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #004580; padding-bottom: 0.3rem; margin: 1.8rem 0 0.9rem; break-after: avoid; }
     .imp-secao-titulo:first-of-type { margin-top: 0; }
     .imp-secao-titulo.imp-nova-pagina { break-before: page; page-break-before: always; margin-top: 0; }
@@ -242,7 +254,7 @@
 
 <header class="topo">
   <div class="titulo-area">
-    <h1 id="tituloApp">MAPr — Mapa de Processos e Indicadores</h1>
+    <h1 id="tituloApp" class="titulo-clicavel" title="Clique para editar a capa do documento">MAPr — Mapa de Processos e Indicadores</h1>
     <div class="subtitulo" id="subtituloApp">Carregando estrutura…</div>
   </div>
   <div class="topo-acoes">
@@ -448,6 +460,33 @@
   </div>
 </div>
 
+<div class="modal-overlay" id="modalCapa" style="display:none">
+  <div class="modal-caixa modal-caixa-larga">
+    <h3>Capa do documento</h3>
+    <p>Esses campos definem a capa gerada na exportação em PDF e Markdown, e o título mostrado no topo do app.</p>
+    <div class="campo">
+      <label>Cabeçalho <span class="dica">aparece no topo da capa — permite quebra de linha</span></label>
+      <textarea id="campoCapaCabecalho" rows="4"></textarea>
+    </div>
+    <div class="campo">
+      <label>Nome da Política <span class="dica">aparece no centro da capa e no título do app</span></label>
+      <input type="text" id="campoCapaNomePolitica">
+    </div>
+    <div class="campo">
+      <label>Subtítulo <span class="dica">aparece em itálico, logo abaixo do nome</span></label>
+      <input type="text" id="campoCapaSubtitulo">
+    </div>
+    <div class="campo">
+      <label>Data <span class="dica">preenchida automaticamente no momento da exportação — não é editável</span></label>
+      <input type="text" id="campoCapaData" disabled>
+    </div>
+    <div class="modal-acoes">
+      <button class="btn-secundario" id="btnCancelarCapa">Cancelar</button>
+      <button class="btn-primario" id="btnSalvarCapa">Salvar</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 <div id="areaImpressao" class="area-impressao"></div>
 
@@ -487,7 +526,7 @@ let estado = {
 };
 
 function documentosPadrao() {
-  return { teoria_do_programa: '', plano_monitoramento_avaliacao: '', plano_sincronizacao_matriz: { total_indicadores: 0, ids_indicadores: [] } };
+  return { teoria_do_programa: '', plano_monitoramento_avaliacao: '', plano_sincronizacao_matriz: { total_indicadores: 0, ids_indicadores: [] }, capa_cabecalho: '', capa_subtitulo: '' };
 }
 
 async function carregarDadosLocais() {
@@ -498,6 +537,8 @@ async function carregarDadosLocais() {
     estado.indicadores = dadosInd.indicadores || [];
     estado.documentos = respDocumentos.ok ? await respDocumentos.json() : documentosPadrao();
     if (!estado.documentos.plano_sincronizacao_matriz) estado.documentos.plano_sincronizacao_matriz = { total_indicadores: 0, ids_indicadores: [] };
+    if (estado.documentos.capa_cabecalho === undefined) estado.documentos.capa_cabecalho = '';
+    if (estado.documentos.capa_subtitulo === undefined) estado.documentos.capa_subtitulo = '';
     document.getElementById('tituloApp').textContent = estado.estrutura.politica || 'MAPr';
     document.getElementById('subtituloApp').textContent = '';
     document.getElementById('campoTeoriaTexto').value = estado.documentos.teoria_do_programa || '';
@@ -842,6 +883,34 @@ document.getElementById('btnSalvarNovoNivel').addEventListener('click', () => {
   document.getElementById('modalNovoNivel').style.display = 'none';
   renderTrilha();
   mostrarToast('Nível criado.', 'ok');
+});
+
+/* =====================================================================
+   CAPA DO DOCUMENTO
+===================================================================== */
+const MESES_PT = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+function calcularDataCapaTexto() {
+  const d = new Date();
+  const mes = MESES_PT[d.getMonth()];
+  return mes.charAt(0).toUpperCase() + mes.slice(1) + ' de ' + d.getFullYear();
+}
+
+document.getElementById('tituloApp').addEventListener('click', () => {
+  document.getElementById('campoCapaCabecalho').value = estado.documentos.capa_cabecalho || '';
+  document.getElementById('campoCapaNomePolitica').value = estado.estrutura.politica || '';
+  document.getElementById('campoCapaSubtitulo').value = estado.documentos.capa_subtitulo || '';
+  document.getElementById('campoCapaData').value = calcularDataCapaTexto();
+  document.getElementById('modalCapa').style.display = 'flex';
+});
+document.getElementById('btnCancelarCapa').addEventListener('click', () => { document.getElementById('modalCapa').style.display = 'none'; });
+document.getElementById('btnSalvarCapa').addEventListener('click', () => {
+  estado.documentos.capa_cabecalho = document.getElementById('campoCapaCabecalho').value;
+  estado.estrutura.politica = document.getElementById('campoCapaNomePolitica').value.trim();
+  estado.documentos.capa_subtitulo = document.getElementById('campoCapaSubtitulo').value.trim();
+  document.getElementById('tituloApp').textContent = estado.estrutura.politica || 'MAPr';
+  marcarSujoParaSalvar();
+  document.getElementById('modalCapa').style.display = 'none';
+  mostrarToast('Capa atualizada.', 'ok');
 });
 
 function confirmarExclusaoNivel(nivelId) {
@@ -1318,6 +1387,8 @@ async function carregarDadosDoGithub() {
       estado.github.shaDocumentos = null;
     }
     if (!estado.documentos.plano_sincronizacao_matriz) estado.documentos.plano_sincronizacao_matriz = { total_indicadores: 0, ids_indicadores: [] };
+    if (estado.documentos.capa_cabecalho === undefined) estado.documentos.capa_cabecalho = '';
+    if (estado.documentos.capa_subtitulo === undefined) estado.documentos.capa_subtitulo = '';
 
     salvamentoPendente = false;
     document.getElementById('tituloApp').textContent = estado.estrutura.politica || 'MAPr';
@@ -1357,9 +1428,28 @@ async function salvarNoGithub() {
 function montarAreaImpressao() {
   const area = document.getElementById('areaImpressao');
   let html = '';
-  html += '<div class="imp-capa"><h1>' + escapeHtml(estado.estrutura.politica || '') + '</h1><div class="imp-metodologia">Metodologia: ' + escapeHtml(estado.estrutura.metodologia || '') + '</div></div>';
-  html += '<div class="imp-secao-titulo">Teoria do Programa</div><div class="imp-teoria">' + markdownLiteParaHtml(estado.documentos.teoria_do_programa, 'Teoria do Programa ainda não preenchida.') + '</div>';
-  html += '<div class="imp-secao-titulo imp-nova-pagina">Mapa de Processos (MAPr)</div>';
+
+  const cabecalhoLinhas = (estado.documentos.capa_cabecalho || '').split('\n').map(l => escapeHtml(l)).join('<br>');
+  html += '<div class="imp-capa">';
+  html += '<div class="imp-capa-cabecalho">' + cabecalhoLinhas + '</div>';
+  html += '<div class="imp-capa-central"><h1>' + escapeHtml(estado.estrutura.politica || '') + '</h1>';
+  if (estado.documentos.capa_subtitulo) html += '<div class="imp-capa-subtitulo">' + escapeHtml(estado.documentos.capa_subtitulo) + '</div>';
+  html += '</div>';
+  html += '<div class="imp-capa-rodape">' + escapeHtml(calcularDataCapaTexto()) + '</div>';
+  html += '</div>';
+
+  html += '<div class="imp-indice-pagina">';
+  html += '<div class="imp-indice-titulo">Índice</div>';
+  html += '<ol class="imp-indice-lista">';
+  html += '<li><a href="#anc-teoria">Teoria do Programa</a></li>';
+  html += '<li><a href="#anc-mapa">Mapa de Processos (MAPr)</a></li>';
+  html += '<li><a href="#anc-plano">Plano de Monitoramento e Avaliação</a></li>';
+  html += '<li><a href="#anc-matriz">Matriz de Indicadores</a><ol type="a"><li><a href="#anc-matriz-indice">Índice por bloco</a></li><li><a href="#anc-matriz-fichas">Fichas completas</a></li></ol></li>';
+  html += '</ol>';
+  html += '</div>';
+
+  html += '<div class="imp-secao-titulo" id="anc-teoria">Teoria do Programa</div><div class="imp-teoria">' + markdownLiteParaHtml(estado.documentos.teoria_do_programa, 'Teoria do Programa ainda não preenchida.') + '</div>';
+  html += '<div class="imp-secao-titulo imp-nova-pagina" id="anc-mapa">Mapa de Processos (MAPr)</div>';
   const totalNiveis = estado.estrutura.niveis.length;
   estado.estrutura.niveis.forEach((nivel, idx) => {
     html += '<div class="imp-nivel-titulo">' + (totalNiveis > 1 ? 'Nível ' + (idx + 1) + ' — ' : '') + escapeHtml(nivel.nome) + '</div>';
@@ -1380,10 +1470,10 @@ function montarAreaImpressao() {
     html += '</div>';
   });
 
-  html += '<div class="imp-secao-titulo imp-nova-pagina">Plano de Monitoramento e Avaliação</div><div class="imp-teoria">' + markdownLiteParaHtml(estado.documentos.plano_monitoramento_avaliacao, 'Plano de Monitoramento e Avaliação ainda não preenchido.') + '</div>';
+  html += '<div class="imp-secao-titulo imp-nova-pagina" id="anc-plano">Plano de Monitoramento e Avaliação</div><div class="imp-teoria">' + markdownLiteParaHtml(estado.documentos.plano_monitoramento_avaliacao, 'Plano de Monitoramento e Avaliação ainda não preenchido.') + '</div>';
 
   const codigos = gerarCodigosIndicadores();
-  html += '<div class="imp-secao-titulo imp-nova-pagina">Matriz de Indicadores</div><div class="imp-nivel-titulo" style="margin-top:0">Índice por bloco</div>';
+  html += '<div class="imp-secao-titulo imp-nova-pagina" id="anc-matriz">Matriz de Indicadores</div><div class="imp-nivel-titulo" id="anc-matriz-indice" style="margin-top:0">Índice por bloco</div>';
   estado.estrutura.niveis.forEach((nivel, idxN) => {
     BLOCOS_CANONICOS.forEach(blocoCanon => {
       if (!nivel.blocos_aplicaveis.includes(blocoCanon.id)) return;
@@ -1397,7 +1487,7 @@ function montarAreaImpressao() {
     });
   });
 
-  html += '<div class="imp-nivel-titulo">Fichas completas</div>';
+  html += '<div class="imp-nivel-titulo" id="anc-matriz-fichas">Fichas completas</div>';
   const ordenados = Array.from(codigos.entries()).sort((a, b) => a[1].localeCompare(b[1]));
   ordenados.forEach(entry => { const ind = estado.indicadores.find(i => i.id === entry[0]); html += formatarFichaImpressao(ind, entry[1]); });
 
@@ -1426,8 +1516,27 @@ function formatarFichaImpressao(ind, codigo) {
     '</div>';
 }
 
+function slugMd(texto) {
+  return texto.toLowerCase().replace(/[()]/g, '').trim().replace(/\s+/g, '-');
+}
+
 function gerarMarkdown() {
-  let md = '# ' + estado.estrutura.politica + '\n\n_Metodologia: ' + estado.estrutura.metodologia + '_\n\n---\n\n';
+  let md = '';
+  if (estado.documentos.capa_cabecalho) {
+    md += estado.documentos.capa_cabecalho.split('\n').map(l => l).join('  \n') + '\n\n---\n\n';
+  }
+  md += '# ' + estado.estrutura.politica + '\n\n';
+  if (estado.documentos.capa_subtitulo) md += '_' + estado.documentos.capa_subtitulo + '_\n\n';
+  md += calcularDataCapaTexto() + '\n\n---\n\n';
+
+  md += '## Índice\n\n';
+  md += '1. [Teoria do Programa](#' + slugMd('Teoria do Programa') + ')\n';
+  md += '2. [Mapa de Processos (MAPr)](#' + slugMd('Mapa de Processos (MAPr)') + ')\n';
+  md += '3. [Plano de Monitoramento e Avaliação](#' + slugMd('Plano de Monitoramento e Avaliação') + ')\n';
+  md += '4. [Matriz de Indicadores](#' + slugMd('Matriz de Indicadores') + ')\n';
+  md += '   - [Índice por bloco](#' + slugMd('Índice por bloco') + ')\n';
+  md += '   - [Fichas completas](#' + slugMd('Fichas completas') + ')\n\n---\n\n';
+
   md += '## Teoria do Programa\n\n' + textoParaMd(estado.documentos.teoria_do_programa, '_Teoria do Programa ainda não preenchida._') + '\n\n---\n\n';
   md += '## Mapa de Processos (MAPr)\n\n';
   const totalNiveis = estado.estrutura.niveis.length;
@@ -1488,8 +1597,9 @@ function exportarMarkdown() {
   URL.revokeObjectURL(url);
 }
 function exportarPdf() {
+  mostrarToast('Antes de salvar: desmarque "Cabeçalhos e rodapés" na caixa de impressão do navegador (esse recurso do navegador insere data/hora/endereço automaticamente e não é controlado pelo app).', 'ok');
   montarAreaImpressao();
-  setTimeout(() => window.print(), 60);
+  setTimeout(() => window.print(), 250);
 }
 document.getElementById('btnExportar').addEventListener('click', () => {
   const formato = document.getElementById('selExportFormato').value;
