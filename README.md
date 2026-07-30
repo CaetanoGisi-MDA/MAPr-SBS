@@ -19,12 +19,11 @@ Este projeto nasceu para o Selo Biocombustível Social (SBS), mas o motor (`inde
 
 ## Funcionalidades do app
 
-O app tem quatro modos, alternáveis pelos botões do topo, na ordem em que aparecem:
+O app tem três abas, alternáveis pelos botões do topo, na ordem em que aparecem:
 
 - **📖 Teoria do Programa** — um campo de texto livre (Markdown simples). Por padrão mostra a versão formatada para leitura; clique em **"✏️ Editar"** para editar o texto bruto, e no mesmo botão para voltar à leitura formatada.
-- **🗺️ Mapa de Processos** — por padrão mostra a estrutura em modo leitura (mesmo visual de "Matriz de Indicadores", sem marcadores). Clique em **"✏️ Editar MAPr"** para tornar tudo editável: nomes de níveis, blocos aplicáveis por nível, grupos temáticos e itens. Um nível sozinho não é rotulado "Nível 1" — a numeração só aparece quando há dois ou mais níveis. Use **"+ Adicionar nível"** para criar novos níveis (todos os cinco blocos vêm aplicáveis por padrão; desmarque os que não se aplicam).
-- **📅 Plano de M&A** — outro campo de texto livre (Markdown simples, agora com suporte a **listas com marcadores** e **tabelas**, além de títulos e negrito), para o Plano de Monitoramento e Avaliação. Mesmo padrão de edição/leitura da Teoria. Descrito em detalhe na seção seguinte.
-- **📊 Matriz de Indicadores** — a trilha do MAPr com marcadores coloridos por status de maturidade. Clique num marcador para abrir a ficha do indicador na aba lateral. Use a seta ao lado de cada grupo para expandir/recolher seus itens, ou o botão "Expandir tudo" para abrir todos de uma vez.
+- **🗺️ MAPr e Indicadores** — uma única aba que reúne a estrutura do Mapa de Processos e o cadastro de indicadores. Por padrão, mostra a trilha em modo leitura, com os marcadores coloridos por status de maturidade — clique num marcador para abrir a ficha do indicador na aba lateral, ou use a seta ao lado de cada grupo (ou o botão "Expandir tudo") para ver os itens. Clique em **"✏️ Editar MAPr"** para trocar para o modo de edição da estrutura em si: nomes de níveis, blocos aplicáveis, grupos temáticos e itens — nesse modo os marcadores ficam ocultos, já que a edição de estrutura e a gestão de indicadores não acontecem ao mesmo tempo. Um nível sozinho não é rotulado "Nível 1" — a numeração só aparece quando há dois ou mais níveis. Use **"+ Adicionar nível"** para criar novos níveis. Só na **exportação** (PDF/Markdown) o Mapa de Processos e a Matriz de Indicadores voltam a ser duas seções distintas — ver "Exportações" abaixo.
+- **📅 Plano de M&A** — outro campo de texto livre (Markdown simples, com suporte a **listas com marcadores** e **tabelas**, além de títulos e negrito), para o Plano de Monitoramento e Avaliação. Mesmo padrão de edição/leitura da Teoria. Descrito em detalhe na seção seguinte.
 
 Cada indicador recebe automaticamente um identificador (**IN01**, **IN02**, ...) usado nas exportações e na tabela copiável do Plano, atribuído pela posição do indicador na estrutura do MAPr — não precisa ser preenchido manualmente.
 
@@ -37,12 +36,26 @@ Só que, como o texto é digitado à mão, ele pode ficar desatualizado se algum
 - **📋 Copiar tabela da Matriz** — gera uma tabela em Markdown (Indicador | Vínculo no mapa de processos | Status), já formatada exatamente como a Seção 4 original, e copia para a área de transferência. Cabe a quem estiver editando colar onde achar melhor no texto e ajustar a redação ao redor.
 - **✓ Confirmar sincronia** — atualiza o retrato para o estado atual dos indicadores e faz o aviso sumir, sem alterar o texto. Use depois de colar a tabela nova (ou depois de decidir, por julgamento próprio, que o texto atual já reflete a mudança).
 
+### A capa do documento
+
+Clique no **título do app** (canto superior esquerdo — o nome da política) para abrir a janela de edição da capa. Ela controla quatro coisas:
+
+- **Cabeçalho** — texto livre, com quebra de linha, que aparece no topo da capa. Vem pré-preenchido com a cadeia institucional (Ministério → Secretaria → Departamento → Coordenação), mas é totalmente editável.
+- **Nome da Política** — este é o **mesmo campo** que já existe (`estrutura.politica`): editar aqui também atualiza o título do app e a primeira linha do Markdown exportado. Não há duplicação de dado.
+- **Subtítulo** — aparece em itálico, logo abaixo do nome, no centro da capa.
+- **Data** — só exibida, não editável. Mês por extenso + ano (ex. "Julho de 2026"), calculada automaticamente sempre que a janela abre e de novo no momento real de cada exportação — nunca fica "congelada" num valor antigo.
+
 ### Exportações
 
 A exportação é feita por um **seletor único** no topo (PDF ou Markdown) seguido do botão **"Exportar"**.
 
-- **PDF**: a ordem é Teoria do Programa → Mapa de Processos (blocos como colunas horizontais lado a lado, com os grupos e itens completos abaixo de cada coluna) → Plano de Monitoramento e Avaliação (como seção própria, incluindo tabelas e listas do texto) → Matriz de Indicadores (índice por bloco com código, nome e descrição, depois a ficha completa de cada indicador, com marca de cor de maturidade). **Cada uma dessas quatro seções sempre começa numa página nova** — quebra de página forçada antes de cada uma —, não importa onde o conteúdo da seção anterior termine. Ao clicar em "Exportar" com PDF selecionado, abre a caixa de impressão do navegador — escolha "Salvar como PDF" no destino.
-- **Markdown**: segue a mesma ordem e separação em seções, com o texto do Plano inserido tal como está (já é Markdown válido, então entra sem conversão). Gera um arquivo `.md` e inicia o download automaticamente.
+- **PDF**: a primeira página é a **capa** (cabeçalho no topo, nome da política e subtítulo centralizados, data no rodapé), seguida de uma página de **índice** com links clicáveis para as quatro seções (e, dentro da Matriz de Indicadores, para o Índice por bloco e as Fichas completas). Depois vêm as quatro seções de conteúdo, na ordem Teoria do Programa → Mapa de Processos (blocos como colunas horizontais lado a lado, com os grupos e itens completos abaixo de cada coluna) → Plano de Monitoramento e Avaliação (como seção própria, incluindo tabelas e listas do texto) → Matriz de Indicadores (índice por bloco com código, nome e descrição, depois a ficha completa de cada indicador, com marca de cor de maturidade). **Capa, índice e cada uma das quatro seções sempre começam numa página nova** — quebra de página forçada antes de cada uma —, não importa onde o conteúdo anterior termine. As páginas de conteúdo não têm cabeçalho nem numeração repetidos — é conteúdo puro, sem nenhuma informação automática de data/hora.
+
+  Ao clicar em "Exportar" com PDF selecionado, abre a caixa de impressão do navegador — escolha "Salvar como PDF" no destino. **Importante:** desmarque a opção "Cabeçalhos e rodapés" (ou "Headers and footers") na própria caixa de impressão antes de salvar — é um recurso do navegador, fora do controle do app, que insere data/hora/endereço automaticamente em cada página se deixado ligado. Um aviso lembra disso na hora de exportar, mas vale saber de antemão.
+
+  Sobre números de página: um índice com números de página reais (como um sumário de livro) depende de o navegador calcular a paginação final antes de gerar o link — recurso que nenhum navegador implementa de forma confiável para impressão nativa. Por isso o índice é **clicável, mas sem número de página** — funciona perfeitamente para navegar dentro do PDF já exportado, só não substitui um sumário remissivo tradicional.
+
+- **Markdown**: mesma lógica adaptada ao formato — cabeçalho, nome, subtítulo e data no topo do arquivo, seguidos de um índice com links internos (`#âncora`, no padrão que leitores de Markdown como GitHub costumam reconhecer automaticamente a partir dos títulos), e então as quatro seções na mesma ordem, com o texto do Plano inserido tal como está (já é Markdown válido, então entra sem conversão). Gera um arquivo `.md` e inicia o download automaticamente.
 
 ## Como abrir e testar
 
@@ -170,11 +183,13 @@ Os cinco blocos (Recursos, Atividades, Produtos, Resultados, Impactos) são um v
   "plano_sincronizacao_matriz": {
     "total_indicadores": 9,
     "ids_indicadores": ["ind_pmen", "ind_agricultores", "..."]
-  }
+  },
+  "capa_cabecalho": "Texto livre com quebra de linha — a cadeia institucional exibida no topo da capa.",
+  "capa_subtitulo": "Texto curto exibido em itálico, abaixo do nome da política, no centro da capa."
 }
 ```
 
-O campo `plano_sincronizacao_matriz` não é editado manualmente — ele é atualizado automaticamente pelo app quando alguém clica em "✓ Confirmar sincronia" na aba do Plano, e é comparado contra o `indicadores.json` atual para decidir se o aviso de dessincronia deve aparecer.
+O campo `plano_sincronizacao_matriz` não é editado manualmente — ele é atualizado automaticamente pelo app quando alguém clica em "✓ Confirmar sincronia" na aba do Plano, e é comparado contra o `indicadores.json` atual para decidir se o aviso de dessincronia deve aparecer. Os campos `capa_cabecalho` e `capa_subtitulo` são editados pela janela que abre ao clicar no título do app — o "Nome da Política" que aparece junto nessa janela, por sua vez, edita o campo `politica` do `estrutura.json`, não um campo novo.
 
 ### `indicadores.json`
 
